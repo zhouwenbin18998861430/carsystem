@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}" media="all">-->
+    <!--连接网站资源-->
+    <!--<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <!--<script th:src="@{layui/lib/layui/layui.js}" charset="utf-8"></script>-->
+    <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/js/baseUrl.js}"></script>
+
+    <style>
+        .form-control{
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+<div>按人数查询</div>
+<div>按用途查询</div>
+<form class="layui-form" action="">
+<div class="layui-form-item">
+<label class="layui-form-label">单行选择框</label>
+<div class="layui-input-inline">
+<select name="carType" lay-verify="required" lay-search="">
+<option value="">请选择乘坐人数</option>
+<option value="1">小轿车（4人）</option>
+<option value="2">商务车（7人）</option>
+<option value="3">旅游大巴（9人）</option>
+</select>
+</div>
+</div>
+</form>
+
+</body>
+<!--<script type="text/javascript" th:src="@{layuiGM/layui.js}"></script>-->
+<script th:src="@{/layuiGM/layui.js}"></script>
+<script>
+    var account = parent.$("#account").text();
+
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //各种基于事件的操作，下面会有进一步介绍
+        form.render(); //更新全部
+    });
+
+</script>
+
+
+</html>

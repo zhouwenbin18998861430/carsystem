@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
+    <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/js/baseUrl.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .form-control {
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <form class="form-horizontal" >
+        <div class="form-group" style="padding: 10px">
+            <label class="col-sm-1 control-label">车辆品牌</label>
+            <div class="col-sm-11 " >
+                <input type="text" class="form-control " style="width: 350px" placeholder="请填入车辆品牌">
+            </div>
+        </div>
+        <div class="form-group" style="padding: 10px">
+            <label class="col-sm-1 control-label">车牌号</label>
+            <div class="col-sm-11">
+                <input type="text" class="form-control" style="width: 350px" placeholder="请填入车牌">
+            </div>
+        </div>
+            <div class="form-group" style="padding: 10px">
+                <label class="col-sm-1 control-label">经手人</label>
+                <div class="col-sm-11">
+                    <input type="text" id="account" class="form-control" style="width: 350px" disabled =“disabled”>
+                </div>
+            </div>
+            <div class="form-group" style="padding: 10px">
+                <label class="col-sm-1 control-label">车辆规模</label>
+                <div class="col-sm-11">
+                    <select class="form-control" style="width: 350px">
+                        <option value="">请选择可乘坐人数</option>
+                        <option value="1">4人</option>
+                        <option value="2">7人</option>
+                        <option value="3">9人</option>
+                    </select>
+                </div>
+            </div>
+
+        <form action="../upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*">
+            <br>
+            <input type="submit" value="上传" class="btn btn-success">
+        </form>
+        [[${filename}]]
+        <br>
+        <img th:src="@{${filename}}" alt="图片">
+        <!--<div>-->
+            <!--<label class="col-sm-1 control-label">车辆规模</label>-->
+            <!--<div class="col-sm-11">-->
+                <!--<select class="form-control" style="width: 350px">-->
+                    <!--<option value="">请选择乘坐人数</option>-->
+                    <!--<option value="1">小轿车（4人）</option>-->
+                    <!--<option value="2">商务车（7人）</option>-->
+                    <!--<option value="3">旅游大巴（9人）</option>-->
+                <!--</select>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="form-group" >
+            <button type="submit" class="btn btn-info" style="margin-left: 220px;margin-top: 20px" id="dengji" >登记</button>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    var account = parent.$("#account").text();
+    $("#account").val(account);
+
+    $("#dengji").click(function () {
+        var data = t.rows(['.selected']).data()[0];
+        if(undefined===data){
+            swal({
+                type: 'warning',
+                title: '提示:',
+                text: '请先选择车辆规模！',
+                confirmButtonColor: "#1ab394",
+            })
+        }else{
+            printCode(data.id);
+        }
+    });
+</script>
+
+</html>

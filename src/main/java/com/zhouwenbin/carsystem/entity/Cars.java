@@ -1,13 +1,14 @@
 package com.zhouwenbin.carsystem.entity;
 
 public class Cars {
-    public Cars(String carNum,Integer category,Integer price,Integer fixed,Integer state,Integer yaprice){
+    public Cars(String carNum,Integer category,Integer price,Integer fixed,Integer state,Integer yaprice,String photo){
         this.carNum=carNum;
         this.category=category;
         this.price=price;
         this.fixed=fixed;
         this.state=state;
         this.yaprice=yaprice;
+        this.photo=photo;
     }
 
     public String getCarNum() {
@@ -64,4 +65,14 @@ public class Cars {
     private Integer yaprice;//押金价格
     private Integer fixed;//修理状态
     private Integer state;//借车状态
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    private String photo;//车辆图片
 }

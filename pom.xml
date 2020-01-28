@@ -87,15 +87,25 @@
             <groupId>net.sourceforge.nekohtml</groupId>
             <artifactId>nekohtml</artifactId>
         </dependency>
+        <!--注入log-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>webApi</finalName>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
             </plugin>
+
             <!-- mybatis generator 自动生成代码插件 -->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
@@ -122,5 +132,18 @@
         </resources>
     </build>
 
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://host:port/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>http://host:port/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

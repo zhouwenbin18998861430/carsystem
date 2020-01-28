@@ -72,25 +72,7 @@ public class LoginControl {
     }
 
     //============================================================================
-//普通用户注册
-    @PostMapping("/register")
-    public String addUser(Users users) {
-        try {
 
-            int account = usersService.addUser(users);
-            if (account > 0) {
-
-                return "success";
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-        return "register";
-    }
 //==============================================================================
 
 }

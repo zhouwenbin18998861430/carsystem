@@ -28,56 +28,52 @@
 </head>
 <body>
 <div id="container">
-    <form class="layui-form" action="" method="post" enctype="multipart/form-data">
+    <form class="layui-form" action="" method="post" enctype="multipart/form-data" >
         <div class="layui-form-item">
             <label class="layui-form-label">车辆品牌</label>
             <div class="layui-input-inline">
-                <input type="text" name="cartype" required lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">
+                <input type="text" name="cartype" required lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input" id="pinpai"  >
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">车牌号</label>
             <div class="layui-input-inline">
-                <input type="text" name="carnum" required lay-verify="required" placeholder="请输入车牌号" autocomplete="off" class="layui-input">
+                <input type="text" name="carnum" required lay-verify="required" placeholder="请输入车牌号" autocomplete="off" class="layui-input" id="carnum"  >
             </div>
         </div>
+
         <div class="layui-form-item">
-            <label class="layui-form-label">经手人</label>
+            <label class="layui-form-label">车辆类型</label>
             <div class="layui-input-inline">
-                <input type="text" id="man" required lay-verify="required" placeholder="请输入车牌号" autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">车辆规模</label>
-            <div class="layui-input-inline">
-                <select name="carType" lay-verify="required" lay-search="">
-                    <option value="">请选择乘坐人数</option>
-                    <option value="1">4-10人</option>
-                    <option value="2">10-15人</option>
-                    <option value="3"></option>
+                <select name="carType" lay-verify="required" lay-search="" id="category" >
+                    <option value="">请选择车辆类型</option>
+                    <option value="1">小轿车（4人）</option>
+                    <option value="2">商务车（7人）</option>
+                    <option value="3">旅游大巴（9人）</option>
                 </select>
             </div>
         </div>
-    <!--************这里是上传图片的代码***************-->
-    <!--************这里添加的隐藏的输入框，用来传递images的参数***************-->
-    <input type="hidden" name="images" class="image">
-    <div class="layui-form-item">
-        <label class="layui-form-label ">照片:</label>
-        <div class="layui-upload">
-            <button type="button" class="layui-btn layui-btn-primary" id="photo" enctype=“multipart/form-data”><i class="layui-icon"></i>资源上传</button>
-
-            <div class="layui-upload-list">
-                <img class="layui-upload-img" id="demo1" style="width: 80px;height: 80px">
-                <input type="text" name="sourcepath" id="sourcepath" style="width: 420px; display:none;margin-left: 25px;">
-                <img src="../static/image/20200129013633_IMG_1457.JPG" style="width: 80px;height: 80px">
+        <!--************这里是上传图片的代码***************-->
+        <!--************这里添加的隐藏的输入框，用来传递images的参数***************-->
+        <input type="hidden" name="images" class="image" id="photolocation" >
+        <div class="layui-form-item">
+            <label class="layui-form-label ">照片:</label>
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test1">上传图片</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo1" style="width: 80px;height: 80px">
+                    <p id="demoText"></p>
+                </div>
             </div>
         </div>
-    </div>
-    <!--************上面里是上传图片的代码***************-->
+        <!--************上面里是上传图片的代码***************-->
+            <div class="layui-input-inline">
+                <input type="hidden" id="man" required lay-verify="required" placeholder="请输入车牌号" disabled =“disabled” autocomplete="off" class="layui-input" >
+            </div>
     <br>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1">登记</button>
+            <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="dengji()">登记</button>
             &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
             <button type="reset" class="layui-btn   layui-btn-danger">重置</button>
         </div>
@@ -104,33 +100,74 @@
 
         //普通图片上传
         var uploadInst = upload.render({
-            elem: '#photo'
-            ,url: '/upload/uploadimages'//上传接口
-            ,accept:'file'
-            ,size: 307200
-            ,method: 'POST'
-            ,done: function(se){
+            elem: '#test1'
+            ,url: '/upload/uploadimages'
+            ,accept:'images'
+            ,size:50000
+            ,before: function(obj){
+
+                obj.preview(function(index, file, result){
+
+                    $('#demo1').attr('src', result);
+                });
+            }
+            ,done: function(res){
                 //如果上传失败
-                if(se.code > 0){
+                if(res.code > 0){
                     return layer.msg('上传失败');
                 }
-                layer.alert("上传成功！"+se.msg, {
-                    icon: 5,
-                    title: "提示"
-                });
-                $("#sourcepath").val(se.msg);
-                $("#demo1").attr("src","../static/image/"+se.filename);
+                //上传成功
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                var fileupload = $(".image");
+                fileupload.attr("value",res.data.src);
+                console.log(fileupload.attr("value"));
             }
-            ,error: function(se){
-                layer.alert("后台出错",{
-                    icon:5,
-                    title:"提示"
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
                 });
-                $("#sourcepath").val(se.msg);
-                $("#demo1").attr("src",se.msg);
             }
         });
+
+
     });
+    function dengji() {
+        // 获取输入框值
+        var pinpai=$("#pinpai").val();
+        var  carnum=$("#carnum").val();
+        var account=$("#man").val();
+        var category=$("#category option:selected").val();
+        var photolocation=$("#photolocation").val();
+        var DATA={
+            "pinpai":pinpai,
+            "carNum":carnum,
+            "account":account,
+            "category":category,
+            "photolocation":photolocation
+        }
+        $.ajax({
+            type:"post",
+            url:"/carregister/carregister",//对应controller路径
+            async:false,
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(DATA),
+            success:function (result) {
+            console.log(result);
+                window.alert(result+"注册成功");
+
+        },
+            error:function (e) {
+                console.log(e);
+            }
+
+        })
+    }
 </script>
 
 </html>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhouwenbin.carsystem.dao.CarTypeMapper">
+    <resultMap id="BaseResultMap" type="com.zhouwenbin.carsystem.entity.CarType" >
+        <id column="account" property="account" jdbcType="VARCHAR" />
+        <result column="num" property="num" jdbcType="INTEGER" />
+        <result column="categoryname" property="categoryname" jdbcType="INTEGER" />
+    </resultMap>
+    <!--id是方法名-->
+    <!--新车登记-->
+    <insert id="addtype">
+            insert into carcategory(num,categoryname,account) values (#{num},#{categoryname},#{account})
+    </insert>
+
+</mapper>

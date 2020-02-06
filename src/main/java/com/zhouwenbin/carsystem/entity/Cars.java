@@ -1,14 +1,17 @@
 package com.zhouwenbin.carsystem.entity;
 
 public class Cars {
-    public Cars(String carNum,Integer category,Integer price,Integer fixed,Integer state,Integer yaprice,String photo){
+    public Cars(String carNum,Integer category,Integer price,Integer fixed,Integer state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
         this.carNum=carNum;
         this.category=category;
         this.price=price;
         this.fixed=fixed;
         this.state=state;
         this.yaprice=yaprice;
-        this.photo=photo;
+        this.photolocation=photolocation;
+        this.size=size;
+        this.account=account;
+        this.pinpai=pinpai;
     }
 
     public String getCarNum() {
@@ -59,20 +62,53 @@ public class Cars {
         this.state = state;
     }
 
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public String getPhotolocation() {
+        return photolocation;
+    }
+
+    public void setPhotolocation(String photolocation) {
+        this.photolocation = photolocation;
+    }
+
+    public String getPinpai() {
+        return pinpai;
+    }
+
+    public void setPinpai(String pinpai) {
+        this.pinpai = pinpai;
+    }
+
+    private String pinpai;//车辆品牌
     private String carNum;//车牌号
     private Integer category;//车辆类别
     private Integer price;//租车价格
     private Integer yaprice;//押金价格
     private Integer fixed;//修理状态
     private Integer state;//借车状态
+    private Integer size;//车辆规模
+    private String photolocation;//车辆图片
+    private String account;//经手人
 
-    public String getPhoto() {
-        return photo;
+    public String getAccount() {
+        return account;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    private String photo;//车辆图片
+
+
+
+
+
+
 }

@@ -25,18 +25,19 @@
     </style>
 </head>
 <body>
-<div>按人数查询</div>
-<div>按用途查询</div>
 <form class="layui-form" action="">
 <div class="layui-form-item">
-<label class="layui-form-label">单行选择框</label>
+<label class="layui-form-label">车辆类型</label>
 <div class="layui-input-inline">
-<select name="carType" lay-verify="required" lay-search="">
-<option value="">请选择乘坐人数</option>
-<option value="1">小轿车（4人）</option>
-<option value="2">商务车（7人）</option>
-<option value="3">旅游大巴（9人）</option>
-</select>
+    <select name="carType" lay-verify="required" lay-search="">
+    <option value="">请选择车辆类型</option>
+    <option value="1">小轿车（4人）</option>
+    <option value="2">商务车（7人）</option>
+    <option value="3">旅游大巴（9人）</option>
+    </select>
+</div>
+<div class="layui-input-inline">
+    <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="addtype()">新增车辆类型</button>
 </div>
 </div>
 </form>
@@ -52,6 +53,10 @@
         //各种基于事件的操作，下面会有进一步介绍
         form.render(); //更新全部
     });
+
+    function addtype() {
+        window.location.href="/login/AddType";
+    }
 
 </script>
 

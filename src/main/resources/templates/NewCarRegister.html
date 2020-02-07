@@ -27,77 +27,67 @@
     </style>
 </head>
 <body>
-<div id="container">
-    <form class="layui-form" action="" method="post" enctype="multipart/form-data" >
-        <div class="layui-form-item">
-            <label class="layui-form-label">车辆品牌</label>
-            <div class="layui-input-inline">
-                <input type="text" name="cartype" required lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input" id="pinpai"  >
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">车牌号</label>
-            <div class="layui-input-inline">
-                <input type="text" name="carnum" required lay-verify="required" placeholder="请输入车牌号" autocomplete="off" class="layui-input" id="carnum"  >
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">车辆类型</label>
-            <div class="layui-input-inline">
-                <select name="carType" lay-verify="required" lay-search="" id="category" >
-                    <option value="">请选择车辆类型</option>
-                    <option value="1">小轿车（4人）</option>
-                    <option value="2">商务车（7人）</option>
-                    <option value="3">旅游大巴（9人）</option>
-                </select>
-            </div>
-        </div>
-        <!--************这里是上传图片的代码***************-->
-        <!--************这里添加的隐藏的输入框，用来传递images的参数***************-->
-        <input type="hidden" name="images" class="image" id="photolocation" >
-        <div class="layui-form-item">
-            <label class="layui-form-label ">照片:</label>
-            <div class="layui-upload">
-                <button type="button" class="layui-btn" id="test1">上传图片</button>
-                <div class="layui-upload-list">
-                    <img class="layui-upload-img" id="demo1" style="width: 80px;height: 80px">
-                    <p id="demoText"></p>
-                </div>
-            </div>
-        </div>
-        <!--************上面里是上传图片的代码***************-->
-            <div class="layui-input-inline">
-                <input type="hidden" id="man" required lay-verify="required" placeholder="请输入车牌号" disabled =“disabled” autocomplete="off" class="layui-input" >
-            </div>
-    <br>
-    <div class="layui-form-item">
+<form class="layui-form" action="" lay-filter="car" enctype="multipart/form-data" method="post">
+    <div class="layui-form-item ">
+        <label class="layui-form-label">车辆品牌</label>
         <div class="layui-input-block">
-            <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="dengji()">登记</button>
-            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-            <button type="reset" class="layui-btn   layui-btn-danger">重置</button>
+            <input type="text" name="pinpai" id="pinpai" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">
         </div>
     </div>
-    <br>
-    </form>
-</div>
-</body>
-<script>
-    var account = parent.$("#account").text();
-    $("#man").val(account);
-// 初始化form模块
-    layui.use('form', function(){
-        var form = layui.form;
+    <div class="layui-form-item ">
+        <label class="layui-form-label">车牌号</label>
+        <div class="layui-input-block">
+            <input type="text" name="carNum" id="carNum" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">车辆类型</label>
+        <div class="layui-input-block">
+            <select id="category" name="category" lay-filter="category" lay-search>
+                <option value="">请选择车辆类型</option>
+            </select>
+        </div>
+    </div>
+    <!--************这里是上传图片的代码***************-->
+    <!--************这里添加的隐藏的输入框，用来传递images的参数***************-->
+    <div class="layui-form-item">
+        <label class="layui-form-label ">照片:</label>
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test1">上传图片</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo1" style="width: 80px;height: 80px">
+                <p id="demoText"></p>
+                <input type="hidden" name="photolocation" class="image" id="photolocation" >
+                <input type="hidden" name="account"  id="account" >
+            </div>
+        </div>
+    </div>
 
-        //各种基于事件的操作，下面会有进一步介绍
+    <!--************上面里是上传图片的代码***************-->
+</form>
+<div class="layui-btn-container">
+    <button type="button" class="layui-btn layui-btn-normal"  onclick="dengji()">登记</button>
+    <button type="reset" class="layui-btn layui-btn-danger">重置</button>
+</div>
+
+</body>
+<script th:inline ="none">
+    var account = parent.$("#account").text();
+    $("#account").val(account);
+    //初始化from
+    layui.use(['form'], function(){
+        var layer = layui.layer
+            ,form = layui.form
         form.render(); //更新全部
+        // form.val("cityForm", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+        //     "city": "其他" // "name": "value"
+        // });
     });
 
   // 初始化上传
     layui.use('upload', function(){
         var $ = layui.jquery
             ,upload = layui.upload;
-
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#test1'
@@ -133,17 +123,16 @@
                 });
             }
         });
-
-
     });
+    //登记
     function dengji() {
         // 获取输入框值
         var pinpai=$("#pinpai").val();
-        var  carnum=$("#carnum").val();
-        var account=$("#man").val();
+        var  carnum=$("#carNum").val();
+        var account=$("#account").val();
         var category=$("#category option:selected").val();
         var photolocation=$("#photolocation").val();
-        var DATA={
+        var data1={
             "pinpai":pinpai,
             "carNum":carnum,
             "account":account,
@@ -156,18 +145,34 @@
             async:false,
             contentType:"application/json",
             dataType:"json",
-            data:JSON.stringify(DATA),
+            data:JSON.stringify(data1),
             success:function (result) {
-            console.log(result);
-                window.alert(result+"注册成功");
+                console.log(result.code);
+                window.alert(result.carNum+"注册成功");
 
-        },
+            },
             error:function (e) {
                 console.log(e);
             }
 
         })
     }
+    // //动态插入数据库select值
+    // $.ajax({
+    //     url:"cartype/select"
+    //     ,dataType:"json"
+    //     ,data:{'state':0}
+    //     ,type:'post'
+    //     ,success:function (data) {
+    //         $.each(data.categoryname,function (index,item) {
+    //         $("#category").append(new Option(data.categoryname,data.categoryname));//添加元素
+    //         });
+    //         form.render('select');
+    //     }
+    //     ,error:function (e) {
+    //         console.log(e);
+    //     }
+    // })
 </script>
 
 </html>

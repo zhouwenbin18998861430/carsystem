@@ -28,6 +28,7 @@ public class CarType {
     private Integer num;//可载数量
     private String categoryname;//类型名
     private String account;//经手人
+    private Integer state;//分类的状态 0正常1删除
 
     public CarType(Integer num,String categoryname,String account){
         this.num=num;

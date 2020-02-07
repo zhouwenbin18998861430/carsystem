@@ -67,13 +67,13 @@
         $.ajax({
             type:"post",
             url:"/cartype/add",//对应controller路径
-            // async:false,
+            async:false,
             contentType:"application/json",
             dataType:"json",
             data:JSON.stringify(Data),
             success:function (data) {
                 console.log(data);
-                window.alert(data+"添加成功");
+                window.alert(data.categoryname+"类型添加成功");
                 window.location.href="/CarTypeSelect";
             },
             error:function (e) {

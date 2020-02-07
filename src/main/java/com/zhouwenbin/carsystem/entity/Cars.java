@@ -1,7 +1,7 @@
 package com.zhouwenbin.carsystem.entity;
 
 public class Cars {
-    public Cars(String carNum,Integer category,Integer price,Integer fixed,Integer state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
+    public Cars(String carNum,String category,Integer price,Integer fixed,Integer state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
         this.carNum=carNum;
         this.category=category;
         this.price=price;
@@ -22,11 +22,11 @@ public class Cars {
         this.carNum = carNum;
     }
 
-    public Integer getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
@@ -88,7 +88,7 @@ public class Cars {
 
     private String pinpai;//车辆品牌
     private String carNum;//车牌号
-    private Integer category;//车辆类别
+    private String category;//车辆类别
     private Integer price;//租车价格
     private Integer yaprice;//押金价格
     private Integer fixed;//修理状态

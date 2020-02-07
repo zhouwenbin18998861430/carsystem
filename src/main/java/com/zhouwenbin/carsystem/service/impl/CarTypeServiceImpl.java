@@ -16,4 +16,9 @@ public class CarTypeServiceImpl implements CarTypeService {
     public Integer addtype(CarType carType) {
         return carTypeMapper.addtype(carType);
     }
+
+    @Override
+    public String selecttype(CarType carType) {
+        return carTypeMapper.selecttype(carType);
+    }
 }

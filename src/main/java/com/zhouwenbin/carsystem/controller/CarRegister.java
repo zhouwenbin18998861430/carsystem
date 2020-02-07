@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/carregister")
 @ResponseBody
@@ -16,7 +19,7 @@ public class CarRegister {
     @Autowired
     private CarsService carsService;
     @PostMapping("/carregister")
-    public String selectJobInfos(@RequestBody Cars cars){
+    public Map selectJobInfos(@RequestBody Cars cars){
     // Integer category=cars.getCategory();
     String carNum=cars.getCarNum();
     // String account=cars.getAccount();
@@ -28,6 +31,9 @@ public class CarRegister {
     //     System.out.println("size"+size);
     //     System.out.println("photolocation"+photolocation);
     carsService.registerCar(cars);
-    return carNum;
+    Map<String ,Object>dataMap =new HashMap<>();
+    dataMap.put("carNum",carNum);
+    dataMap.put("code",200);
+    return dataMap;
     }
 }

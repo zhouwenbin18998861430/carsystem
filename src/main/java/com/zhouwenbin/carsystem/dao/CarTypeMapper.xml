@@ -8,11 +8,16 @@
         <id column="account" property="account" jdbcType="VARCHAR" />
         <result column="num" property="num" jdbcType="INTEGER" />
         <result column="categoryname" property="categoryname" jdbcType="INTEGER" />
+        <result column="state" property="state" jdbcType="INTEGER" />
     </resultMap>
     <!--id是方法名-->
     <!--新车登记-->
     <insert id="addtype">
-            insert into carcategory(num,categoryname,account) values (#{num},#{categoryname},#{account})
+            insert into carcategory(num,categoryname,account,state) values (#{num},#{categoryname},#{account},0)
     </insert>
+    <select id="selecttype">
+            select categoryname from carcategory where state=#{state}
+    </select>
+
 
 </mapper>

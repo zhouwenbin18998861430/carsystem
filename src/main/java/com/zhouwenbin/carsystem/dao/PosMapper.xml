@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhouwenbin.carsystem.dao.PosMapper">
+    <resultMap id="BaseResultMap" type="com.zhouwenbin.carsystem.entity.Pos" >
+        <id column="posid" property="posid" jdbcType="INTEGER" />
+        <result column="posname" property="posname" jdbcType="VARCHAR" />
+        <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="carid" property="carid" jdbcType="INTEGER" />
+        <result column="posaddress" property="posaddress" jdbcType="VARCHAR" />
+    </resultMap>
+    <!--id是方法名-->
+    <!--新车登记-->
+    <insert id="addpos">
+            insert into pos(posname,account,posaddress) values (#{posname},#{account},#{posaddress})
+    </insert>
+
+</mapper>

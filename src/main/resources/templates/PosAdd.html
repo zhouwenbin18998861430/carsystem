@@ -18,10 +18,65 @@
         <![endif]-->
     </head>
     <body>
-    租赁点添加页面
+        <form class="layui-form" action="" lay-filter="car" enctype="multipart/form-data" method="post">
+            <div class="layui-form-item ">
+                <label class="layui-form-label">租赁点名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="posname" id="posname" required  lay-verify="required" placeholder="请输入租赁点名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item ">
+                <label class="layui-form-label">租赁点地址</label>
+                <div class="layui-input-block">
+                    <input type="text" name="posaddress" id="posaddress" required  lay-verify="required" placeholder="请输入租赁点地址" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--隐藏input-->
+                    <input type="hidden" name="account" id="account"  required  lay-verify="required"  autocomplete="off" class="layui-input">
+        </form>
+        <div class="layui-btn-container">
+            <button type="button" class="layui-btn layui-btn-normal"  onclick="add()">添加</button>
+            <button type="reset" class="layui-btn layui-btn-danger">重置</button>
+        </div>
     </body>
 <script>
     var account = parent.$("#account").text();
+    $("#account").val(account);
+    //初始化from
+    layui.use(['form'], function(){
+        var layer = layui.layer
+            ,form = layui.form
+        form.render(); //更新全部
+        // form.val("cityForm", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+        //     "city": "其他" // "name": "value"
+        // });
+    });
+    function add() {
+       var posname=$("#posname").val();
+       var posaddress=$("#posaddress").val();
+       var account=$("#account").val();
+       var data2={
+           "posname":posname
+           ,"posaddress":posaddress
+           ,"account":account
+       }
+       console.log(data2);
+       $.ajax({
+           type:"post",
+           url:"/pos/add",//对应controller路径
+           async:false,
+           contentType:"application/json",
+           dataType:"json",
+           data:JSON.stringify(data2),
+           success:function (result) {
+               console.log(result.code);
+               window.alert(result.posname+"添加成功");
+           },
+           error:function (e) {
+               console.log(e);
+           }
+       })
+    }
 </script>
 
 </html>

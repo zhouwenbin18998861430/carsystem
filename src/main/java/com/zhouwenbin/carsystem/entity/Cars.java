@@ -1,6 +1,7 @@
 package com.zhouwenbin.carsystem.entity;
 
 public class Cars {
+    public Cars(){}
     public Cars(String carNum,String category,Integer price,Integer fixed,Integer state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
         this.carNum=carNum;
         this.category=category;
@@ -96,6 +97,10 @@ public class Cars {
     private Integer size;//车辆规模
     private String photolocation;//车辆图片
     private String account;//经手人
+
+    public String toString(){
+        return "Cars(pinpai="+this.getPinpai()+",carNum="+this.getCarNum()+",category="+this.getCategory()+",price="+this.getPrice()+",yaprice="+this.getYaprice()+",fixed="+this.getFixed()+",state="+this.getState()+",size="+this.getSize()+",photolocation="+this.getPhotolocation()+",account="+this.getAccount();
+    }
 
     public String getAccount() {
         return account;

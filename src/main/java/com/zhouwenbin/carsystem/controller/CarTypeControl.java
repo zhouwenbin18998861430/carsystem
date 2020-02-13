@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -29,12 +30,10 @@ public class CarTypeControl {
         return map;
     }
     @PostMapping("/select")
-    public  Map selecttype(@RequestBody CarType carType){
-        carTypeService.selecttype(carType);
-        String categoryname=carType.getCategoryname();
-        Map<String,Object> map=new HashMap<>();
-        map.put("code",200);
-        map.put("categoryname",categoryname);
-        return map;
+    public  List<String> selecttype(){
+        // List<String> result=new ArrayList<String>();
+        List<String> categorynamelist =carTypeService.selecttype();
+        System.out.println("categorynamelist:"+categorynamelist);
+        return categorynamelist;
     }
 }

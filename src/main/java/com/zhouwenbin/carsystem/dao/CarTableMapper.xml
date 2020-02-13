@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhouwenbin.carsystem.dao.CarTableMapper">
+    <resultMap id="BaseResultMap" type="com.zhouwenbin.carsystem.entity.Cars" >
+        <id column="carid" property="carid" jdbcType="INTEGER" />
+        <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="category" property="category" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="INTEGER" />
+        <result column="pos" property="pos" jdbcType="VARCHAR" />
+        <result column="fixed" property="fixed" jdbcType="INTEGER" />
+        <result column="size" property="size" jdbcType="INTEGER" />
+        <result column="carnum" property="carNum" jdbcType="VARCHAR" />
+        <result column="photolocation" property="photolocation" jdbcType="VARCHAR" />
+        <result column="pinpai" property="pinpai" jdbcType="VARCHAR" />
+    </resultMap>
+    <!--id是方法名-->
+    <!--新车登记-->
+    <select id="selectList" resultType="com.zhouwenbin.carsystem.entity.Cars">
+            select * from car where category=#{category}
+    </select>
+
+</mapper>

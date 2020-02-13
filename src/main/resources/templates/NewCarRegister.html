@@ -24,6 +24,7 @@
         .form-control {
             width: 40%;
         }
+         .layui-form-select dl { max-height:200px; }
     </style>
 </head>
 <body>
@@ -78,10 +79,27 @@
     layui.use(['form'], function(){
         var layer = layui.layer
             ,form = layui.form
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
         form.render(); //更新全部
-        // form.val("cityForm", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
-        //     "city": "其他" // "name": "value"
-        // });
+        $.ajax({
+            url:"/cartype/select"
+            ,type:"POST"
+            ,contentType : "application/json;charsetset=UTF-8"//必须
+            , success:function(datas){
+                for (i = 0; i < datas.length;i++){
+                    console.log("i:"+i);
+                    console.log("datas[i]:"+datas[i]);
+                    $("#category").append("<option value='"+datas[i]+"'>"+datas[i]+"</option>");
+                    form.render();//注意渲染页面表单，否则不显示数据
+                }
+                form.render();//注意渲染页面表单，否则不显示数据
+            },
+            error: function() {
+                layer.msg('获取规则失败');
+                form.render();
+            }
+        });
     });
 
   // 初始化上传
@@ -157,22 +175,12 @@
 
         })
     }
-    // //动态插入数据库select值
-    // $.ajax({
-    //     url:"cartype/select"
-    //     ,dataType:"json"
-    //     ,data:{'state':0}
-    //     ,type:'post'
-    //     ,success:function (data) {
-    //         $.each(data.categoryname,function (index,item) {
-    //         $("#category").append(new Option(data.categoryname,data.categoryname));//添加元素
-    //         });
-    //         form.render('select');
-    //     }
-    //     ,error:function (e) {
-    //         console.log(e);
-    //     }
-    // })
+
+    //获取待选规则
+    $(document).ready(function () {
+
+    })
+
 </script>
 
 </html>

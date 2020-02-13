@@ -19,9 +19,10 @@
     <script th:src="@{/layui/js/baseUrl.js}"></script>
 
     <style>
-        .form-control{
+        .form-control {
             width: 40%;
         }
+        .layui-form-select dl { max-height:200px; }
     </style>
 </head>
 <body>
@@ -29,15 +30,15 @@
 <div class="layui-form-item">
 <label class="layui-form-label">车辆类型</label>
 <div class="layui-input-inline">
-    <select name="carType" lay-verify="required" lay-search="">
+    <select name="carType" id="carType" lay-verify="required" lay-search="" lay-filter="carType">
     <option value="">请选择车辆类型</option>
-    <option value="1">小轿车（4人）</option>
-    <option value="2">商务车（7人）</option>
-    <option value="3">旅游大巴（9人）</option>
     </select>
 </div>
 <div class="layui-input-inline">
     <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="addtype()">新增车辆类型</button>
+</div>
+<div class="layui-input-inline">
+    <table class="layui-hide" id="hidetable" lay-filter="test"></table>
 </div>
 </div>
 </form>
@@ -47,8 +48,58 @@
 <script th:src="@{/layuiGM/layui.js}"></script>
 <script>
     var account = parent.$("#account").text();
-    layui.use('form', function(){
-        var form = layui.form;
+    layui.use(['form','laypage','table'], function(){
+        var laypage = layui.laypage //分页
+            ,form = layui.form//表单
+            ,table=layui.table;//表格
+        $.ajax({
+            url:"/cartype/select"
+            ,type:"POST"
+            ,contentType : "application/json;charsetset=UTF-8"//必须
+            , success:function(datas){
+                for (i = 0; i < datas.length;i++){
+                    console.log("i:"+i);
+                    console.log("datas[i]:"+datas[i]);
+                    $("#carType").append("<option value='"+datas[i]+"'>"+datas[i]+"</option>");
+                }
+                form.render();//注意渲染页面表单，否则不显示数据
+            },
+            error: function() {
+                layer.msg('获取规则失败');
+                form.render();
+            }
+        });
+        //上面是动态option
+        //监听select
+        form.on("select(carType)",function (data) {
+            var dataa={
+                "category":data.value
+            };
+            $.ajax({
+                url:"/table/select"
+                ,type:"POST"
+                ,async:false
+                ,dataType:"json"
+                ,data:JSON.stringify(dataa)
+                ,contentType : "application/json;charsetset=UTF-8"//必须
+                , success:function (data) {
+                    //这里渲染table
+
+                    //执行一个 table 实例
+
+                    //监听头工具栏事件
+
+                    //监听行工具事件
+
+                    //分页
+
+
+                },error:function (e) {
+                    console.log(e);
+                }
+            })
+        })
+
 
         //各种基于事件的操作，下面会有进一步介绍
         form.render(); //更新全部

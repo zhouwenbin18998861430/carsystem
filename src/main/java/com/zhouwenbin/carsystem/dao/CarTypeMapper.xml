@@ -15,8 +15,8 @@
     <insert id="addtype">
             insert into carcategory(num,categoryname,account,state) values (#{num},#{categoryname},#{account},0)
     </insert>
-    <select id="selecttype">
-            select categoryname from carcategory where state=#{state}
+    <select id="selecttype" resultType="string">
+            select categoryname from carcategory
     </select>
 
 

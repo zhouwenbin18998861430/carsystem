@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,7 +19,7 @@ public class CarTypeServiceImpl implements CarTypeService {
     }
 
     @Override
-    public String selecttype(CarType carType) {
-        return carTypeMapper.selecttype(carType);
+    public List<String> selecttype() {
+        return carTypeMapper.selecttype();
     }
 }

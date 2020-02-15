@@ -88,8 +88,6 @@
             ,contentType : "application/json;charsetset=UTF-8"//必须
             , success:function(datas){
                 for (i = 0; i < datas.length;i++){
-                    console.log("i:"+i);
-                    console.log("datas[i]:"+datas[i]);
                     $("#category").append("<option value='"+datas[i]+"'>"+datas[i]+"</option>");
                     form.render();//注意渲染页面表单，否则不显示数据
                 }

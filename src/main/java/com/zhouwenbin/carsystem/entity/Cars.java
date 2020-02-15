@@ -2,7 +2,9 @@ package com.zhouwenbin.carsystem.entity;
 
 public class Cars {
     public Cars(){}
-    public Cars(String carNum,String category,Integer price,Integer fixed,Integer state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
+    public Cars(String pos,Integer carid,String carNum,String category,Integer price,Integer fixed,Integer state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
+        this.pos=pos;
+        this.carid=carid;
         this.carNum=carNum;
         this.category=category;
         this.price=price;
@@ -87,19 +89,12 @@ public class Cars {
         this.pinpai = pinpai;
     }
 
-    private String pinpai;//车辆品牌
-    private String carNum;//车牌号
-    private String category;//车辆类别
-    private Integer price;//租车价格
-    private Integer yaprice;//押金价格
-    private Integer fixed;//修理状态
-    private Integer state;//借车状态
-    private Integer size;//车辆规模
-    private String photolocation;//车辆图片
-    private String account;//经手人
+    public Integer getCarid() {
+        return carid;
+    }
 
-    public String toString(){
-        return "Cars(pinpai="+this.getPinpai()+",carNum="+this.getCarNum()+",category="+this.getCategory()+",price="+this.getPrice()+",yaprice="+this.getYaprice()+",fixed="+this.getFixed()+",state="+this.getState()+",size="+this.getSize()+",photolocation="+this.getPhotolocation()+",account="+this.getAccount();
+    public void setCarid(Integer carid) {
+        this.carid = carid;
     }
 
     public String getAccount() {
@@ -109,6 +104,35 @@ public class Cars {
     public void setAccount(String account) {
         this.account = account;
     }
+
+    public String getPos() {
+        return pos;
+    }
+
+    public void setPos(String pos) {
+        this.pos = pos;
+    }
+
+    private String pinpai;//车辆品牌
+    private String carNum;//车牌号
+    private Integer carid;//车辆ID
+    private String category;//车辆类别
+    private Integer price;//租车价格
+    private Integer yaprice;//押金价格
+    private Integer fixed;//修理状态
+    private Integer state;//借车状态
+    private Integer size;//车辆规模
+    private String photolocation;//车辆图片
+    private String account;//经手人
+
+
+
+    private String pos;//租赁地点
+
+    public String toString(){
+        return "Cars(pinpai="+this.getPinpai()+",carNum="+this.getCarNum()+",pos="+this.getPos()+",carid="+this.getCarid()+",category="+this.getCategory()+",price="+this.getPrice()+",yaprice="+this.getYaprice()+",fixed="+this.getFixed()+",state="+this.getState()+",size="+this.getSize()+",photolocation="+this.getPhotolocation()+",account="+this.getAccount()+").";
+    }
+
 
 
 

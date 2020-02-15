@@ -16,6 +16,7 @@
         <result column="carnum" property="carNum" jdbcType="VARCHAR" />
         <result column="photolocation" property="photolocation" jdbcType="VARCHAR" />
         <result column="pinpai" property="pinpai" jdbcType="VARCHAR" />
+        <result column="yaprice" property="pinyapricepai" jdbcType="INTEGER" />
     </resultMap>
     <!--id是方法名-->
     <!--新车登记-->

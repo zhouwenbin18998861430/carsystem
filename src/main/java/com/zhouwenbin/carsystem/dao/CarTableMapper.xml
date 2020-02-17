@@ -23,5 +23,8 @@
     <select id="selectList" resultType="com.zhouwenbin.carsystem.entity.Cars">
             select * from car where category=#{category}
     </select>
+    <delete id="del" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+            delete from car where carid=#{carid}
+    </delete>
 
 </mapper>

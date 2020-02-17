@@ -18,4 +18,8 @@ public class CarTableServiceImpl implements CarTableService {
     public List<Cars> selectList(Cars cars) {
         return carTableMapper.selectList(cars);
     }
+    @Override
+    public Boolean del(Cars cars) {
+        return carTableMapper.del(cars);
+    }
 }

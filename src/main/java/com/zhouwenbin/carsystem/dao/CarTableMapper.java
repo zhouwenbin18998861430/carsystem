@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface CarTableMapper {
     List<Cars> selectList(Cars cars);
+    Boolean del(Cars cars);
 }

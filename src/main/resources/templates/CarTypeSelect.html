@@ -51,12 +51,13 @@
 <div class="layui-input-inline">
     <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="addtype()">新增车辆类型</button>
 </div>
+    <input type="hidden" id="carid">
 </div>
 </form>
-<div class="layui-card-header">
-    <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-    <button class="layui-btn" onclick="xadmin.open('添加用户','./ac-add.html',700,500)"><i class="layui-icon"></i>添加</button>
-</div>
+<!--<div class="layui-card-header">-->
+    <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
+    <!--<button class="layui-btn" onclick="xadmin.open('添加用户','./ac-add.html',700,500)"><i class="layui-icon"></i>添加</button>-->
+<!--</div>-->
 <div class="layui-card-body layui-table-body layui-table-main">
     <table id="demo" lay-filter="test"></table>
 </div>
@@ -120,8 +121,8 @@
                 ,cols: [
 
                     [ //表头
-                        {fixed : 'id', type:'checkbox',width : 70}
-                        ,{field: 'carid', title: 'ID', width:80, sort: true, fixed: 'left'}
+                        {fixed : 'carid', type:'checkbox',width : 70}
+                        // ,{field: 'carid', title: 'ID', width:80, sort: true, fixed: 'left'}
                         ,{field: 'account', title: '用户名', width:80}
                         ,{field: 'state', title: 'state', width: 80, sort: true}
                         ,{field: 'category', title: '类型', width: 80}
@@ -147,25 +148,43 @@
             var table = layui.table;
             table.on('tool(test)', function(obj) {
                 var data = obj.data;
-                var cid = data.id;
+                var cid = data.carid;
                 if (obj.event == 'edit1') {
-                    xadmin.open('编辑信息','./ac-edit.html?id='+cid,750,500);
+                    $("#carid").val(cid);
+                    console.log("carid:"+cid);
+                    // $.ajax({
+                    //     type:"get",
+                    //     url: '/table/edit/'+cid,
+                    //     method: 'get',
+                    //     dataType:"json",
+                    //     contentType : "application/json;charsetset=UTF-8",//必须
+                    //     success:function (data) {
+                    //         window.location.href=data.url;
+                    //     },
+                    //     error:function (e) {
+                    //         console.log(e);
+                    //     }
+                    // });
+                    window.location.href="/login/carEdit";
                 } else if (obj.event == 'del') {
                     layer.confirm("确定要删除该条数据吗？", {
                         icon : 0,
                         title : '提示',
                         offset : '150px'
                     }, function(index) {
+                        data1={
+                            'carid' : cid
+                        };
                         $.ajax({
                             type:"post",
-                            data:{
-                                'id' : cid
-                            },
-                            url:baseUrl + '/Index/index1/acDel',
+                            data:JSON.stringify(data1),
+                            url: '/table/del',
+                            method: 'post',
                             dataType:"json",
-                            success:function(data){
+                            contentType : "application/json;charsetset=UTF-8"//必须
+                            ,success:function(data){
                                 // layer.msg("删除成功！",{icon : 0});
-                                layer.alert("删除成功", {
+                                layer.alert(data.msg, {
                                         icon: 6
                                     },
                                     function() {
@@ -181,23 +200,6 @@
                 }
             });
         });
-
-
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
-
-
-        function delAll () {
-            layer.msg('暂未开放！', {icon: 6});
-        }
 
 
         //各种基于事件的操作，下面会有进一步介绍

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CarTableService {
     List<Cars> selectList(Cars cars);
+    Boolean del(Cars cars);
 }

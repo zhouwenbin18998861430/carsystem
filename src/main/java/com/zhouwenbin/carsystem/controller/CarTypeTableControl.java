@@ -29,8 +29,25 @@ public class CarTypeTableControl {
         map.put("status", 0);
         map.put("message", "");
         map.put("total", "");
-        System.out.println("打印："+selectlist.toString());
+        return map;
+    }
+    @RequestMapping("/del")
+    public  Map del(@RequestBody Cars cars){
+        Map<String,Object> map=new HashMap();
+        // Integer carid=cars.getCarid();
+        // System.out.println("carid="+carid);
+        carTableService.del(cars);
+        map.put("code",0);
+        map.put("msg","删除成功");
         System.out.println("map:"+map);
+        return map;
+    }
+    @GetMapping("/edit/{carid}")
+    public Map edit(@PathVariable("carid")String carid){
+        System.out.println("carid:"+carid);
+        Map<String,Object> map =new HashMap<>();
+        map.put("msg","跳转成功");
+        map.put("url","/login/carEdit");
         return map;
     }
 }

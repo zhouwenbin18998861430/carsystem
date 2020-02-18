@@ -20,18 +20,30 @@
     <body>
     <div id="container">
     <form class="layui-form" action="" method="post">
-    <div class="layui-form-item">
-        <label class="layui-form-label">可载人数</label>
-        <div class="layui-input-inline">
-            <input type="text" name="num" required lay-verify="required" placeholder="请输入可载人数" autocomplete="off" class="layui-input" id="num"  >
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>可乘人数</label>
+            <div class="layui-input-inline">
+                <input type="text" id="num" name="num" required="" placeholder="请输入可乘人数" lay-verify="required" autocomplete="off" class="layui-input"></div>
         </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">类型名称</label>
-        <div class="layui-input-inline">
-            <input type="text" name="categoryname" required lay-verify="required" placeholder="请输入类型名称" autocomplete="off" class="layui-input" id="categoryname"  >
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">可载人数</label>-->
+        <!--<div class="layui-input-inline">-->
+            <!--<input type="text" name="num" required lay-verify="required" placeholder="请输入可载人数" autocomplete="off" class="layui-input" id="num"  >-->
+        <!--</div>-->
+    <!--</div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>类型名称</label>
+            <div class="layui-input-inline">
+                <input type="text" id="categoryname" name="categoryname" required="" placeholder="请输入类型名称" lay-verify="required" autocomplete="off" class="layui-input"></div>
         </div>
-    </div>
+        <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label">类型名称</label>-->
+        <!--<div class="layui-input-inline">-->
+            <!--<input type="text" name="categoryname" required lay-verify="required" placeholder="请输入类型名称" autocomplete="off" class="layui-input" id="categoryname"  >-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="layui-form-item">
             <input type="hidden" name="account"  id="account" >
     </div>

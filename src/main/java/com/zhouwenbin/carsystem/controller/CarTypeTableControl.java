@@ -4,23 +4,25 @@ import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.service.CarTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@ResponseBody
 @RequestMapping("/table")
 public class CarTypeTableControl {
     @Autowired
     private CarTableService carTableService;
     @RequestMapping("/select")
+    @ResponseBody
     public Map selectTable(@RequestBody Cars cars){
         //--------------
         String a=cars.getCategory();
-        System.out.println("category:"+a);
         //--------------
         List<Cars> selectlist=carTableService.selectList(cars);
 
@@ -32,6 +34,7 @@ public class CarTypeTableControl {
         return map;
     }
     @RequestMapping("/del")
+    @ResponseBody
     public  Map del(@RequestBody Cars cars){
         Map<String,Object> map=new HashMap();
         // Integer carid=cars.getCarid();
@@ -39,15 +42,28 @@ public class CarTypeTableControl {
         carTableService.del(cars);
         map.put("code",0);
         map.put("msg","删除成功");
-        System.out.println("map:"+map);
+        // System.out.println("map:"+map);
         return map;
     }
-    @GetMapping("/edit/{carid}")
-    public Map edit(@PathVariable("carid")String carid){
-        System.out.println("carid:"+carid);
-        Map<String,Object> map =new HashMap<>();
-        map.put("msg","跳转成功");
-        map.put("url","/login/carEdit");
-        return map;
+    // @GetMapping("/edit/{carid}")
+    // public Map edit(@PathVariable("carid")String carid){
+    //     System.out.println("carid:"+carid);
+    //     Map<String,Object> map =new HashMap<>();
+    //     map.put("msg","跳转成功");
+    //     map.put("url","/login/carEdit");
+    //     return map;
+    // }
+
+    //获取车辆id
+    @RequestMapping("/carEdit")
+    public String carEdit(Integer carId, Model model){
+        // List<Cars> carList;
+        // map.addAttribute("carList",carList);
+        System.out.println("carid:"+carId);
+        List<Cars> carlists=carTableService.carinfo(carId);
+        // System.out.println("carlists:"+carlists);
+        model.addAttribute("carId",carId);
+        model.addAttribute("carlists",carlists);
+        return "carEdit";
     }
 }

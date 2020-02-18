@@ -28,31 +28,69 @@
     </style>
 </head>
 <body>
-<form class="layui-form" action="" lay-filter="car" enctype="multipart/form-data" method="post">
-    <div class="layui-form-item ">
-        <label class="layui-form-label">车辆品牌</label>
-        <div class="layui-input-block">
-            <input type="text" name="pinpai" id="pinpai" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item ">
-        <label class="layui-form-label">车牌号</label>
-        <div class="layui-input-block">
-            <input type="text" name="carNum" id="carNum" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">
-        </div>
+<form class="layui-form" id="form1" action="" lay-filter="car" enctype="multipart/form-data" method="post">
+<!--<form class="layui-form" action="" lay-filter="car" enctype="multipart/form-data" method="post">-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>车辆品牌</label>
+        <div class="layui-input-inline">
+            <input type="text" id="pinpai" name="pinpai" required="" placeholder="请输入车辆品牌" lay-verify="required" autocomplete="off" class="layui-input"></div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">车辆类型</label>
-        <div class="layui-input-block">
-            <select id="category" name="category" lay-filter="category" lay-search>
+        <label class="layui-form-label">
+            <span class="x-red">*</span>车牌号</label>
+        <div class="layui-input-inline">
+            <input type="text" id="carNum" name="carNum" required="" placeholder="请输入车牌号" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>可乘人数</label>
+        <div class="layui-input-inline">
+            <input type="text" id="size" name="size" required="" placeholder="请输入可乘人数" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>租车价格</label>
+        <div class="layui-input-inline">
+            <input type="text" id="price" name="price" required="" placeholder="请输入租车价格" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>租车押金</label>
+        <div class="layui-input-inline">
+            <input type="text" id="yaprice" name="yaprice" required="" placeholder="请输入租车需要的押金" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <!--<div class="layui-form-item ">-->
+        <!--<label class="layui-form-label">车辆品牌</label>-->
+        <!--<div class="layui-input-block">-->
+            <!--<input type="text" name="pinpai" id="pinpai" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item ">-->
+        <!--<label class="layui-form-label">车牌号</label>-->
+        <!--<div class="layui-input-block">-->
+            <!--<input type="text" name="carNum" id="carNum" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>车辆类型</label>
+        <div class="layui-input-inline">
+            <select name="category" id="category" lay-verify="required" lay-search="" lay-filter="carType">
                 <option value="">请选择车辆类型</option>
             </select>
         </div>
+        <!--<div class="layui-input-block">-->
+            <!--<select id="category" name="category" lay-filter="category" lay-search style="width:150px";>-->
+                <!--<option value="">请选择车辆类型</option>-->
+            <!--</select>-->
+        <!--</div>-->
     </div>
     <!--************这里是上传图片的代码***************-->
     <!--************这里添加的隐藏的输入框，用来传递images的参数***************-->
     <div class="layui-form-item">
-        <label class="layui-form-label ">照片:</label>
+        <label class="layui-form-label">
+            <span class="x-red">*</span>照片</label>
         <div class="layui-upload">
             <button type="button" class="layui-btn" id="test1">上传图片</button>
             <div class="layui-upload-list">
@@ -65,22 +103,24 @@
     </div>
 
     <!--************上面里是上传图片的代码***************-->
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <button type="button" class="layui-btn"  lay-filter="edit" lay-submit="" onclick="dengji()">登记</button>
+        <button type="reset" class="layui-btn"  lay-filter="edit" lay-submit="">重置</button></div>
 </form>
-<div class="layui-btn-container">
-    <button type="button" class="layui-btn layui-btn-normal"  onclick="dengji()">登记</button>
-    <button type="reset" class="layui-btn layui-btn-danger">重置</button>
-</div>
+<!--<div class="layui-btn-container">-->
+    <!--<button type="button" class="layui-btn layui-btn-normal"  onclick="dengji()">登记</button>-->
+    <!--<button type="reset" class="layui-btn layui-btn-danger">重置</button>-->
+<!--</div>-->
 
-</body>
+<!--引入script-->
 <script th:inline ="none">
     var account = parent.$("#account").text();
     $("#account").val(account);
     //初始化from
     layui.use(['form'], function(){
         var layer = layui.layer
-            ,form = layui.form
-            ,layedit = layui.layedit
-            ,laydate = layui.laydate;
+            ,form = layui.form;
         form.render(); //更新全部
         $.ajax({
             url:"/cartype/select"
@@ -100,7 +140,7 @@
         });
     });
 
-  // 初始化上传
+    // 初始化上传
     layui.use('upload', function(){
         var $ = layui.jquery
             ,upload = layui.upload;
@@ -148,12 +188,18 @@
         var account=$("#account").val();
         var category=$("#category option:selected").val();
         var photolocation=$("#photolocation").val();
+        var price=$("#price").val();
+        var yaprice=$("#yaprice").val();
+        var size=$("#size").val();
         var data1={
             "pinpai":pinpai,
             "carNum":carnum,
             "account":account,
             "category":category,
-            "photolocation":photolocation
+            "photolocation":photolocation,
+            "price":price,
+            "yaprice":yaprice,
+            "size":size
         }
         $.ajax({
             type:"post",
@@ -180,5 +226,8 @@
     })
 
 </script>
+
+</body>
+
 
 </html>

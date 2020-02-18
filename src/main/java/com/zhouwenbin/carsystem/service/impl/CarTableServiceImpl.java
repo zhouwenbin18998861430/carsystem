@@ -22,4 +22,8 @@ public class CarTableServiceImpl implements CarTableService {
     public Boolean del(Cars cars) {
         return carTableMapper.del(cars);
     }
+    @Override
+    public List<Cars> carinfo(Integer carId) {
+        return carTableMapper.carinfo(carId);
+    }
 }

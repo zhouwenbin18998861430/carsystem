@@ -12,6 +12,7 @@
         <!--<link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}" media="all">-->
         <!--连接网站资源-->
         <!--<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
+        <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
         <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
         <!--<script th:src="@{layui/lib/layui/layui.js}" charset="utf-8"></script>-->
@@ -23,85 +24,61 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" id="form1">
+                <form class="layui-form" th:each="carlists :${carlists}" id="form1">
+                    <div class="layui-form-item">
+
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>押金价格</label>
+                        <div class="layui-input-inline">
+                            <input type="text"  th:value="${carlists.yaprice}" id="BeamAngle" name="BeamAngle" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>车辆状态</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:value="${carlists.state}" id="ModelNumber" name="ModelNumber" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">
-                            <span class="x-red">*</span>name</label>
+                            <span class="x-red">*</span>车辆类型</label>
+                            <div class="layui-input-inline">
+                                <select name="carType" id="carType" lay-verify="required" lay-search="" lay-filter="carType">
+                                    <option value="">请选择车辆类型</option>
+                                </select>
+                            </div>
+
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>车辆价格</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="names" name="names" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                            <input type="text" th:value="${carlists.price}" id="PowerWattage" name="PowerWattage" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>车辆维修状态</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:value="${carlists.fixed}" id="Voltage" name="Voltage" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>车辆可乘人数</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:value="${carlists.size}" id="CRI" name="CRI" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>车牌号</label>
+                        <div class="layui-input-inline">
+                            <input type="text" th:value="${carlists.carNum}" id="Lumen" name="Lumen" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                      
+                        <label class="layui-form-label">
+                              <span class="x-red">*</span>品牌</label>
+                          <div class="layui-input-inline">
+                              <input type="text" th:value="${carlists.pinpai}" id="CCT" name="CCT" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    </div>
+                  	<div class="layui-form-item">
+                        <!--<label class="layui-form-label">-->
+                            <!--<span class="x-red">*</span>车辆ID</label>-->
+                        <div class="layui-input-inline">
+                            <input th:value="${carlists.carid}" type="hidden" id="names" name="names" required="" lay-verify="required" autocomplete="off" class="layui-input">
                         </div>
-
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>ModelNumber</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="ModelNumber" name="ModelNumber" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>Material</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="Material" name="Material" required="" lay-verify="required" autocomplete="off" class="layui-input">
-                        </div>
-
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>PowerWattage</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="PowerWattage" name="PowerWattage" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>Voltage</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="Voltage" name="Voltage" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>CRI</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="CRI" name="CRI" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>Lumen</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="Lumen" name="Lumen" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                      
-                        <label class="layui-form-label">
-                              <span class="x-red">*</span>CCT</label>
-                          <div class="layui-input-inline">
-                              <input type="text" id="CCT" name="CCT" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                  	<div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>BeamAngle</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="BeamAngle" name="BeamAngle" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                      
-                        <label class="layui-form-label">
-                              <span class="x-red">*</span>Socket</label>
-                          <div class="layui-input-inline">
-                              <input type="text" id="Socket" name="Socket" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                  	<div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>WorkingHour</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="WorkingHour" name="WorkingHour" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                      
-                        <label class="layui-form-label">
-                              <span class="x-red">*</span>Certificate</label>
-                          <div class="layui-input-inline">
-                              <input type="text" id="Certificate" name="Certificate" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                  	<div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>Specification</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="Specification" name="Specification" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                      
-                        <label class="layui-form-label">
-                              <span class="x-red">*</span>img1</label>
-                          <div class="layui-input-inline">
-                              <input type="text" id="img1" name="img1" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label"></label>
@@ -110,53 +87,27 @@
             </div>
         </div>
         <script th:inline ="none">
-            // function getQueryVariable(variable)
-            // {
-            //     var query = window.location.search.substring(1);
-            //     var vars = query.split("&");
-            //     for (var i=0;i<vars.length;i++) {
-            //         var pair = vars[i].split("=");
-            //         if(pair[0] == variable){return pair[1];}
-            //     }
-            //     return(false);
-            // }
-
-            // var cid = getQueryVariable('id');
-
-
-
-
-            $.ajax({
-                type:"post",
-                data:{'id' : cid},
-                url:baseUrl + '/Index/index1/acEdit',
-                dataType:"json",
-                success:function(data){
-                    var data = data.data;
-                    names.value = data.name;
-                    ModelNumber.value = data.ModelNumber;
-                    Material.value = data.Material;
-                    PowerWattage.value = data.PowerWattage;
-                    Voltage.value = data.Voltage;
-                    CRI.value = data.CRI;
-                    Lumen.value = data.Lumen;
-                    CCT.value = data.CCT;                  
-					BeamAngle.value = data.BeamAngle;
-                  	Socket.value = data.Socket;
-                  	WorkingHour.value = data.WorkingHour;
-                  	Certificate.value = data.Certificate;
-                  	Specification.value = data.Specification;
-                  	img1.value = data.img1;
-                }, 
-                error:function(){
-                   layer.alert("网络异常!", {icon : 5});
-                }
-            });
 
             layui.use(['form', 'layer'],function() {
                 $ = layui.jquery;
                 var form = layui.form,
                 layer = layui.layer;
+                $.ajax({
+                    url:"/cartype/select"
+                    ,type:"POST"
+                    ,contentType : "application/json;charsetset=UTF-8"//必须
+                    , success:function(datas){
+                        for (i = 0; i < datas.length;i++){
+                            $("#category").append("<option value='"+datas[i]+"'>"+datas[i]+"</option>");
+                            form.render('select');//注意渲染页面表单，否则不显示数据
+                        }
+                        form.render();//注意渲染页面表单，否则不显示数据
+                    },
+                    error: function() {
+                        layer.msg('获取规则失败');
+                        form.render('select');
+                    }
+                });
 
                 //监听提交
                 form.on('submit(edit)',function(data) {

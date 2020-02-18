@@ -152,20 +152,22 @@
                 if (obj.event == 'edit1') {
                     $("#carid").val(cid);
                     console.log("carid:"+cid);
-                    // $.ajax({
-                    //     type:"get",
-                    //     url: '/table/edit/'+cid,
-                    //     method: 'get',
-                    //     dataType:"json",
-                    //     contentType : "application/json;charsetset=UTF-8",//必须
-                    //     success:function (data) {
-                    //         window.location.href=data.url;
-                    //     },
-                    //     error:function (e) {
-                    //         console.log(e);
-                    //     }
-                    // });
-                    window.location.href="/login/carEdit";
+                    $.ajax({
+                        type:"get",
+                        url: '/table/edit/'+cid,
+                        method: 'get',
+                        dataType:"json",
+                        contentType : "application/json;charsetset=UTF-8",//必须
+                        success:function (data) {
+                            console.log(data.msg);
+                            window.location.href="/login/carEdit?carid="+cid;
+                        },
+                        error:function (e) {
+                            console.log(e);
+                        }
+                    });
+                    // window.location.href="/login/carEdit";
+                    // window.location.href="/login/carEdit?carid="+cid;
                 } else if (obj.event == 'del') {
                     layer.confirm("确定要删除该条数据吗？", {
                         icon : 0,

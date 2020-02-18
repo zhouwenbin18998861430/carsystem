@@ -23,7 +23,7 @@ public class CarTypeControl {
     public Map addtype(@RequestBody CarType carType){
         String categoryname=carType.getCategoryname();
         carTypeService.addtype(carType);
-        System.out.println("categoryname:"+categoryname);
+        // System.out.println("categoryname:"+categoryname);
         Map<String,Object> map=new HashMap<>();
         map.put("code",200);
         map.put("categoryname",categoryname);
@@ -33,7 +33,7 @@ public class CarTypeControl {
     public  List<String> selecttype(){
         // List<String> result=new ArrayList<String>();
         List<String> categorynamelist =carTypeService.selecttype();
-        System.out.println("categorynamelist:"+categorynamelist);
+        // System.out.println("categorynamelist:"+categorynamelist);
         return categorynamelist;
     }
 }

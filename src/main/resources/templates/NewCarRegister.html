@@ -209,8 +209,14 @@
             dataType:"json",
             data:JSON.stringify(data1),
             success:function (result) {
-                console.log(result.code);
-                window.alert(result.carNum+"注册成功");
+                layer.alert(result.carNum+"注册成功", {
+                        icon: 6
+                    },
+                    function () {
+                        // layer.close(index);
+                        window.location.href = "/login/PosSelect";
+                    });
+                // window.alert(result.carNum+"注册成功");
 
             },
             error:function (e) {

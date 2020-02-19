@@ -29,5 +29,8 @@
     <delete id="del" parameterType="com.zhouwenbin.carsystem.entity.Cars">
             delete from car where carid=#{carid}
     </delete>
+    <update id="update" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+            update car set carnum=#{carNum},state=#{state},size=#{size},pinpai=#{pinpai},fixed=#{fixed},price=#{price},yaprice=#{yaprice},category=#{category} where carid=#{carid}
+    </update>
 
 </mapper>

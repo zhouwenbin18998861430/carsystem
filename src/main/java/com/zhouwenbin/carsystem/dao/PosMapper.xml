@@ -16,5 +16,22 @@
     <insert id="addpos">
             insert into pos(posname,account,posaddress) values (#{posname},#{account},#{posaddress})
     </insert>
-
+    <select id="selectpos" resultType="string">
+            select posname from pos
+    </select>
+    <select id="selectdata" resultType="com.zhouwenbin.carsystem.entity.Cars">
+            select * from car where pos =#{pos}
+    </select>
+    <update id="updatepos" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set pos=#{pos} where carid=#{carid}
+    </update>
+    <delete id="removepos" parameterType="com.zhouwenbin.carsystem.entity.Pos">
+        delete from pos where posname=#{pos}
+    </delete>
+    <update id="nullcar" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set pos=null where pos=#{pos}
+    </update>
+    <update id="nullcar1" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set pos=null where carid=#{carid}
+    </update>
 </mapper>

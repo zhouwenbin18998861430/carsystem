@@ -5,9 +5,7 @@ import com.zhouwenbin.carsystem.service.CarTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,21 +43,22 @@ public class CarTypeTableControl {
         // System.out.println("map:"+map);
         return map;
     }
-    // @GetMapping("/edit/{carid}")
-    // public Map edit(@PathVariable("carid")String carid){
-    //     System.out.println("carid:"+carid);
-    //     Map<String,Object> map =new HashMap<>();
-    //     map.put("msg","跳转成功");
-    //     map.put("url","/login/carEdit");
-    //     return map;
-    // }
+    @RequestMapping("/edit")
+    @ResponseBody
+    public Map edit(@RequestBody Cars cars){
+        Map<String,Object> map =new HashMap<>();
+        carTableService.update(cars);
+        map.put("msg","更新成功成功");
+        map.put("code",0);
+        return map;
+    }
 
     //获取车辆id
     @RequestMapping("/carEdit")
     public String carEdit(Integer carId, Model model){
         // List<Cars> carList;
         // map.addAttribute("carList",carList);
-        System.out.println("carid:"+carId);
+        // System.out.println("carid:"+carId);
         List<Cars> carlists=carTableService.carinfo(carId);
         // System.out.println("carlists:"+carlists);
         model.addAttribute("carId",carId);

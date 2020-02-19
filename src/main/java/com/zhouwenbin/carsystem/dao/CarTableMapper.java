@@ -10,4 +10,5 @@ public interface CarTableMapper {
     List<Cars> selectList(Cars cars);
     Boolean del(Cars cars);
     List<Cars> carinfo(Integer carId);
+    Boolean update(Cars cars);
 }

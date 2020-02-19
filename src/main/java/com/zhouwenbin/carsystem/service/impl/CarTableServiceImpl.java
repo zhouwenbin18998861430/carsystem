@@ -26,4 +26,7 @@ public class CarTableServiceImpl implements CarTableService {
     public List<Cars> carinfo(Integer carId) {
         return carTableMapper.carinfo(carId);
     }
+    public Boolean update(Cars cars){
+        return carTableMapper.update(cars);
+    }
 }

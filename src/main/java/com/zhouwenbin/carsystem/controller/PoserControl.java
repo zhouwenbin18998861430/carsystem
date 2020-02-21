@@ -5,6 +5,7 @@ import com.zhouwenbin.carsystem.entity.Poser;
 import com.zhouwenbin.carsystem.service.PoserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,19 +22,20 @@ public class PoserControl {
     @RequestMapping("/select")
     @ResponseBody
     public Map selectPoser(@RequestBody Pos pos){
+        // System.out.println("posname:"+pos.getPosname());
         List<Poser> selectposer=poserService.selectPoser(pos);
-        // System.out.println("selectposer:"+selectposer);
         Map<String,Object> map=new HashMap();
         map.put("data",selectposer);
         map.put("status", 0);
         map.put("message", "");
         map.put("total", "");
+        // System.out.println("selectposer:"+selectposer);
         return map;
     }
     @RequestMapping("/del")
     @ResponseBody
     public  Map del(@RequestBody Poser poser){
-        System.out.println("poserid:"+poser.getPoserid());
+        // System.out.println("poserid:"+poser.getPoserid());
         Map<String,Object> map=new HashMap();
         // Integer carid=cars.getCarid();
         // System.out.println("carid="+carid);
@@ -47,12 +49,32 @@ public class PoserControl {
     @ResponseBody
     public Map add(@RequestBody Poser poser){
         String posname=poser.getPosername();
-        System.out.println("posname:"+posname);
+        // System.out.println("posname:"+posname);
         Map<String,Object> map=new HashMap();
         poserService.add(poser);
         map.put("posname",posname);
         map.put("code",0);
         map.put("msg","添加成功");
+        return map;
+    }
+    @RequestMapping("/poserEdit")
+    public String carEdit(Integer poserid, Model model){
+        // List<Cars> carList;
+        // map.addAttribute("carList",carList);
+        // System.out.println("carid:"+carId);
+        List<Poser> poserList=poserService.poserinfo(poserid);
+        // System.out.println("carlists:"+carlists);
+        model.addAttribute("poserid",poserid);
+        model.addAttribute("poserlists",poserList);
+        return "poserEdit";
+    }
+    @RequestMapping("/save")
+    @ResponseBody
+    public Map saveinfo(@RequestBody Poser poser){
+        Map<String,Object> map =new HashMap<>();
+        poserService.saveinfo(poser);
+        map.put("msg","更新成功成功");
+        map.put("code",0);
         return map;
     }
 }

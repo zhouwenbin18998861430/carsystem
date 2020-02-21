@@ -10,8 +10,11 @@ public interface PosService {
     Boolean addpos(Pos pos);
     List<String> selectpos();
     List<Cars> selectdata(Cars cars);
+    List<Cars> selectdata1(Cars cars);
     Boolean updatepos(Cars cars);
     Boolean removepos(Cars cars);
     Boolean nullcar(Cars cars);
     Boolean nullcar1(Cars cars);
+    List<Cars> carinfo(Integer carId);
+    Boolean update(Cars cars);
 }

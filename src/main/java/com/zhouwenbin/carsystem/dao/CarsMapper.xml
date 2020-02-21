@@ -21,7 +21,7 @@
     <!--id是方法名-->
     <!--新车登记-->
     <insert id="registerCar">
-            insert into car(account,category,photolocation,carnum,pinpai,price,yaprice,size,state,fixed) values (#{account},#{category},#{photolocation},#{carNum},#{pinpai},#{price},#{yaprice},#{size},4,3)
+            insert into car(account,category,photolocation,carnum,pinpai,price,yaprice,size,state,fixed) values (#{account},#{category},#{photolocation},#{carNum},#{pinpai},#{price},#{yaprice},#{size},"正常",3)
     </insert>
 
 </mapper>

@@ -20,5 +20,12 @@
     <insert id="add">
         insert into poser(posername,phone,shenfenzheng) values (#{posername},#{phone},#{shenfenzheng})
     </insert>
+    <select id="poserinfo" resultType="com.zhouwenbin.carsystem.entity.Poser">
+            select * from poser where poserid=#{poserid}
+    </select>
+    <update id="saveinfo" parameterType="com.zhouwenbin.carsystem.entity.Poser">
+            update poser set posername=#{posername},pos=#{pos},phone=#{phone},shenfenzheng=#{shenfenzheng} where poserid=#{poserid}
+    </update>
+
 
 </mapper>

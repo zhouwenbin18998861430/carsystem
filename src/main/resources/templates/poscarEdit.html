@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}" media="all">-->
+    <!--连接网站资源-->
+    <!--<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <!--<script th:src="@{layui/lib/layui/layui.js}" charset="utf-8"></script>-->
+    <script th:src="@{/layui/js/xadmin.js}"></script>
+    <script th:src="@{/layuiGM/layui.js}"></script>
+    <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/js/baseUrl.js}"></script>
+
+</head>
+
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <form class="layui-form" th:each="carlists :${carlists}" id="form1">
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>押金价格</label>
+                <div class="layui-input-inline">
+                    <input type="text"  th:value="${carlists.yaprice}" id="yaprice" name="yaprice" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>车辆状态</label>
+                <div class="layui-input-inline">
+                    <select  name="state" id="state" lay-verify="required" lay-search="" lay-filter="carType">
+                        <option value="借出" th:if="${carlists.state}=='借出'" selected>借出</option>
+                        <option value="借出" th:unless="${carlists.state}=='借出'">借出</option>
+                        <option value="归还" th:if="${carlists.state}=='归还'" selected>归还</option>
+                        <option value="归还" th:unless="${carlists.state}=='归还'">归还</option>
+                        <option value="已损坏" th:if="${carlists.state}=='已损坏'"  selected>已损坏</option>
+                        <option value="已损坏" th:unless="${carlists.state}=='已损坏'">已损坏</option>
+                        <option value="正常" th:if="${carlists.state}=='正常'" selected>正常</option>
+                        <option value="正常" th:unless="${carlists.state}=='正常'">正常</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>车辆类型</label>
+                <div class="layui-input-inline">
+                    <select  th:selected="${carlists.category}" name="category" id="category" lay-verify="required" lay-search="" lay-filter="carType">
+                        <!--<option value="">请选择车辆类型</option>-->
+                    </select>
+                </div>
+
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>车辆价格</label>
+                <div class="layui-input-inline">
+                    <input type="text" th:value="${carlists.price}" id="price" name="price" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>车辆维修状态</label>
+                <div class="layui-input-inline">
+                    <input type="text" th:value="${carlists.fixed}" id="fixed" name="fixed" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>车辆可乘人数</label>
+                <div class="layui-input-inline">
+                    <input type="text" th:value="${carlists.size}" id="size" name="size" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>车牌号</label>
+                <div class="layui-input-inline">
+                    <input type="text" th:value="${carlists.carNum}" id="carNum" name="carNum" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>品牌</label>
+                <div class="layui-input-inline">
+                    <input type="text" th:value="${carlists.pinpai}" id="pinpai" name="pinpai" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <!--<label class="layui-form-label">-->
+                <!--<span class="x-red">*</span>车辆ID</label>-->
+                <div class="layui-input-inline">
+                    <input th:value="${carlists.carid}" type="hidden" id="carid" name="carid" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label"></label>
+                <button class="layui-btn" id="bt1" lay-filter="edit" lay-submit="">保存</button></div>
+        </form>
+    </div>
+</div>
+<script th:inline ="text" th:each="carlists :${carlists}">
+
+    layui.use(['form', 'layer'],function() {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer;
+        var category = '[[${carlists.category}]]';
+        $.ajax({
+            url:"/cartype/select"
+            ,type:"POST"
+            ,contentType : "application/json;charsetset=UTF-8"//必须
+            , success:function(datas){
+                console.log(datas);
+                for (i = 0; i < datas.length;i++){
+                    if (datas[i] == category){
+                        $("#category").append("<option value='"+datas[i]+"' selected>"+datas[i]+"</option>");
+                        form.render('select');//注意渲染页面表单，否则不显示数据
+                    } else {
+                        $("#category").append("<option value='" + datas[i] + "'>" + datas[i] + "</option>");
+                        form.render('select');//注意渲染页面表单，否则不显示数据
+                    }
+                }
+                form.render();//注意渲染页面表单，否则不显示数据
+            },
+            error: function() {
+                layer.msg('获取规则失败');
+                form.render();
+            }
+        });
+
+        //监听提交
+        form.on('submit(edit)',function(data) {
+            //发异步，把数据提交给php
+            data1={
+                'carid' : $("#carid").val(),
+                'carNum' : $("#carNum").val(),
+                'state' : $("#state").val(),
+                'size' : $("#size").val(),
+                'pinpai' : $("#pinpai").val(),
+                'fixed' : $("#fixed").val(),
+                'price' : $("#price").val(),
+                'yaprice' : $("#yaprice").val(),
+                'category' : $("#category").val(),
+            };
+            $.ajax({
+                type:"post",
+                method:"post",
+                data:JSON.stringify(data1),
+                url:'/pos/edit',
+                dataType:"json",
+                contentType : "application/json;charsetset=UTF-8",//必须
+                success:function(data){
+                    layer.alert("保存成功", {
+                            icon: 6
+                        },
+                        function() {
+                            window.parent.location.reload();
+                            // 获得frame索引
+                            var index = parent.layer.getFrameIndex(window.name);
+                            //关闭当前frame
+                            parent.layer.close(index);
+                        });
+                },
+                error:function(){
+                    layer.alert("网络异常!", {icon : 5});
+                }
+            });
+            return false;
+        });
+        form.render();
+    });
+</script>
+</body>
+
+</html>

@@ -26,69 +26,38 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" th:each="carlists :${carlists}" id="form1">
+                <form class="layui-form" th:each="poserlists :${poserlists}" id="form1">
                     <div class="layui-form-item">
                         <label class="layui-form-label">
-                            <span class="x-red">*</span>押金价格</label>
+                            <span class="x-red">*</span>租赁点管理员</label>
                         <div class="layui-input-inline">
-                            <input type="text"  th:value="${carlists.yaprice}" id="yaprice" name="yaprice" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text"  th:value="${poserlists.posername}" id="posername" name="posername" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
 
                         <label class="layui-form-label">
-                            <span class="x-red">*</span>车辆状态</label>
-                        <div class="layui-input-inline">
-                            <select  name="state" id="state" lay-verify="required" lay-search="" lay-filter="carType">
-                                <option value="借出" th:if="${carlists.state}=='借出'" selected>借出</option>
-                                <option value="借出" th:unless="${carlists.state}=='借出'">借出</option>
-                                <option value="归还" th:if="${carlists.state}=='归还'" selected>归还</option>
-                                <option value="归还" th:unless="${carlists.state}=='归还'">归还</option>
-                                <option value="已损坏" th:if="${carlists.state}=='已损坏'"  selected>已损坏</option>
-                                <option value="已损坏" th:unless="${carlists.state}=='已损坏'">已损坏</option>
-                                <option value="正常" th:if="${carlists.state}=='正常'" selected>正常</option>
-                                <option value="正常" th:unless="${carlists.state}=='正常'">正常</option>
-                            </select>
-                        </div>
+                            <span class="x-red">*</span>联系方式</label>
+                            <div class="layui-input-inline">
+                                <input type="text"  th:value="${poserlists.phone}" id="phone" name="phone" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">
-                            <span class="x-red">*</span>车辆类型</label>
+                            <span class="x-red">*</span>租赁点</label>
                             <div class="layui-input-inline">
-                                <select  th:value="${carlists.category}" name="category" id="category" lay-verify="required" lay-search="" lay-filter="carType">
-                                    <option value="">请选择车辆类型</option>
+                                <select  th:selected="${poserlists.pos}" name="pos" id="pos" lay-verify="required" lay-search="" lay-filter="carType">
+                                    <!--<option value="">请选择车辆类型</option>-->
                                 </select>
                             </div>
 
                         <label class="layui-form-label">
-                            <span class="x-red">*</span>车辆价格</label>
+                            <span class="x-red">*</span>身份证</label>
                         <div class="layui-input-inline">
-                            <input type="text" th:value="${carlists.price}" id="price" name="price" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>车辆维修状态</label>
-                        <div class="layui-input-inline">
-                            <input type="text" th:value="${carlists.fixed}" id="fixed" name="fixed" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>车辆可乘人数</label>
-                        <div class="layui-input-inline">
-                            <input type="text" th:value="${carlists.size}" id="size" name="size" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">
-                            <span class="x-red">*</span>车牌号</label>
-                        <div class="layui-input-inline">
-                            <input type="text" th:value="${carlists.carNum}" id="carNum" name="carNum" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-                      
-                        <label class="layui-form-label">
-                              <span class="x-red">*</span>品牌</label>
-                          <div class="layui-input-inline">
-                              <input type="text" th:value="${carlists.pinpai}" id="pinpai" name="pinpai" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text" th:value="${poserlists.shenfenzheng}" id="shenfenzheng" name="shenfenzheng" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                     </div>
                   	<div class="layui-form-item">
                         <!--<label class="layui-form-label">-->
                             <!--<span class="x-red">*</span>车辆ID</label>-->
                         <div class="layui-input-inline">
-                            <input th:value="${carlists.carid}" type="hidden" id="carid" name="carid" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                            <input th:value="${poserlists.poserid}" type="hidden" id="poserid" name="poserid" required="" lay-verify="required" autocomplete="off" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -97,24 +66,24 @@
                 </form>
             </div>
         </div>
-        <script th:inline ="text" th:each="carlists :${carlists}">
+        <script th:inline ="text" th:each="poserlists :${poserlists}">
+
             layui.use(['form', 'layer'],function() {
                 $ = layui.jquery;
                 var form = layui.form,
                 layer = layui.layer;
-
-                var category = '[[${carlists.category}]]';
+                var pos = '[[${poserlists.pos}]]';
                 $.ajax({
-                    url:"/cartype/select"
+                    url:"/pos/select"
                     ,type:"POST"
                     ,contentType : "application/json;charsetset=UTF-8"//必须
                     , success:function(datas){
                         for (i = 0; i < datas.length;i++){
-                            if (datas[i] == category) {
-                                $("#category").append("<option value='"+datas[i]+"' selected>"+datas[i]+"</option>");
+                            if (datas[i] == pos) {
+                                $("#pos").append("<option value='"+datas[i]+"' selected>"+datas[i]+"</option>");
                                 form.render('select');//注意渲染页面表单，否则不显示数据
                             }else {
-                                $("#category").append("<option value='"+datas[i]+"'>"+datas[i]+"</option>");
+                                $("#pos").append("<option value='" + datas[i] + "'>" + datas[i] + "</option>");
                                 form.render('select');//注意渲染页面表单，否则不显示数据
                             }
                         }
@@ -130,21 +99,17 @@
                 form.on('submit(edit)',function(data) {
                     //发异步，把数据提交给php
                 data1={
-                        'carid' : $("#carid").val(),
-                            'carNum' : $("#carNum").val(),
-                            'state' : $("#state").val(),
-                            'size' : $("#size").val(),
-                            'pinpai' : $("#pinpai").val(),
-                            'fixed' : $("#fixed").val(),
-                            'price' : $("#price").val(),
-                            'yaprice' : $("#yaprice").val(),
-                            'category' : $("#category").val(),
+                        'poserid' : $("#poserid").val(),
+                            'posername' : $("#posername").val(),
+                            'phone' : $("#phone").val(),
+                            'pos' : $("#pos").val(),
+                            'shenfenzheng' : $("#shenfenzheng").val(),
                     };
                     $.ajax({
                         type:"post",
                             method:"post",
                             data:JSON.stringify(data1),
-                        url:'/table/edit',
+                        url:'/poser/save',
                         dataType:"json",
                             contentType : "application/json;charsetset=UTF-8",//必须
                         success:function(data){

@@ -25,4 +25,6 @@ public class PoserServiceImpl implements PoserService {
     public Boolean add(Poser poser){
         return poserMapper.add(poser);
     }
+    public List<Poser> poserinfo(Integer poserid){return  poserMapper.poserinfo(poserid);}
+    public Boolean saveinfo(Poser poser){return poserMapper.saveinfo(poser);}
 }

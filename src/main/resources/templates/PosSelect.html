@@ -5,19 +5,19 @@
         <title>欢迎页面-X-admin2.2</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <meta name="viewport"
+              content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
         <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
-        <script  th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
-        <script  th:src="@{/layui/js/baseUrl.js}"></script>
-        <script th:src="@{/layuiGM/layui.js}"></script>
-        <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
-        <!--[if lt IE 9]>
-          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <!--<link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}" media="all">-->
+        <!--连接网站资源-->
+        <!--<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
+        <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+        <!--<script th:src="@{layui/lib/layui/layui.js}" charset="utf-8"></script>-->
+        <script th:src="@{/layui/js/xadmin.js}"></script>
+        <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/layui/js/baseUrl.js}"></script>
     </head>
     <body>
     <!--<div class="x-nav">-->
@@ -67,7 +67,9 @@
         </div>
     </div>
     <!--srcipt脚本-->
+    <script th:src="@{/layuiGM/layui.js}"></script>
     <script>
+
         var account = parent.$("#account").text();
         layui.use(['form', 'laypage', 'table'], function () {
             var laypage = layui.laypage //分页
@@ -95,7 +97,7 @@
                     elem: '#demo'
                     , id: 'test'
                     , where: {"pos": data.value}
-                    , url: '/pos/select1' //数据接口
+                    , url: '/pos/select2' //数据接口
                     , method: 'post'
                     , limit: 10//要传向后台的每页显示条数
                     , contentType: "application/json;charsetset=UTF-8"//必须
@@ -115,7 +117,7 @@
                             , {field: 'state', title: '车辆状态', width: 150}
                             , {field: 'category', title: '车辆类型', width: 150, sort: true}
                             , {field: 'size', title: '可乘人数', width: 150}
-                            , {field: 'carnum', title: '车牌号', width: 150}
+                            , {field: 'carNum', title: '车牌号', width: 150}
                             , {field: 'fixed', title: '修理状态', width: 80}
                             , {field: 'price', title: '租赁价格', width: 80}
                             , {field: 'yaprice', title: '租赁押金', width: 80}
@@ -138,7 +140,7 @@
                     if (obj.event == 'edit1') {
                         $("#carid").val(cid);
                         console.log("carid:" + cid);
-                        xadmin.open('编辑', '/table/carEdit?carId=' + cid, 1200, 500);
+                        xadmin.open('编辑', '/pos/poscarEdit?carId=' + cid, 1200, 500);
                     } else if (obj.event == 'del') {
                         layer.confirm("确定要删除该条数据吗？", {
                             icon: 0,

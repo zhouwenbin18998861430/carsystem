@@ -5,18 +5,20 @@
         <title>欢迎页面-X-admin2.2</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <meta name="viewport"
+              content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
         <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
         <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
-        <script  th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
-        <script  th:src="@{/layui/js/baseUrl.js}"></script>
+        <!--<link rel="stylesheet" type="text/css" th:href="@{/layui/css/layui.css}" media="all">-->
+        <!--连接网站资源-->
+        <!--<script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>-->
+        <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+        <!--<script th:src="@{layui/lib/layui/layui.js}" charset="utf-8"></script>-->
+        <script th:src="@{/layui/js/xadmin.js}"></script>
+        <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+        <script th:src="@{/layui/js/baseUrl.js}"></script>
         <script th:src="@{/layuiGM/layui.js}"></script>
-        <!--[if lt IE 9]>
-          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
         <style>
             .form-control {
                 width: 40%;
@@ -118,6 +120,8 @@
                             // ,{field: 'carid', title: 'ID', width:80, sort: true, fixed: 'left'}
                             , {field: 'posername', title: '租赁点管理员', width: 150}
                             , {field: 'pos', title: '租赁点名称', width: 150, sort: true}
+                            , {field: 'phone', title: '联系方式', width: 150}
+                            , {field: 'shenfenzheng', title: '身份证', width: 150}
                             , {field: 'tool', title: '操作', width: 150, align: 'center', toolbar: '#barDemo'}
                         ]
 
@@ -133,11 +137,11 @@
                 table.on('tool(test)', function (obj) {
                     var data = obj.data;
                     var cid = data.poserid;
-                    console.log("cid:"+cid);
+                    // console.log("cid:"+cid);
                     if (obj.event == 'edit1') {
                         $("#carid").val(cid);
-                        console.log("id:" + cid);
-                        xadmin.open('编辑', '/table/carEdit?carId=' + cid, 1200, 500);
+                        // console.log("id:" + cid);
+                        xadmin.open('编辑', '/poser/poserEdit?poserid=' + cid, 1200, 500);
                     } else if (obj.event == 'del') {
                         layer.confirm("确定要删除该条数据吗？", {
                             icon: 0,

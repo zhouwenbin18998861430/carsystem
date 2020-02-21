@@ -9,4 +9,6 @@ public interface PoserService {
     List<Poser> selectPoser(Pos pos);
     Boolean del(Poser poser);
     Boolean add(Poser poser);
+    List<Poser> poserinfo(Integer poserid);
+    Boolean saveinfo(Poser poser);
 }

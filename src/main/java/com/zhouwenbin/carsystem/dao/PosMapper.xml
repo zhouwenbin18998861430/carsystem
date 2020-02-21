@@ -20,7 +20,13 @@
             select posname from pos
     </select>
     <select id="selectdata" resultType="com.zhouwenbin.carsystem.entity.Cars">
-            select * from car where pos =#{pos}
+            select * from car where  state="正常" and pos is null
+    </select>
+    <select id="selectdata1" resultType="com.zhouwenbin.carsystem.entity.Cars">
+            select * from car where  pos =#{pos}
+    </select>
+    <select id="carinfo" resultType="com.zhouwenbin.carsystem.entity.Cars">
+            select * from car where carid=#{carId}
     </select>
     <update id="updatepos" parameterType="com.zhouwenbin.carsystem.entity.Cars">
         update car set pos=#{pos} where carid=#{carid}
@@ -33,5 +39,8 @@
     </update>
     <update id="nullcar1" parameterType="com.zhouwenbin.carsystem.entity.Cars">
         update car set pos=null where carid=#{carid}
+    </update>
+    <update id="update" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+            update car set carnum=#{carNum},state=#{state},size=#{size},pinpai=#{pinpai},fixed=#{fixed},price=#{price},yaprice=#{yaprice},category=#{category} where carid=#{carid}
     </update>
 </mapper>

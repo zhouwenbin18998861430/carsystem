@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <script src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
+    <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/js/baseUrl.js}"></script>
+    <script th:src="@{/layuiGM/layui.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .form-control {
+            width: 40%;
+        }
+        .layui-form-select dl { max-height:200px; }
+    </style>
+</head>
+<body>
+<form class="layui-form" id="form1" action="" lay-filter="car" enctype="multipart/form-data" method="post">
+    <!--<form class="layui-form" action="" lay-filter="car" enctype="multipart/form-data" method="post">-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>车辆品牌</label>
+        <div class="layui-input-inline">
+            <input type="text" id="pinpai" name="pinpai" required="" placeholder="请输入车辆品牌" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>车牌号</label>
+        <div class="layui-input-inline">
+            <input type="text" id="carNum" name="carNum" required="" placeholder="请输入车牌号" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>可乘人数</label>
+        <div class="layui-input-inline">
+            <input type="text" id="size" name="size" required="" placeholder="请输入可乘人数" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>租车价格</label>
+        <div class="layui-input-inline">
+            <input type="text" id="price" name="price" required="" placeholder="请输入租车价格" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>租车押金</label>
+        <div class="layui-input-inline">
+            <input type="text" id="yaprice" name="yaprice" required="" placeholder="请输入租车需要的押金" lay-verify="required" autocomplete="off" class="layui-input"></div>
+    </div>
+    <!--<div class="layui-form-item ">-->
+    <!--<label class="layui-form-label">车辆品牌</label>-->
+    <!--<div class="layui-input-block">-->
+    <!--<input type="text" name="pinpai" id="pinpai" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item ">-->
+    <!--<label class="layui-form-label">车牌号</label>-->
+    <!--<div class="layui-input-block">-->
+    <!--<input type="text" name="carNum" id="carNum" required  lay-verify="required" placeholder="请输入车辆品牌" autocomplete="off" class="layui-input">-->
+    <!--</div>-->
+    <!--</div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>车辆类型</label>
+        <div class="layui-input-inline">
+            <select name="category" id="category" lay-verify="required" lay-search="" lay-filter="carType">
+                <option value="">请选择车辆类型</option>
+            </select>
+        </div>
+        <!--<div class="layui-input-block">-->
+        <!--<select id="category" name="category" lay-filter="category" lay-search style="width:150px";>-->
+        <!--<option value="">请选择车辆类型</option>-->
+        <!--</select>-->
+        <!--</div>-->
+    </div>
+    <!--************这里是上传图片的代码***************-->
+    <!--************这里添加的隐藏的输入框，用来传递images的参数***************-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">
+            <span class="x-red">*</span>照片</label>
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test1">上传图片</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo1" style="width: 80px;height: 80px">
+                <p id="demoText"></p>
+                <input type="hidden" name="photolocation" class="image" id="photolocation" >
+                <input type="hidden" name="account"  id="account" >
+            </div>
+        </div>
+    </div>
+
+    <!--************上面里是上传图片的代码***************-->
+    <div class="layui-form-item">
+        <label class="layui-form-label"></label>
+        <button type="button" class="layui-btn"  lay-filter="edit" lay-submit="" onclick="dengji()">登记</button>
+        <button type="reset" class="layui-btn"  lay-filter="edit" lay-submit="">重置</button></div>
+</form>
+<!--<div class="layui-btn-container">-->
+<!--<button type="button" class="layui-btn layui-btn-normal"  onclick="dengji()">登记</button>-->
+<!--<button type="reset" class="layui-btn layui-btn-danger">重置</button>-->
+<!--</div>-->
+
+<!--引入script-->
+<script th:inline ="none">
+    var account = parent.$("#account").text();
+    $("#account").val(account);
+    //初始化from
+    layui.use(['form'], function(){
+        var layer = layui.layer
+            ,form = layui.form;
+        form.render(); //更新全部
+        $.ajax({
+            url:"/cartype/select"
+            ,type:"POST"
+            ,contentType : "application/json;charsetset=UTF-8"//必须
+            , success:function(datas){
+                for (i = 0; i < datas.length;i++){
+                    $("#category").append("<option value='"+datas[i]+"'>"+datas[i]+"</option>");
+                    form.render();//注意渲染页面表单，否则不显示数据
+                }
+                form.render();//注意渲染页面表单，否则不显示数据
+            },
+            error: function() {
+                layer.msg('获取规则失败');
+                form.render();
+            }
+        });
+    });
+
+    // 初始化上传
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test1'
+            ,url: '/upload/uploadimages'
+            ,accept:'images'
+            ,size:50000
+            ,before: function(obj){
+
+                obj.preview(function(index, file, result){
+
+                    $('#demo1').attr('src', result);
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #4cae4c;">上传成功</span>');
+
+                var fileupload = $(".image");
+                fileupload.attr("value",res.data.src);
+                console.log(fileupload.attr("value"));
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    });
+    //登记
+    function dengji() {
+        // 获取输入框值
+        var pinpai=$("#pinpai").val();
+        var  carnum=$("#carNum").val();
+        var account=$("#account").val();
+        var category=$("#category option:selected").val();
+        var photolocation=$("#photolocation").val();
+        var price=$("#price").val();
+        var yaprice=$("#yaprice").val();
+        var size=$("#size").val();
+        var data1={
+            "pinpai":pinpai,
+            "carNum":carnum,
+            "account":account,
+            "category":category,
+            "photolocation":photolocation,
+            "price":price,
+            "yaprice":yaprice,
+            "size":size
+        }
+        $.ajax({
+            type:"post",
+            url:"/carregister/carregister",//对应controller路径
+            async:false,
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(data1),
+            success:function (result) {
+                layer.alert(result.carNum+"注册成功", {
+                        icon: 6
+                    },
+                    function () {
+                        // layer.close(index);
+                        window.location.href = "/login/PosSelect";
+                    });
+                // window.alert(result.carNum+"注册成功");
+
+            },
+            error:function (e) {
+                console.log(e);
+            }
+
+        })
+    }
+
+    //获取待选规则
+    $(document).ready(function () {
+
+    })
+
+</script>
+
+</body>
+
+
+</html>

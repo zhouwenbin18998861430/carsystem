@@ -2,7 +2,7 @@ package com.zhouwenbin.carsystem.entity;
 
 public class Cars {
     public Cars(){}
-    public Cars(String pos,Integer carid,String carNum,String category,Integer price,Integer fixed,Integer state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
+    public Cars(String pos,Integer carid,String carNum,String category,Integer price,Integer fixed,String state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
         this.pos=pos;
         this.carid=carid;
         this.carNum=carNum;
@@ -57,11 +57,11 @@ public class Cars {
         this.fixed = fixed;
     }
 
-    public Integer getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(Integer state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -120,7 +120,7 @@ public class Cars {
     private Integer price;//租车价格
     private Integer yaprice;//押金价格
     private Integer fixed;//修理状态
-    private Integer state;//借车状态
+    private String state;//借车状态
     private Integer size;//车辆规模
     private String photolocation;//车辆图片
     private String account;//经手人

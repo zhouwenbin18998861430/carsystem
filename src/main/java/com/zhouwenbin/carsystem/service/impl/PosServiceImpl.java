@@ -24,6 +24,7 @@ public class PosServiceImpl implements PosService {
     public List<Cars> selectdata(Cars cars){
         return posMapper.selectdata(cars);
     }
+    public List<Cars> selectdata1(Cars cars){return posMapper.selectdata1(cars);}
     public Boolean updatepos(Cars cars){
         return posMapper.updatepos(cars);
     }
@@ -36,4 +37,6 @@ public class PosServiceImpl implements PosService {
     public Boolean nullcar1(Cars cars){
         return posMapper.nullcar1(cars);
     }
+    public List<Cars> carinfo(Integer carId){return  posMapper.carinfo(carId);}
+    public Boolean update(Cars cars){return  posMapper.update(cars);}
 }

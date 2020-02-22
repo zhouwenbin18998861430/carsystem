@@ -3,6 +3,8 @@ package com.zhouwenbin.carsystem.dao;
 import com.zhouwenbin.carsystem.entity.Users;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 
 @Mapper
 public interface UsersMapper {
@@ -14,4 +16,8 @@ public interface UsersMapper {
     String findPwd(String account) ;
     //查询权限等级
     Integer selectGrade(String account);
+    //查询数据库中是否有此账号
+    List<Users> haveaccount(String account);
+    //忘记密码重设
+    Boolean forgetpwd(Users users);
 }

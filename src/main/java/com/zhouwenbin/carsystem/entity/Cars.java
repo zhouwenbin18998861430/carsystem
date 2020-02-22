@@ -2,7 +2,7 @@ package com.zhouwenbin.carsystem.entity;
 
 public class Cars {
     public Cars(){}
-    public Cars(String pos,Integer carid,String carNum,String category,Integer price,Integer fixed,String state,Integer yaprice,String photolocation,Integer size,String account,String pinpai){
+    public Cars(String pos,Integer carid,String carNum,String category,Integer price,String fixed,String state,Integer yaprice,String photolocation,Integer size,String account,String pinpai,String errormsg){
         this.pos=pos;
         this.carid=carid;
         this.carNum=carNum;
@@ -15,6 +15,7 @@ public class Cars {
         this.size=size;
         this.account=account;
         this.pinpai=pinpai;
+        this.errormsg=errormsg;
     }
 
     public String getCarNum() {
@@ -49,11 +50,11 @@ public class Cars {
         this.yaprice = yaprice;
     }
 
-    public Integer getFixed() {
+    public String getFixed() {
         return fixed;
     }
 
-    public void setFixed(Integer fixed) {
+    public void setFixed(String fixed) {
         this.fixed = fixed;
     }
 
@@ -113,24 +114,32 @@ public class Cars {
         this.pos = pos;
     }
 
+    public String getErrormsg() {
+        return errormsg;
+    }
+
+    public void setErrormsg(String errormsg) {
+        this.errormsg = errormsg;
+    }
+
     private String pinpai;//车辆品牌
     private String carNum;//车牌号
     private Integer carid;//车辆ID
     private String category;//车辆类别
     private Integer price;//租车价格
     private Integer yaprice;//押金价格
-    private Integer fixed;//修理状态
+    private String fixed;//修理状态
     private String state;//借车状态
     private Integer size;//车辆规模
     private String photolocation;//车辆图片
     private String account;//经手人
-
+    private String errormsg;//维修事项
 
 
     private String pos;//租赁地点
 
     public String toString(){
-        return "Cars(pinpai="+this.getPinpai()+",carNum="+this.getCarNum()+",pos="+this.getPos()+",carid="+this.getCarid()+",category="+this.getCategory()+",price="+this.getPrice()+",yaprice="+this.getYaprice()+",fixed="+this.getFixed()+",state="+this.getState()+",size="+this.getSize()+",photolocation="+this.getPhotolocation()+",account="+this.getAccount()+").";
+        return "Cars(pinpai="+this.getPinpai()+",carNum="+this.getCarNum()+",pos="+this.getPos()+",carid="+this.getCarid()+",category="+this.getCategory()+",price="+this.getPrice()+",yaprice="+this.getYaprice()+",fixed="+this.getFixed()+",state="+this.getState()+",size="+this.getSize()+",photolocation="+this.getPhotolocation()+",account="+this.getAccount()+",errormsg="+this.getErrormsg()+").";
     }
 
 

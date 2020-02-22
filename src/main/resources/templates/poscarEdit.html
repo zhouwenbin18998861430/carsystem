@@ -65,9 +65,16 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">
                     <span class="x-red">*</span>车辆维修状态</label>
-                <div class="layui-input-inline">
-                    <input type="text" th:value="${carlists.fixed}" id="fixed" name="fixed" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-
+                <!--<div class="layui-input-inline">-->
+                    <div class="layui-input-inline">
+                        <!--<input type="text" th:value="${carlists.fixed}" id="fixed1" name="fixed1" required="" lay-verify="required" autocomplete="off" class="layui-input">-->
+                        <select  name="fixed" id="fixed" lay-verify="required" lay-search="" lay-filter="carType">
+                            <option value="正常" th:if="${carlists.fixed}=='正常'" selected>正常</option>
+                            <option value="正常" th:unless="${carlists.fixed}=='正常'">正常</option>
+                            <option value="待维修" th:if="${carlists.state}=='待维修'" selected>待维修</option>
+                            <option value="待维修" th:unless="${carlists.state}=='待维修'">待维修</option>
+                        </select>
+                    </div>
                 <label class="layui-form-label">
                     <span class="x-red">*</span>车辆可乘人数</label>
                 <div class="layui-input-inline">

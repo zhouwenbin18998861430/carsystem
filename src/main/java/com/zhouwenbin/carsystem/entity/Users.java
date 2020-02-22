@@ -79,4 +79,8 @@ public class Users {
     }
 
 
+    public String toString(){
+        return "Users(account="+this.getAccount()+",name="+this.getName()+",age="+this.getAge()+",phone="+this.getPhone()+",password="+this.getPassword()+").";
+    }
+
 }

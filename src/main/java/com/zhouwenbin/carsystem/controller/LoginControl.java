@@ -9,6 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 @Controller
 @RequestMapping("/login")
@@ -72,7 +76,48 @@ public class LoginControl {
     }
 
     //============================================================================
-
+// 注册功能
+    @RequestMapping("/registeraccount")
+    @ResponseBody
+    public Map registeraccount(@RequestBody Users users){
+        Map<String,Object> map=new HashMap();
+        String account=users.getAccount();
+        // String account1=
+        // try {
+            List<Users> userlist=usersService.haveaccount(account);
+            // System.out.println("userlist"+userlist);
+            if (null == userlist || userlist.size() ==0){
+                int account1=usersService.addUser(users);
+                map.put("msg",account+"注册成功");
+            }else {
+                map.put("msg","该账号已经存在");
+            }
+        return map;
+    }
 //==============================================================================
-
+    @RequestMapping("/forgetpwd")
+    @ResponseBody
+    public Map forgetpwd(@RequestBody Users users){
+        Map<String,Object> map=new HashMap();
+        String account=users.getAccount();
+        // System.out.println("account:"+account);
+        Integer age=users.getAge();
+        Integer phone=users.getPhone();
+        String name=users.getName();
+        String password=users.getPassword();
+        List<Users> userlist=usersService.haveaccount(account);
+        // System.out.println("dataaccount:"+userlist.get(0).getAccount());
+        // System.out.println("1:"+account.equals(userlist.get(0).getAccount()));
+        // System.out.println("2:"+age.equals(userlist.get(0).getAge()));
+        // System.out.println("3:"+phone==userlist.get(0).getPhone());
+        // System.out.println("4:"+name==userlist.get(0).getName());
+        if (account.equals(userlist.get(0).getAccount())&&age.equals(userlist.get(0).getAge())&&phone.equals(userlist.get(0).getPhone())&&name.equals(userlist.get(0).getName())){
+            usersService.forgetpwd(users);
+            map.put("msg","新密码为："+password+",请牢记您的新密码");
+        }else {
+            System.out.println("失败了");
+            map.put("msg","请核对所需信息项后重试");
+        }
+        return map;
+    }
 }

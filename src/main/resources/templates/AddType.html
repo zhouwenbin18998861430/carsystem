@@ -12,10 +12,9 @@
         <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
         <script  th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
         <script  th:src="@{/layui/js/baseUrl.js}"></script>
-        <!--[if lt IE 9]>
-          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+        <script th:src="@{/layuiGM/layui.js}"></script>
+        <script type="text/javascript" th:src="@{layui/js/xadmin.js}"></script>
+
     </head>
     <body>
     <div id="container">
@@ -49,7 +48,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="add()">添加</button>
+            <button type="button" class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="add()">添加</button>
             &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
             <button type="reset" class="layui-btn   layui-btn-danger">重置</button>
         </div>
@@ -61,9 +60,9 @@
     var account = parent.$("#account").text();
     $("#account").val(account);
     // 初始化form模块
-    layui.use('form', function(){
+    layui.use(['form','layer'], function(){
         var form = layui.form;
-
+        var layer=layui.layer;
         //各种基于事件的操作，下面会有进一步介绍
         form.render(); //更新全部
     });
@@ -84,9 +83,16 @@
             dataType:"json",
             data:JSON.stringify(Data),
             success:function (data) {
-                console.log(data);
-                window.alert(data.categoryname+"类型添加成功");
-                window.location.href="/CarTypeSelect";
+                layer.alert(data.categoryname+"类型添加成功", {
+                        icon: 6
+                    },
+                    function () {
+                        // layer.close(index);
+                        window.location.href="/login/CarTypeSelect";
+                    });
+                // window.alert(data.msg);
+                // window.alert(data.categoryname+"类型添加成功");
+                // window.location.href="/CarTypeSelect";
             },
             error:function (e) {
                 console.log(e);

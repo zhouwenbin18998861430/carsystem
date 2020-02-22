@@ -2,6 +2,8 @@ package com.zhouwenbin.carsystem.service;
 
 import com.zhouwenbin.carsystem.entity.Users;
 
+import java.util.List;
+
 public interface UsersService {
     //初始化系统管理员
     Integer addAdmin(Users users);
@@ -11,4 +13,10 @@ public interface UsersService {
     String findPwd(String account) ;
     //查询权限等级
     Integer selectGrade(String account);
+    //查询数据库中是否有此账号
+    List<Users> haveaccount(String account);
+    //忘记密码重设
+    Boolean forgetpwd(Users users);
+
+
 }

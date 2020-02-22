@@ -56,9 +56,9 @@
     var account = parent.$("#account").text();
     $("#account").val(account);
     // 初始化form模块
-    layui.use('form', function(){
+    layui.use(['form','layer'], function(){
         var form = layui.form;
-
+        var layer=layui.layer;
         //各种基于事件的操作，下面会有进一步介绍
         form.render(); //更新全部
     });

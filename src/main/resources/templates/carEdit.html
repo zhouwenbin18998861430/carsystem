@@ -20,7 +20,11 @@
         <script th:src="@{/layuiGM/layui.js}"></script>
         <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
         <script th:src="@{/layui/js/baseUrl.js}"></script>
-
+        <style>
+            .layui-form-label{
+                width: 100px;
+            }
+        </style>
         </head>
     
     <body>
@@ -66,8 +70,13 @@
                         <label class="layui-form-label">
                             <span class="x-red">*</span>车辆维修状态</label>
                         <div class="layui-input-inline">
-                            <input type="text" th:value="${carlists.fixed}" id="fixed" name="fixed" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
-
+                            <select  name="fixed" id="fixed" lay-verify="required" lay-search="" lay-filter="carType">
+                                <option value="正常" th:if="${carlists.fixed}=='正常'" selected>正常</option>
+                                <option value="正常" th:unless="${carlists.fixed}=='正常'">正常</option>
+                                <option value="待维修" th:if="${carlists.state}=='待维修'" selected>待维修</option>
+                                <option value="待维修" th:unless="${carlists.state}=='待维修'">待维修</option>
+                            </select>
+                        </div>
                         <label class="layui-form-label">
                             <span class="x-red">*</span>车辆可乘人数</label>
                         <div class="layui-input-inline">

@@ -14,10 +14,10 @@
     </resultMap>
     <!--id是方法名-->
     <insert id="addAdmin">
-            insert into users(account,password,grade) values (#{account},#{password},1)
+            insert into users(account,password,name,age,phone,grade) values (#{account},#{password},#{name},#{age},#{phone},1)
     </insert>
     <insert id="addUser">
-            insert into users(account,password,grade) values (#{account},#{password},3)
+            insert into users(account,password,name,age,phone,grade) values (#{account},#{password},#{name},#{age},#{phone},3)
     </insert>
     <!--查找密码-->
     <select id="findPwd"  resultType="string" >
@@ -27,4 +27,10 @@
     <select id="selectGrade" resultType="int">
         select grade from users where account=#{account}
     </select>
+    <select id="haveaccount" resultType="com.zhouwenbin.carsystem.entity.Users">
+        select * from users where account=#{account}
+    </select>
+    <update id="forgetpwd" parameterType="com.zhouwenbin.carsystem.entity.Users">
+        update users set password=#{password} where account=#{account} and phone=#{phone} and age=#{age} and name=#{name}
+    </update>
 </mapper>

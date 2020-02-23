@@ -60,6 +60,7 @@ public class CarTypeTableControl {
         // map.addAttribute("carList",carList);
         // System.out.println("carid:"+carId);
         List<Cars> carlists=carTableService.carinfo(carId);
+        // System.out.println(carlists);
         // System.out.println("carlists:"+carlists);
         model.addAttribute("carId",carId);
         model.addAttribute("carlists",carlists);

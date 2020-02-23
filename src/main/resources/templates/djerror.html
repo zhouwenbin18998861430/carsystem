@@ -34,9 +34,25 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">
+                <span class="x-red">*</span>车辆状态</label>
+            <div class="layui-input-inline">
+                <select  name="state" id="state" lay-verify="required" lay-search="" lay-filter="carType">
+                    <option value="借出" th:if="${carlists.state}=='借出'" selected>借出</option>
+                    <option value="借出" th:unless="${carlists.state}=='借出'">借出</option>
+                    <!--<option value="已损坏" th:if="${carlists.state}=='已损坏'"  selected>已损坏</option>-->
+                    <!--<option value="已损坏" th:unless="${carlists.state}=='已损坏'">已损坏</option>-->
+                    <option value="正常" th:if="${carlists.state}=='正常'" selected>正常</option>
+                    <option value="正常" th:unless="${carlists.state}=='正常'">正常</option>
+                    <option value="已丢失" th:if="${carlists.state}=='已丢失'" selected>已丢失</option>
+                    <option value="已丢失" th:unless="${carlists.state}=='已丢失'">已丢失</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
                 <span class="x-red">*</span>维修原因</label>
             <div class="layui-input-inline">
-                <textarea  cols="2"  th:value="${carlists.errormsg}"  rows="6" type="text" id="errormsg" name="errormsg" required="" placeholder="请输入维修原因" lay-verify="required" autocomplete="off" class="layui-textarea"></textarea>
+                <textarea  cols="2"  th:text="${carlists.errormsg}"  rows="6" type="text" id="errormsg" name="errormsg" required="" placeholder="请输入维修原因" lay-verify="required" autocomplete="off" class="layui-textarea"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -68,11 +84,13 @@
         var carNum=$("#carnum").val();
         var errormsg=$("#errormsg").val();
         var  carid=$("#carid").val();
+        var state=$("#state").val();
         console.log("carid:"+carid);
         var Data={
             "carNum":carNum,
             "errormsg":errormsg,
-            "carid":carid
+            "carid":carid,
+            "state":state
         }
         $.ajax({
             type:"post",

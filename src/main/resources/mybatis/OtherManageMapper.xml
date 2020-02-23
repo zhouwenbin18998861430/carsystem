@@ -24,10 +24,37 @@
     <select id="selecterrorcar" resultType="com.zhouwenbin.carsystem.entity.Cars">
         select * from car where fixed="待修理"
     </select>
+    <select id="selecterrorcarhavemsg" resultType="com.zhouwenbin.carsystem.entity.Cars">
+        select * from car where fixed="待修理" and errormsg is not null
+    </select>
     <select id="carinfo" resultType="com.zhouwenbin.carsystem.entity.Cars">
         select * from car where carid=#{carid}
     </select>
+    <select id="selectusersinfo" resultType="com.zhouwenbin.carsystem.entity.Users">
+        select * from users
+    </select>
     <update id="errorCardj" parameterType="com.zhouwenbin.carsystem.entity.Cars">
-        update car set errormsg=#{errormsg} where carid=#{carid}
+        update car set errormsg=#{errormsg},state=#{state} where carid=#{carid}
+    </update>
+    <update id="removeerrorcar" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set fixed="正常" where carid=#{carid}
+    </update>
+    <update id="yibaofei" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set fixed="已报废" where carid=#{carid}
+    </update>
+    <update id="fixed" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set fixed="正常" where carid=#{carid}
+    </update>
+    <insert id="baofei">
+        insert into baofeicar(carnum,carid,price,yaprice,size,fixed,errormsg,pos,category,photolocation,pinpai) values (#{carnum},#{carid},#{price},#{yaprice},#{size},#{fixed},#{errormsg},#{pos},#{category},#{photolocation},#{pinpai})
+    </insert>
+    <delete id="deluser" parameterType="com.zhouwenbin.carsystem.entity.Users">
+        delete from users where account=#{account}
+    </delete>
+    <select id="selectusersbyid" resultType="com.zhouwenbin.carsystem.entity.Users">
+        select * from users where account=#{account}
+    </select>
+    <update id="edituserinfo" parameterType="com.zhouwenbin.carsystem.entity.Users">
+        update users set name=#{name},age=#{age},phone=#{phone},password=#{password} where account=#{account}
     </update>
 </mapper>

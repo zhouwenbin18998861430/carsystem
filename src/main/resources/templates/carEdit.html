@@ -45,8 +45,8 @@
                                 <option value="借出" th:unless="${carlists.state}=='借出'">借出</option>
                                 <option value="归还" th:if="${carlists.state}=='归还'" selected>归还</option>
                                 <option value="归还" th:unless="${carlists.state}=='归还'">归还</option>
-                                <option value="已损坏" th:if="${carlists.state}=='已损坏'"  selected>已损坏</option>
-                                <option value="已损坏" th:unless="${carlists.state}=='已损坏'">已损坏</option>
+                                <!--<option value="已损坏" th:if="${carlists.state}=='已损坏'"  selected>已损坏</option>-->
+                                <!--<option value="已损坏" th:unless="${carlists.state}=='已损坏'">已损坏</option>-->
                                 <option value="正常" th:if="${carlists.state}=='正常'" selected>正常</option>
                                 <option value="正常" th:unless="${carlists.state}=='正常'">正常</option>
                             </select>
@@ -73,8 +73,8 @@
                             <select  name="fixed" id="fixed" lay-verify="required" lay-search="" lay-filter="carType">
                                 <option value="正常" th:if="${carlists.fixed}=='正常'" selected>正常</option>
                                 <option value="正常" th:unless="${carlists.fixed}=='正常'">正常</option>
-                                <option value="待维修" th:if="${carlists.state}=='待维修'" selected>待维修</option>
-                                <option value="待维修" th:unless="${carlists.state}=='待维修'">待维修</option>
+                                <option value="待修理" th:if="${carlists.fixed}=='待修理'" selected>待修理</option>
+                                <option value="待修理" th:unless="${carlists.fixed}=='待修理'">待修理</option>
                             </select>
                         </div>
                         <label class="layui-form-label">

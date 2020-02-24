@@ -30,46 +30,53 @@
 </head>
 <body>
 <!--表格主体-->
-<div id="main" style="width: 600px;height:400px;"></div>
+<div id="main" style="width: 100%;height:400px;"></div>
 <!--引入script-->
 
 <script >
     // var echarts = require('echarts');
     $(document).ready(function() {
-        data={};
         $.ajax({
             type: "post",
-            data: JSON.stringify(data),
+            data: {},
             url: '/other/sumcarbycategory',
             method: 'post',
-            dataType: "json",
+            // dataType: "json",
             contentType: "application/json;charsetset=UTF-8",//必须
             success: function (data) {
-                var list=data.data;
-                // console.log("data="+list);
-                // console.log("len="+data.data.length);
-                // console.log("cs="+data.data[3].cs);
-                // console.log("category0="+data.data[0]);
+                var resx = new Array();
+                var resy = [];
+                for (i = 0; i < data.data.length;i++) {
+                    resx[i] = data.data[i].category;
+                    resy[i] = data.data[i].cs;
+                }
+                console.log(resx);
+                console.log(resy);
                 var myChart = echarts.init(document.getElementById('main'));
-                option = {
+                var option = {
+                    title: {
+                        text: '各类型车辆数量查询'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data:['显示']
+                    },
                     xAxis: {
-                        type: 'category',
-                        data: []//车辆类型
+                        data: resx,
+                        axisLabel:{
+                            show:true,
+                            interval:0
+                        }
                     },
                     yAxis: {
-                        type: 'value'
+
                     },
                     series: [{
-                        data: [],
-                        type: 'bar'
+                        name: '显示',
+                        type: 'bar',
+                        data: resy
                     }]
                 };
-                for (i = 0; i < data.data.length; i++) {
-                    option.xAxis.data=option.xAxis.data+",["+[data.data[i].category]+"]";
-                    console.log("xAxis.data="+option.xAxis.data);
-                    option.series.data=option.series.data+",["+[data.data[i].cs]+"]";
-                    console.log("series.data="+option.series.data);
-                }
                 myChart.setOption(option);
             }, error: function (e) {
                 console.log(e);

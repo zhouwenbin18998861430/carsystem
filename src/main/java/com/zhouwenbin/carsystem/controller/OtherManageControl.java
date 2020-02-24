@@ -163,10 +163,10 @@ public class OtherManageControl {
     //统计各个类型的车辆数量
     @RequestMapping("/sumcarbycategory")
     @ResponseBody
-    public Map sumcarbycategory(@RequestBody Users users){
+    public Map sumcarbycategory(){
         Map<String,Object> map=new HashMap();
         List<categoryTosum> sum=otherManageService.sumcarbycategory();
-        System.out.println("sum:"+sum);
+        System.out.println(sum);
         map.put("data",sum);
         map.put("msg","统计完成");
         return map;

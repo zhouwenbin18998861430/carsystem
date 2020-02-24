@@ -11,4 +11,6 @@ public interface PoserService {
     Boolean add(Poser poser);
     List<Poser> poserinfo(Integer poserid);
     Boolean saveinfo(Poser poser);
+    List<Poser> poserinfo2();
+    Boolean match(Poser poser);//分配管理员
 }

@@ -4,15 +4,15 @@ package com.zhouwenbin.carsystem.entity;
 public class Users {
 
 
-    public Users(String account, String password, String name, Integer age, Integer phone,Integer grade) {
+    public Users(String account, String password, String name, Integer age, Integer phone,Integer grade,Integer money) {
         super();
-
         this.account = account;
         this.password = password;
         this.name = name;
         this.age = age;
         this.phone = phone;
         this.grade=grade;
+        this.money=money;
     }
 
     public Users() {
@@ -37,6 +37,16 @@ public class Users {
 
     private Integer grade;
     private Integer phone;
+
+    public Integer getMoney() {
+        return money;
+    }
+
+    public void setMoney(Integer money) {
+        this.money = money;
+    }
+
+    private Integer money;
 
     public String getAccount() {
         return account;
@@ -80,7 +90,7 @@ public class Users {
 
 
     public String toString(){
-        return "Users(account="+this.getAccount()+",name="+this.getName()+",age="+this.getAge()+",phone="+this.getPhone()+",password="+this.getPassword()+").";
+        return "Users(account="+this.getAccount()+",name="+this.getName()+",age="+this.getAge()+",phone="+this.getPhone()+",password="+this.getPassword()+",money"+this.getMoney()+").";
     }
 
 }

@@ -26,6 +26,10 @@
     <update id="saveinfo" parameterType="com.zhouwenbin.carsystem.entity.Poser">
             update poser set posername=#{posername},pos=#{pos},phone=#{phone},shenfenzheng=#{shenfenzheng} where poserid=#{poserid}
     </update>
-
-
+    <select id="poserinfo2" resultType="com.zhouwenbin.carsystem.entity.Poser">
+            select  * from poser where pos is null
+    </select>
+    <update id="match" parameterType="com.zhouwenbin.carsystem.entity.Poser">
+            update poser set pos=#{pos} where poserid=#{poserid}
+    </update>
 </mapper>

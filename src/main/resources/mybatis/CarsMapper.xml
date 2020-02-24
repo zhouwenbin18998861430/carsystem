@@ -18,6 +18,7 @@
         <result column="pinpai" property="pinpai" jdbcType="VARCHAR" />
         <result column="yaprice" property="pinyapricepai" jdbcType="INTEGER" />
         <result column="errormsg" property="errormsg" jdbcType="VARCHAR" />
+        <result column="money" property="money" jdbcType="INTEGER" />
     </resultMap>
     <!--id是方法名-->
     <!--新车登记-->

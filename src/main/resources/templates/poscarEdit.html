@@ -39,8 +39,8 @@
                     <select  name="state" id="state" lay-verify="required" lay-search="" lay-filter="carType">
                         <option value="借出" th:if="${carlists.state}=='借出'" selected>借出</option>
                         <option value="借出" th:unless="${carlists.state}=='借出'">借出</option>
-                        <option value="归还" th:if="${carlists.state}=='归还'" selected>归还</option>
-                        <option value="归还" th:unless="${carlists.state}=='归还'">归还</option>
+                        <!--<option value="归还" th:if="${carlists.state}=='归还'" selected>归还</option>-->
+                        <!--<option value="归还" th:unless="${carlists.state}=='归还'">归还</option>-->
                         <!--<option value="已损坏" th:if="${carlists.state}=='已损坏'"  selected>已损坏</option>-->
                         <!--<option value="已损坏" th:unless="${carlists.state}=='已损坏'">已损坏</option>-->
                         <option value="正常" th:if="${carlists.state}=='正常'" selected>正常</option>

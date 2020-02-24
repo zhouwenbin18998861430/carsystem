@@ -77,4 +77,27 @@ public class PoserControl {
         map.put("code",0);
         return map;
     }
+    //查询未分配的管理员
+    @RequestMapping("/selectposer")
+    @ResponseBody
+    public Map selectposer(){
+        Map<String,Object> map =new HashMap<>();
+        // poserService.saveinfo(poser);
+        List<Poser> poserList =poserService.poserinfo2();
+        map.put("data",poserList);
+        map.put("status", 0);
+        map.put("message", "");
+        map.put("total", "");
+        return map;
+    }
+    //分配租赁点管理员
+    @RequestMapping("/match")
+    @ResponseBody
+    public Map match(@RequestBody Poser poser){
+        Map<String,Object> map =new HashMap<>();
+        // poserService.saveinfo(poser);
+        poserService.match(poser);
+        map.put("msg", "分配成功");
+        return map;
+    }
 }

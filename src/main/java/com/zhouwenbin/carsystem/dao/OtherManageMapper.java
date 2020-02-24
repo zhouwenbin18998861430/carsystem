@@ -3,6 +3,7 @@ package com.zhouwenbin.carsystem.dao;
 import com.zhouwenbin.carsystem.entity.BaofeiCars;
 import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.entity.Users;
+import com.zhouwenbin.carsystem.entity.categoryTosum;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface OtherManageMapper {
     //改变fixed为已报废
     Boolean yibaofei(Cars cars);
     // 分类统计车辆数量
-    Integer sumcarbycategory(String category);
+    List<categoryTosum> sumcarbycategory();
     // 查询客户信息
     List<Users> selectusersinfo();
     //查询客户byID

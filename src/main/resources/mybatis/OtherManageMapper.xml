@@ -57,4 +57,7 @@
     <update id="edituserinfo" parameterType="com.zhouwenbin.carsystem.entity.Users">
         update users set name=#{name},age=#{age},phone=#{phone},password=#{password} where account=#{account}
     </update>
+    <select id="sumcarbycategory" resultType="com.zhouwenbin.carsystem.entity.categoryTosum">
+        select  category,count(category)cs from car group by category
+    </select>
 </mapper>

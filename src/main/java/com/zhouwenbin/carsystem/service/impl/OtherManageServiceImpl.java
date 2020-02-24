@@ -4,6 +4,7 @@ import com.zhouwenbin.carsystem.dao.OtherManageMapper;
 import com.zhouwenbin.carsystem.entity.BaofeiCars;
 import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.entity.Users;
+import com.zhouwenbin.carsystem.entity.categoryTosum;
 import com.zhouwenbin.carsystem.service.OtherManageService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,8 +38,8 @@ public class OtherManageServiceImpl implements OtherManageService {
 
     public Boolean yibaofei(Cars cars){return otherManageMapper.yibaofei(cars);}
     @Override
-    public Integer sumcarbycategory(String category) {
-        return otherManageMapper.sumcarbycategory(category);
+    public List<categoryTosum> sumcarbycategory() {
+        return otherManageMapper.sumcarbycategory();
     }
 
     public List<Users> selectusersbyid(String account){return otherManageMapper.selectusersbyid(account);}

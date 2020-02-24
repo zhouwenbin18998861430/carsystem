@@ -3,6 +3,7 @@ package com.zhouwenbin.carsystem.controller;
 import com.zhouwenbin.carsystem.entity.BaofeiCars;
 import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.entity.Users;
+import com.zhouwenbin.carsystem.entity.categoryTosum;
 import com.zhouwenbin.carsystem.service.OtherManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -157,6 +158,17 @@ public class OtherManageControl {
         Map<String,Object> map=new HashMap();
         otherManageService.edituserinfo(users);
         map.put("msg","用户信息修改成功");
+        return map;
+    }
+    //统计各个类型的车辆数量
+    @RequestMapping("/sumcarbycategory")
+    @ResponseBody
+    public Map sumcarbycategory(@RequestBody Users users){
+        Map<String,Object> map=new HashMap();
+        List<categoryTosum> sum=otherManageService.sumcarbycategory();
+        System.out.println("sum:"+sum);
+        map.put("data",sum);
+        map.put("msg","统计完成");
         return map;
     }
 }

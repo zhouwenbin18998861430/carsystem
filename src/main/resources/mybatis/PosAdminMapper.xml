@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zhouwenbin.carsystem.dao.PosAdminMapper">
+    <resultMap id="BaseResultMap" type="com.zhouwenbin.carsystem.entity.Cars" >
+        <id column="carid" property="carid" jdbcType="INTEGER" />
+        <result column="account" property="account" jdbcType="VARCHAR" />
+        <result column="state" property="state" jdbcType="INTEGER" />
+        <result column="category" property="category" jdbcType="VARCHAR" />
+        <result column="price" property="price" jdbcType="INTEGER" />
+        <result column="pos" property="pos" jdbcType="VARCHAR" />
+        <result column="fixed" property="fixed" jdbcType="VARCHAR" />
+        <result column="size" property="size" jdbcType="INTEGER" />
+        <result column="carnum" property="carNum" jdbcType="VARCHAR" />
+        <result column="photolocation" property="photolocation" jdbcType="VARCHAR" />
+        <result column="pinpai" property="pinpai" jdbcType="VARCHAR" />
+        <result column="yaprice" property="pinyapricepai" jdbcType="INTEGER" />
+        <result column="errormsg" property="errormsg" jdbcType="VARCHAR" />
+        <result column="money" property="money" jdbcType="INTEGER" />
+    </resultMap>
+    <!--id是方法名-->
+    <!--新车登记-->
+    <select id="selectposcar" resultType="com.zhouwenbin.carsystem.entity.Cars">
+        select * from car where pos=#{pos}
+    </select>
+    <select id="selectposcar1" resultType="com.zhouwenbin.carsystem.entity.Cars">
+        select * from car where pos=#{pos} and state="正常" and fixed="正常"
+    </select>
+    <select id="selectposcar2" resultType="com.zhouwenbin.carsystem.entity.Cars">
+        select * from car where pos=#{pos} and state="借出" and fixed="正常"
+    </select>
+    <select id="checkname" resultType="java.lang.String">
+        select name from users where account=#{account}
+    </select>
+    <select id="checkpos" resultType="java.lang.String">
+        select pos from poser where posername=#{name}
+    </select>
+    <select id="selectcarinfo" resultType="com.zhouwenbin.carsystem.entity.Cars">
+        select * from car where carid=#{carid}
+    </select>
+    <update id="djjiechu" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set fixed="正常",state=#{state},errormsg=null where carid=#{carid}
+    </update>
+    <update id="djguihuan" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+        update car set fixed="正常",state=#{state},errormsg=null where carid=#{carid}
+    </update>
+</mapper>

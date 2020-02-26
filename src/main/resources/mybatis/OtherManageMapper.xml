@@ -35,10 +35,10 @@
         select * from users
     </select>
     <update id="errorCardj" parameterType="com.zhouwenbin.carsystem.entity.Cars">
-        update car set errormsg=#{errormsg},state=#{state} where carid=#{carid}
+        update car set errormsg=#{errormsg},state=#{state},fixed="待修理" where carid=#{carid}
     </update>
     <update id="removeerrorcar" parameterType="com.zhouwenbin.carsystem.entity.Cars">
-        update car set fixed="正常" where carid=#{carid}
+        update car set fixed="正常",state="正常",errormsg=null where carid=#{carid}
     </update>
     <update id="yibaofei" parameterType="com.zhouwenbin.carsystem.entity.Cars">
         update car set fixed="已报废" where carid=#{carid}

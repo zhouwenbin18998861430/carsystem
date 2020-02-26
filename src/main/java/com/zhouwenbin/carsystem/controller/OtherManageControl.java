@@ -73,7 +73,7 @@ public class OtherManageControl {
     public Map removeerrorcar(@RequestBody Cars cars){
         otherManageService.removeerrorcar(cars);
         Map<String,Object> map=new HashMap();
-        map.put("msg","删除成功");
+        map.put("msg","成功");
         return map;
     }
     //报废车辆

@@ -2,13 +2,14 @@ package com.zhouwenbin.carsystem.entity;
 
 public class Poser {
     public Poser(){};
-    public Poser(Integer poserid,String posername,String pos,Integer carid,String phone,String shenfenzheng){
+    public Poser(Integer poserid,String posername,String pos,Integer carid,String phone,String shenfenzheng,String account){
         this.carid=carid;
         this.poserid=poserid;
         this.posername=posername;
         this.pos=pos;
         this.phone=phone;
         this.shenfenzheng=shenfenzheng;
+        this.account=account;
     };
 
     public Integer getPoserid() {
@@ -65,4 +66,14 @@ public class Poser {
     private Integer carid;
     private String shenfenzheng;
     private String phone;
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    private String account;
 }

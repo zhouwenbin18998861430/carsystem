@@ -56,27 +56,47 @@
         <ul id="nav">
             <li>
                 <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="租借点及其管理员管理">&#xe6b8;</i>
+                    <cite>租借点及其管理员管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('租借点查询','/login/PosSelect')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>租借点查询</cite></a>
+                    </li>
+                </ul>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('租借点管理员查询','/login/PoserSelect')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>租借点管理员查询</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="车辆管理">&#xe6b8;</i>
                     <cite>车辆管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('车辆类型查询','CarTypeSelect.html')">
+                        <a onclick="xadmin.add_tab('车辆类型查询','/login/CarTypeSelect')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>车辆类型查询</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('采购新车登记','NewCarRegister.html')">
+                        <a onclick="xadmin.add_tab('采购新车登记','/login/NewCarRegister')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>采购新车登记</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('租赁点分配车辆','PosCarMatch.html')">
+                        <a onclick="xadmin.add_tab('租赁点分配车辆','/login/PosCarMatch')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>租赁点分配车辆</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('租赁点分配管理员','PoserMatch.html')">
+                        <a onclick="xadmin.add_tab('租赁点分配管理员','/login/PoserMatch')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>租赁点分配管理员</cite></a>
                     </li>
@@ -89,60 +109,40 @@
             </li>
             <li>
                 <a href="javascript:;">
-                    <i class="iconfont left-nav-li" lay-tips="租借点及其管理员管理">&#xe6b8;</i>
-                    <cite>租借点及其管理员管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i></a>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="xadmin.add_tab('租借点查询','PosSelect.html')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>租借点查询</cite></a>
-                    </li>
-                </ul>
-                <ul class="sub-menu">
-                    <li>
-                        <a onclick="xadmin.add_tab('租借点管理员查询','PoserSelect.html')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>租借点管理员查询</cite></a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="其他管理">&#xe6b8;</i>
                     <cite>其他管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('车辆问题登记','Carinfodj.html')">
+                        <a onclick="xadmin.add_tab('车辆问题登记','/login/Carinfodj')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>车辆问题登记</cite></a>
                     </li>
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('车辆修理和报废','carBaofei.html')">
+                        <a onclick="xadmin.add_tab('车辆修理和报废','/login/carBaofei')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>车辆修理和报废</cite></a>
                     </li>
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('分类统计车辆数量','sumCarnum.html')">
+                        <a onclick="xadmin.add_tab('分类统计车辆数量','/login/sumCarnum')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>分类统计车辆数量</cite></a>
                     </li>
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('查询客户信息','userSelect.html')">
+                        <a onclick="xadmin.add_tab('查询客户信息','/login/userSelect')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>查询客户信息</cite></a>
                     </li>
                 </ul>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('查看订单信息','carBaofei.html')">
+                        <a onclick="xadmin.add_tab('查看订单信息','/login/carBaofei')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>查看订单信息</cite></a>
                     </li>

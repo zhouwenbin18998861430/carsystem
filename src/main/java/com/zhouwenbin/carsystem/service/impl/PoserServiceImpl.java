@@ -3,6 +3,7 @@ package com.zhouwenbin.carsystem.service.impl;
 import com.zhouwenbin.carsystem.dao.PoserMapper;
 import com.zhouwenbin.carsystem.entity.Pos;
 import com.zhouwenbin.carsystem.entity.Poser;
+import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.service.PoserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ public class PoserServiceImpl implements PoserService {
     public Boolean del(Poser poser){
         return poserMapper.del(poser);
     }
+    public Boolean addtouser(Users users){return poserMapper.addtouser(users);}
     public Boolean add(Poser poser){
         return poserMapper.add(poser);
     }

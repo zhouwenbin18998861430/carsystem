@@ -2,6 +2,7 @@ package com.zhouwenbin.carsystem.controller;
 
 import com.zhouwenbin.carsystem.entity.Pos;
 import com.zhouwenbin.carsystem.entity.Poser;
+import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.service.PoserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +53,18 @@ public class PoserControl {
         // System.out.println("posname:"+posname);
         Map<String,Object> map=new HashMap();
         poserService.add(poser);
+        map.put("posname",posname);
+        map.put("code",0);
+        map.put("msg","添加成功");
+        return map;
+    }
+    @RequestMapping("/addtouser")
+    @ResponseBody
+    public Map addtouser(@RequestBody Users users){
+        String posname=users.getName();
+        // System.out.println("posname:"+posname);
+        Map<String,Object> map=new HashMap();
+        poserService.addtouser(users);
         map.put("posname",posname);
         map.put("code",0);
         map.put("msg","添加成功");

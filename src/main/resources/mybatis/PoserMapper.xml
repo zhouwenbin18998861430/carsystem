@@ -18,7 +18,11 @@
             delete  from poser where poserid=#{poserid}
     </delete>
     <insert id="add">
-        insert into poser(posername,phone,shenfenzheng) values (#{posername},#{phone},#{shenfenzheng})
+        insert into poser(posername,phone,shenfenzheng,account) values (#{posername},#{phone},#{shenfenzheng},#{account})
+    </insert>
+    <!--未实现方法-->
+    <insert id="addtouser">
+        insert into users(account,password,name,phone,shenfenzheng,age,grade) values (#{account},#{password},#{name},#{phone},#{shenfenzheng},#{age},2)
     </insert>
     <select id="poserinfo" resultType="com.zhouwenbin.carsystem.entity.Poser">
             select * from poser where poserid=#{poserid}

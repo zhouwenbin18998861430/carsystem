@@ -29,6 +29,12 @@
     <form class="layui-form" action="" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">
+                <span class="x-red">*</span>管理员账号</label>
+            <div class="layui-input-inline">
+                <input type="text" id="account" name="account" required="" placeholder="请输入管理员名称" lay-verify="required" autocomplete="off" class="layui-input"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
                 <span class="x-red">*</span>管理员名称</label>
             <div class="layui-input-inline">
                 <input type="text" id="posername" name="posername" required="" placeholder="请输入管理员名称" lay-verify="required" autocomplete="off" class="layui-input"></div>
@@ -45,9 +51,21 @@
             <div class="layui-input-inline">
                 <input type="text" id="shenfenzheng" name="shenfenzheng" required="" placeholder="请输入身份证" lay-verify="required" autocomplete="off" class="layui-input"></div>
         </div>
-    <div class="layui-form-item">
-            <input type="hidden" name="account"  id="account" >
-    </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>年龄</label>
+            <div class="layui-input-inline">
+                <input type="text" id="age" name="age" required="" placeholder="请输入年龄" lay-verify="required" autocomplete="off" class="layui-input"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                <span class="x-red">*</span>密码</label>
+            <div class="layui-input-inline">
+                <input type="text" id="password" name="password" required="" placeholder="请输入密码" lay-verify="required" autocomplete="off" class="layui-input"></div>
+        </div>
+    <!--<div class="layui-form-item">-->
+            <!--<input type="hidden" name="account"  id="account" >-->
+    <!--</div>-->
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button type="button" class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1" onclick="add()">添加</button>
@@ -60,7 +78,7 @@
     </body>
 <script>
     var account = parent.$("#account").text();
-    $("#account").val(account);
+    // $("#account").val(account);
     // 初始化form模块
     layui.use(['form','layer'], function(){
         var form = layui.form;
@@ -73,11 +91,21 @@
         var phone=$("#phone").val();
         var shenfenzheng=$("#shenfenzheng").val();
         var  account=$("#account").val();
+        var age=$("#age").val();
+        var password=$("#password").val();
         var Data={
             "posername":posername,
             "phone":phone,
             "shenfenzheng":shenfenzheng,
             "account":account
+        };
+        var Data1={
+            "name":posername,
+            "phone":phone,
+            "shenfenzheng":shenfenzheng,
+            "account":account,
+            "password":password,
+            "age":age
         }
         $.ajax({
             type:"post",
@@ -87,19 +115,39 @@
             dataType:"json",
             data:JSON.stringify(Data),
             success:function (data) {
-                layer.alert(data.msg, {
+                layer.alert("管理员信息已生成", {
                         icon: 6
                     },
                     function () {
-                        // layer.close(index);
-                        window.location.href = "/login/PoserSelect";
+                        $.ajax({
+                            type:"post",
+                            url:"/poser/addtouser",//对应controller路径
+                            async:false,
+                            contentType:"application/json",
+                            dataType:"json",
+                            data:JSON.stringify(Data1),
+                            success:function (data) {
+                                layer.alert(data.msg, {
+                                        icon: 6
+                                    },
+                                    function () {
+                                        // layer.close(index);
+                                        window.location.href = "/login/PoserSelect";
+                                    });
+                                // window.alert(data.msg);
+                            },
+                            error:function (e) {
+                                console.log(e);
+                            }
+                        })
+                        //关闭
                     });
                 // window.alert(data.msg);
             },
             error:function (e) {
                 console.log(e);
             }
-        })
+        });
     }
 </script>
 

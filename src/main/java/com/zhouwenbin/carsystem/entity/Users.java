@@ -4,7 +4,7 @@ package com.zhouwenbin.carsystem.entity;
 public class Users {
 
 
-    public Users(String account, String password, String name, Integer age, Integer phone,Integer grade,Integer money) {
+    public Users(String account, String password, String name, Integer age, Integer phone,Integer grade,Integer money,Integer shenfenzheng) {
         super();
         this.account = account;
         this.password = password;
@@ -13,11 +13,16 @@ public class Users {
         this.phone = phone;
         this.grade=grade;
         this.money=money;
+        this.shenfenzheng=shenfenzheng;
     }
 
     public Users() {
         super();
     }
+
+
+
+    private Integer shenfenzheng;
 
     private String account;
 
@@ -88,9 +93,16 @@ public class Users {
         this.phone = phone;
     }
 
+    public Integer getShenfenzheng() {
+        return shenfenzheng;
+    }
+
+    public void setShenfenzheng(Integer shenfenzheng) {
+        this.shenfenzheng = shenfenzheng;
+    }
 
     public String toString(){
-        return "Users(account="+this.getAccount()+",name="+this.getName()+",age="+this.getAge()+",phone="+this.getPhone()+",password="+this.getPassword()+",money"+this.getMoney()+").";
+        return "Users(account="+this.getAccount()+",name="+this.getName()+",age="+this.getAge()+",phone="+this.getPhone()+",password="+this.getPassword()+",money="+this.getMoney()+",shenfenzheng="+this.getShenfenzheng()+").";
     }
 
 }

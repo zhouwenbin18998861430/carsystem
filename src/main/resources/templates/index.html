@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="description" content="gauto | Car Rental HTML Template from Themescare">
+      <meta name="keyword" content="taxi,car,rent,hire,transport">
+      <meta name="author" content="Themescare">
+      <!-- Title -->
+      <title>小彬租车</title>
+      <!--所需的外部文件-->
+      <!--<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">-->
+      <!--<link rel="stylesheet" href="assets/css/bootstrap.css">-->
+      <!--<link rel="stylesheet" href="assets/css/font-awesome.min.css">-->
+      <!--<link rel="stylesheet" href="assets/css/magnific-popup.css">-->
+      <!--<link rel="stylesheet" href="assets/css/owl.carousel.min.css">-->
+      <!--<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">-->
+      <!--<link rel="stylesheet" href="assets/css/animate.min.css">-->
+      <!--<link rel="stylesheet" href="assets/css/jquery.datepicker.css">-->
+      <!--<link rel="stylesheet" href="assets/css/nice-select.css">-->
+      <!--<link rel="stylesheet" href="assets/css/lightgallery.min.css">-->
+      <!--<link rel="stylesheet" href="assets/css/jquery-clockpicker.min.css">-->
+      <!--<link rel="stylesheet" href="assets/css/slicknav.min.css">-->
+      <!--<link rel="stylesheet" href="assets/css/style.css">-->
+      <!--<link rel="stylesheet" href="assets/css/responsive.css">-->
+      <!--js文件-->
+      <!--Jquery js-->
+      <script src="assets/js/jquery.min.js"></script>
+      <script  th:src="@{/front/assets/js/jquery.min.js}"></script>
+      <!-- Popper JS -->
+      <script src="assets/js/popper.min.js"></script>
+      <script  th:src="@{/front/assets/js/popper.min.js}"></script>
+      <!--Bootstrap js-->
+      <script src="assets/js/bootstrap.min.js"></script>
+      <script  th:src="@{/front/assets/js/bootstrap.min.js}"></script>
+      <!--Owl-Carousel js-->
+      <script src="assets/js/owl.carousel.min.js"></script>
+      <script  th:src="@{/front/assets/js/owl.carousel.min.js}"></script>
+      <!--Lightgallery js-->
+      <script src="assets/js/lightgallery-all.js"></script>
+      <script src="assets/js/custom_lightgallery.js"></script>
+      <script  th:src="@{/front/assets/js/lightgallery-all.js}"></script>
+      <script  th:src="@{/front/assets/js/custom_lightgallery.js}"></script>
+      <!--Slicknav js-->
+      <script src="assets/js/jquery.slicknav.min.js"></script>
+      <script  th:src="@{/front/assets/js/jquery.slicknav.min.js}"></script>
+      <!--Magnific js-->
+      <script src="assets/js/jquery.magnific-popup.min.js"></script>
+      <script  th:src="@{/front/assets/js/jquery.magnific-popup.min.js}"></script>
+      <!--Nice Select js-->
+      <script src="assets/js/jquery.nice-select.min.js"></script>
+      <script  th:src="@{/front/assets/js/jquery.nice-select.min.js}"></script>
+      <!-- Datepicker JS -->
+      <script src="assets/js/jquery.datepicker.min.js"></script>
+      <script  th:src="@{/front/assets/js/jquery.datepicker.min.js}"></script>
+      <!--ClockPicker JS-->
+      <script src="assets/js/jquery-clockpicker.min.js"></script>
+      <script  th:src="@{/front/assets/js/jquery-clockpicker.min.js}"></script>
+      <!--Main js-->
+      <script src="assets/js/main.js"></script>
+      <script  th:src="@{/front/assets/js/main.js}"></script>
+      <script  th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/img/favicon/favicon-32x32.png}">
+      <!--Bootstrap css-->
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/bootstrap.css}">
+      <!--Font Awesome css-->
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/font-awesome.min.css}">
+      <!--Magnific css-->
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/magnific-popup.css}">
+      <!--Owl-Carousel css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/owl.carousel.min.css}">
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/owl.theme.default.min.css}">
+      <!--Animate css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/animate.min.css}">
+      <!--Datepicker css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/jquery.datepicker.css}">
+      <!--Nice Select css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/nice-select.css}">
+      <!-- Lightgallery css -->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/lightgallery.min.css}">
+      <!--ClockPicker css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/jquery-clockpicker.min.css}">
+      <!--Slicknav css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/slicknav.min.css}">
+      <!--Site Main Style css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/style.css}">
+      <!--Responsive css-->
+
+      <link rel="stylesheet" type="text/css" th:href="@{/front/assets/css/responsive.css}">
+       <style>
+              .login-box{
+              width: 100%;
+              }
+       </style>
+   </head>
+   <body>
+
+
+      <!-- Header Top Area Start -->
+      <section class="gauto-header-top-area">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="header-top-left">
+                     <p>需要帮助?: <i class="fa fa-phone"></i> 电话: +18998861430</p>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="header-top-right">
+                     <!--<div>-->
+                     <!--<a th:href="@{/login}">-->
+                     <!--<i class="fa fa-key"></i>-->
+                     <!--<span th:href="@{/login/login}" id="account">-->
+                     <!--请您登陆-->
+                     <!--</span>-->
+                     <!--</a>-->
+                     <!--</div>-->
+
+
+                     <div th:if="${#strings.isEmpty(user?.account)}">
+                     <a th:href="@{/login}">
+                     <i class="fa fa-user"></i>
+                     <span >
+                     <span>请您登陆</span>
+                     </span>
+                     </a>
+                     </span>
+                     </div>
+
+                     <div th:if="${not #strings.isEmpty(user?.account)}">
+                     <a th:href="@{/myinfo}">
+                     <i class="fa fa-user"></i>
+                     <span th:text="${user.account}"></span>
+                     </a>
+                     </span>
+                     </div>
+
+                     <!--<div>-->
+                     <!--<a th:href="@{/login}" >-->
+                     <!--<i class="fa fa-user"></i>-->
+                     <!--<span   th:if="${not #strings.isEmpty(user.account)}">-->
+                     <!--</span>-->
+                     <!--</a>-->
+                     <!--</div>-->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Header Top Area End -->
+
+
+      <!-- Main Header Area Start -->
+      <header class="gauto-main-header-area">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                  <div class="site-logo">
+                     <div class="header-promo-icon">
+                     <img th:src="@{/front/assets/img/logo1.png}"  />
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-6 col-sm-9">
+                  <div class="header-promo">
+                     <div class="single-header-promo">
+                        <div class="header-promo-icon">
+                           <img th:src="@{/front/assets/img/globe.png}"  />
+                        </div>
+                        <div class="header-promo-info">
+                           <h3>中国</h3>
+                           <p>广州、佛山</p>
+                        </div>
+                     </div>
+                     <div class="single-header-promo">
+                        <div class="header-promo-icon">
+                           <img th:src="@{/front/assets/img/clock.png}"  />
+                        </div>
+                        <div class="header-promo-info">
+                           <h3>周一至周五</h3>
+                           <p>9:00am - 6:00pm</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-3">
+                  <div class="header-action">
+                     <a href="#"><i class="fa fa-phone"></i> 欢迎致电前来咨询</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </header>
+      <!-- Main Header Area End -->
+       
+       
+      <!-- Mainmenu Area Start -->
+      <section class="gauto-mainmenu-area">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-9">
+                  <div class="mainmenu">
+                     <nav>
+                        <ul id="gauto_navigation">
+                           <li><a href="index.html">首页</a></li>
+                           <li><a href="about.html">关于我们</a></li>
+                           <li>
+                              <a th:href="@{/userCar}">车辆</a>
+                              <!--<ul>-->
+                                 <!--<li><a href="car-listing.html">car listing</a></li>-->
+                                 <!--<li><a href="car-booking.html">car booking</a></li>-->
+                              <!--</ul>-->
+                           </li>
+                        </ul>
+                     </nav>
+                  </div>
+               </div>
+               <div class="col-lg-3 col-sm-12">
+                  <div class="main-search-right">
+
+                     <!-- Responsive Menu Start -->
+                     <div class="gauto-responsive-menu"></div>
+                     <!-- Responsive Menu Start -->
+
+                     <!-- Cart Box Start -->
+                     <div class="header-cart-box">
+                        <div class="login dropdown">
+                        </div>
+                     </div>
+                     <!-- Cart Box End -->
+
+                     <!-- Search Box Start -->
+                     <!--<div class="search-box">-->
+                        <!--<form>-->
+                           <!--<input type="search" placeholder="查询">-->
+                           <!--<button type="submit"><i class="fa fa-search"></i></button>-->
+                        <!--</form>-->
+                     <!--</div>-->
+                     <!-- Search Box End -->
+
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Mainmenu Area End -->
+      <!-- Breadcromb Area Start -->
+      <section class="gauto-breadcromb-area section_70">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="breadcromb-box">
+                     <h3>竭诚为您服务</h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Breadcromb Area End -->
+       
+       
+      <!-- Login Area Start -->
+      <section class="gauto-login-area section_70">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="login-box">
+                  	<h3>租车流程</h3>
+                    1、租车人需在登陆状态下进行车辆租赁下单并完成支付<hr>2、租车人到指定车辆租赁点凭单号进行取车<hr>3、租车人用车完成后需将车辆归还到指定地点，并告知租赁点管理员方可退回押金<hr>
+                  </div>
+               </div>
+               <div class="col-md-8">
+                  这边放宣传租车图片
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Login Area End -->
+       
+       
+    	
+         <div class="footer-bottom-area">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="copyright">
+                        <p>Design With <i class="fa fa-heart"></i> from wenbin</p>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="footer-social">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- Footer Area End -->
+   <!--script-->
+   <script>
+      $().ready(function(){
+
+      });
+
+   </script>
+   </body>
+</html>
+

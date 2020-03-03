@@ -17,57 +17,17 @@ public class PageControl extends HttpServlet {
     public String page(@PathVariable String page) {
         return page;
     }
-    // @RequestMapping("/index1")
-    // public String index1(HttpServletRequest request, HttpServletResponse response,Model model) {
-    //     response.setContentType("text/html;charset=utf-8");//解决乱码
-    //     HttpSession session=request.getSession();//创建session对象
-    //     Users user=(Users) session.getAttribute("user");//保存session信息
-    //     if (user==null){
-    //         System.out.println("你还未登陆");
-    //         return "redirect:/login";
-    //     }else {
-    //         System.out.println("已登陆");
-    //         model.addAttribute("user",user);
-    //         // //创建Cookie对象用来保存Session的id
-    //         // Cookie cookie=new Cookie("JSESSIONID",session.getId());
-    //         // cookie.setMaxAge(30*60);
-    //         // cookie.setPath("/Project01");
-    //         // response.addCookie(cookie);
-    //         // model.addAttribute("user",user);
-    //     }
-    //     return "index1";
-    // }
-    // @RequestMapping("/index2")
-    // public String index2(HttpServletRequest request, HttpServletResponse response,Model model) {
-    //     response.setContentType("text/html;charset=utf-8");//解决乱码
-    //     HttpSession session=request.getSession();//创建session对象
-    //     Users user=(Users) session.getAttribute("user");//保存session信息
-    //     if (user==null){
-    //         System.out.println("你还未登陆");
-    //         return "redirect:/login";
-    //     }else {
-    //         System.out.println("已登陆");
-    //         model.addAttribute("user",user);
-    //         // //创建Cookie对象用来保存Session的id
-    //         // Cookie cookie=new Cookie("JSESSIONID",session.getId());
-    //         // cookie.setMaxAge(30*60);
-    //         // cookie.setPath("/Project02");
-    //         // response.addCookie(cookie);
-    //         // model.addAttribute("user",user);
-    //     }
-    //     return "index2";
-    // }
     @RequestMapping("/index")
     public String index(HttpServletRequest request, HttpServletResponse response, Model model) {
         response.setContentType("text/html;charset=utf-8");//解决乱码
         HttpSession session=request.getSession();//创建session对象
         Users user=(Users) session.getAttribute("user");//保存session信息
         if (user==null){
-            System.out.println("你还未登陆");
+            // System.out.println("你还未登陆");
             model.addAttribute("msg", "你尚未登录");
             // return "redirect:/login";
         }else {
-            System.out.println("已登陆");
+            // System.out.println("已登陆");
             model.addAttribute("user",user);
             // System.out.println("user1"+user);
             // //创建Cookie对象用来保存Session的id

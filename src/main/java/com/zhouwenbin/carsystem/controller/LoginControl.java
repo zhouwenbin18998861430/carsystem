@@ -41,11 +41,11 @@ public class LoginControl extends HttpServlet {
     // }
 
     @PostMapping("/submit")
-    public String login( Model model, HttpServletRequest request, HttpServletResponse response) {
+    public String login(@ModelAttribute(value = "users") Users users, Model model, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session=request.getSession();//创建session对象
         Users user=(Users) session.getAttribute("user");//保存session信息
         if (user!=null){
-            System.out.println("该用户已经登录");
+            // System.out.println("该用户已经登录");
         }
         // System.out.println("该用户尚未登录");
         String account = request.getParameter("account");
@@ -62,28 +62,30 @@ public class LoginControl extends HttpServlet {
         } else if (password.equals(password1)) {
             // System.out.println("grade:" + grade);
             response.setContentType("text/html;charset=utf-8");//解决乱码
-            Users users = new Users();
-            users.setAccount(account);
-            users.setPassword(password1);
+            Users users1 = new Users();
+            users1.setAccount(account);
+            users1.setPassword(password1);
             // HttpSession session = request.getSession();
             switch (grade) {
                 case 1:
 //        权限为1是管理员
-//                     model.addAttribute("accountinfo", users);
+                    model.addAttribute("accountinfo", users);
+                    // System.out.println("user="+users);
                     session.setAttribute("user", users);//创建session保存对象
                     // HttpSession session=request.getSession();//创建session保存信息
 //        ModelAndView modelAndView=new ModelAndView("index","usersModel",users);
-                    return "redirect:/index1";
+                    return "index1";
                 case 2:
 //        权限为2是租赁点管理员
-//                     model.addAttribute("accountinfo", users);
+                    model.addAttribute("accountinfo", users);
+                    // System.out.println("user="+users);
                     session.setAttribute("user", users);//创建session保存对象
 //        ModelAndView modelAndView=new ModelAndView("index","usersModel",users);
-                    return "redirect:/index2";
+                    return "index2";
                 case 3:
 //        权限为3是普通用户
 //                     model.addAttribute("accountinfo", users);
-                    session.setAttribute("user", users);//创建session保存对象
+                    session.setAttribute("user", users1);//创建session保存对象
 //        ModelAndView modelAndView=new ModelAndView("index","usersModel",users);
                     return "redirect:/index";
             }

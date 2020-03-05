@@ -21,8 +21,10 @@
         <result column="money" property="money" jdbcType="INTEGER" />
     </resultMap>
     <!--id是方法名-->
-    <insert id="registerCar">
-            insert into car(account,category,photolocation,carnum,pinpai,price,yaprice,size,state,fixed) values (#{account},#{category},#{photolocation},#{carNum},#{pinpai},#{price},#{yaprice},#{size},"正常","正常")
-    </insert>
-
+    <select id="selectbytype" resultType="com.zhouwenbin.carsystem.entity.Cars">
+            select * from car where category=#{category}
+    </select>
+    <select id="selectall" resultType="com.zhouwenbin.carsystem.entity.Cars">
+            select * from car ;
+    </select>
 </mapper>

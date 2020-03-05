@@ -9,6 +9,7 @@
     <script th:src="@{/front/js/jquery-3.4.0.js}"></script>
     <script th:src="@{/front/js/bootstrap.min.js}"></script>
     <script th:src="@{/front/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{front/js/xadmin.js}"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
     <!--<script src="js/jquery-3.4.0.js"></script>-->
@@ -21,17 +22,55 @@
     <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="./layui/css/layui.css">-->
     <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+
+
+
+
     <title></title>
+    <style>
+        #content{
+            width: 100%;
+            height: 400px;
+        }
+        #center{
+            margin: auto;
+            text-align: center;
+            margin-left: 40%;
+        }
+        .layui-form-label{
+            width: 100px;
+        }
+        .row-car {
+            margin-top: 50px;
+        }
+
+        .car-content{
+            height: 100px;
+        }
+
+        .car-content li{
+            float: left;
+            height: 100px;
+        }
+
+        .car-content li p{
+            padding-left: 50px;
+            padding-right: 50px;
+            height: 33%;
+        }
+
+        .row-car:nth-of-type(odd){
+            background-color: #1111;
+        }
+
+    </style>
 </head>
 <body>
+<div id="content" style="text-align: center">
+<div id="head" style="width: 100%;height: 52px">
 <!--导航条-->
 <nav class="navbar navbar-inverse" style="margin-bottom: 0px;border-radius: 0px;">
     <div class="container">
-        <div class="navbar-header">
-            <div class="left_open">
-                <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
-            </div>
-        </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="index">首页</a></li>
@@ -40,53 +79,171 @@
         </div>
     </div>
 </nav>
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-md12">
-            <div class="layui-card">
-                <form class="layui-form" action="">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">租赁点查询</label>
-                        <div class="layui-input-inline">
-                            <select name="carType" id="carType" lay-verify="required" lay-search=""
-                                    lay-filter="carType">
-                                <option value="">请选择租赁点位置</option>
-                            </select>
-                        </div>
-                        <div class="layui-input-inline">
-                            <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1"
-                                    onclick="addPos()">新增租赁点
-                            </button>
-                            <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo2"
-                                    onclick="removePos()">删除该租赁点
-                            </button>
-                        </div>
-                        <input type="hidden" id="carid">
-                    </div>
-                </form>
-                <!--<div class="layui-card-header">-->
-                <!--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>-->
-                <!--<button class="layui-btn" onclick="xadmin.open('添加用户','./ac-add.html',700,500)"><i class="layui-icon"></i>添加</button>-->
-                <!--</div>-->
-                <div class="layui-card-body layui-table-body layui-table-main">
-                    <table id="demo" lay-filter="test"></table>
-                </div>
-                <!----------------------- 工具条 -------------------------->
-                <script type="text/html" id="barDemo">
-                    <a class="layui-btn layui-btn-xs" lay-event="edit1">编辑</a>
-                    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-                </script>
-
-            </div>
+</div>
+<div id="center" style="width: 100%;height: 50px">
+     <form class="layui-form" action="">
+        <div class="layui-form-item">
+        <label class="layui-form-label">按车型查询</label>
+         <div class="layui-input-inline">
+            <select name="carType" id="carType" lay-verify="required" lay-search="" lay-filter="carType">
+                  <option value="">请选择车辆类型</option>
+            </select>
+         </div>
         </div>
+      </form>
+</div>
+<div id="foot" style="width: 100%;height: 300px">
+    <div class="row-car" id="show">
     </div>
 </div>
+</div>
+
 <script>
     layui.use(['element','form'], function(){
         var element = layui.element;
         var form=layui.form;
+        window.getcars = function() {
+            $.ajax({
+                url: "/choosecar/selectall"
+                , type: "POST"
+                , contentType: "application/json;charsetset=UTF-8"//必须
+                , success: function (datas) {
+                    for (i = 0; i < datas.carlist.length; i++) {
+                        $("#show").append("<ul class=\"car-content\" style=\"margin-top: 50px;\">" +
+                            "<li style=\"border-right: 1px solid #ccc;padding-left: 10px;padding-left: 190px;\">" +
+                            "<img  src=\"../static/"+datas.carlist[i].photolocation+"\" width=\"100px\" height=\"100px\">" +
+                            "</li>"+
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">"+
+                            "<p>品牌</p>"+
+                            "<p style=\"color: #999;\">"+datas.carlist[i].pinpai+"</p>"+
+                            "</li>"+
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>车型</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].category+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>价格</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].price+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>押金</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].yaprice+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;\">\n" +
+                            "<p>可乘人数</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].size+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;float: right;padding-right: 250px;padding-top: 20px\">\n" +
+                            "<button  class=\"layui-btn layui-btn-normal\" id='"+datas.carlist[i].carid+"' onclick='zulin(this)'>立即租赁</button>\n" +
+                            "</li>\n" +
+                            "</ul>"
+                        );
+                    }
+                    form.render();//注意渲染页面表单，否则不显示数据
+                },
+                error: function () {
+                    layer.msg('获取规则失败');
+                    form.render();
+                }
+            });
+        }
+        $.ajax({
+            url: "/cartype/select"
+            , type: "POST"
+            , contentType: "application/json;charsetset=UTF-8"//必须
+            , success: function (datas) {
+                for (i = 0; i < datas.length; i++) {
+                    $("#carType").append("<option value='" + datas[i] + "'>" + datas[i] + "</option>");
+                }
+                form.render();//注意渲染页面表单，否则不显示数据
+            },
+            error: function () {
+                layer.msg('获取规则失败');
+                form.render();
+            }
+        });
+        getcars();
         form.render();
+        form.on("select(carType)", function (data) {
+            document.getElementById("show").innerHTML="";
+            var category1=data.value;
+            dataa={"category":category1};
+            $.ajax({
+                url: "/choosecar/selectbytype"
+                ,data:JSON.stringify(dataa)
+                ,dataType:"json"
+                 ,type:"post"
+                 ,method:"post"
+                , contentType: "application/json;charsetset=UTF-8"//必须
+                ,success:function (datas) {
+                    for (i = 0; i < datas.carlist.length; i++) {
+                        $("#show").append("<ul class=\"car-content\" style=\"margin-top: 50px;\">" +
+                            "<li style=\"border-right: 1px solid #ccc;padding-left: 10px;padding-left: 190px;\">" +
+                            "<img  src=\"../static/"+datas.carlist[i].photolocation+"\" width=\"100px\" height=\"100px\">" +
+                            "</li>"+
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">"+
+                            "<p>品牌</p>"+
+                            "<p style=\"color: #999;\">"+datas.carlist[i].pinpai+"</p>"+
+                            "</li>"+
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>车型</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].category+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>价格</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].price+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>押金</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].yaprice+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;\">\n" +
+                            "<p>可乘人数</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.carlist[i].size+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;float: right;padding-right: 250px;padding-top: 20px\">\n" +
+                            "<button  class=\"layui-btn layui-btn-normal\" id='"+datas.carlist[i].carid+"' onclick='zulin(this)'>立即租赁</button>\n" +
+                            "</li>\n" +
+                            "</ul>"
+                        );
+                    }
+                    form.render();//注意渲染页面表单，否则不显示数据
+                },error:function (e) {
+                    console.log(e);
+                }
+            })
+        });
     });
+    function zulin(element) {
+        var carid=element.id;
+        datab={"carid":carid};
+        $.ajax({
+            url: "/choosecar/zulin"
+            ,data:JSON.stringify(datab)
+            ,dataType:"json"
+            ,type:"post"
+            ,method:"post"
+            ,async:false
+            , contentType: "application/json;charsetset=UTF-8"//必须
+            ,success:function (data) {
+                if (data.page=="login"){
+                    window.location.href="/"+data.page;
+                } else {
+                    window.location.href="/"+data.page+"?carid="+data.carid;
+                }
+                // console.log(data.page);
+                // console.log(data.carid);
+            },error:function (data) {
+                console.log(e);
+                if (data.readyState == 4) {
+                    if (data.status == 200) {
+                        layer.msg("请先登录！");
+                        setTimeout("window.location.href = '/login'", 1500);
+                    }
+                }
+            }
+        });
+    }
 </script>
 </body>
 </html>

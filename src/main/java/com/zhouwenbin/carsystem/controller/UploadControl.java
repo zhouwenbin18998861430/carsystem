@@ -53,7 +53,7 @@ public class UploadControl {
                 map.put("code",0);
                 map.put("msg","");
                 map.put("data",map2);
-                map2.put("src","/images/"+ dateStr+"/"+uuid+"." + prefix);
+                map2.put("src","/image/"+ dateStr+"/"+uuid+"." + prefix);
                 return map;
             }
 

@@ -15,7 +15,8 @@ public class ChooseCarServiceImpl implements ChooseCarService {
     @Resource
     private ChooseCarMapper chooseCarMapper;
     @Override
-    public List<Cars> selectbytype() {
-        return chooseCarMapper.selectbytype();
+    public List<Cars> selectbytype(Cars cars) {
+        return chooseCarMapper.selectbytype(cars);
     }
+    public List<Cars> selectall(){return  chooseCarMapper.selectall();}
 }

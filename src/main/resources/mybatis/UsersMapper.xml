@@ -17,7 +17,7 @@
             insert into users(account,password,name,age,phone,grade) values (#{account},#{password},#{name},#{age},#{phone},1)
     </insert>
     <insert id="addUser">
-            insert into users(account,password,name,age,phone,grade) values (#{account},#{password},#{name},#{age},#{phone},3)
+            insert into users(account,password,name,age,phone,grade,money) values (#{account},#{password},#{name},#{age},#{phone},3,0)
     </insert>
     <!--查找密码-->
     <select id="findPwd"  resultType="string" >
@@ -32,5 +32,8 @@
     </select>
     <update id="forgetpwd" parameterType="com.zhouwenbin.carsystem.entity.Users">
         update users set password=#{password} where account=#{account} and phone=#{phone} and age=#{age} and name=#{name}
+    </update>
+    <update id="xiugaiinfo" parameterType="com.zhouwenbin.carsystem.entity.Users">
+        update users set name=#{name},phone=#{phone}, age=#{age} ,name=#{name},shenfenzheng=#{shenfenzheng},password=#{password} where account=#{account}
     </update>
 </mapper>

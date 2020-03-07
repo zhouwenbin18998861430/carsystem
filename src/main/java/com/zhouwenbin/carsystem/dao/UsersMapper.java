@@ -20,4 +20,6 @@ public interface UsersMapper {
     List<Users> haveaccount(String account);
     //忘记密码重设
     Boolean forgetpwd(Users users);
+    //修改用户信息
+    Boolean xiugaiinfo(Users users);
 }

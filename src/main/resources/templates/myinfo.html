@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--连接网站资源-->
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/layui/css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/admin.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
+    <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/js/baseUrl.js}"></script>
+    <script th:src="@{/layuiGM/layui.js}"></script>
+    <title>车辆信息</title>
+    <style>
+        .layui-form-label{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="head" style="width: 100%;height: 52px">
+        <!--导航条-->
+        <nav class="navbar navbar-inverse" style="margin-bottom: 0px;border-radius: 0px;">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index">回到首页</a></li>
+                        <li><a href="editmyinfo">修改我的信息</a></li>
+                        <li><a href="index">查看我的订单</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="zhanhang1" style="height: 50px"></div>
+    <div id="userinfo">
+        <form class="layui-form" id="form1" action="" lay-filter="car" enctype="multipart/form-data" method="post">
+            <!--<form class="layui-form" action="" lay-filter="car" enctype="multipart/form-data" method="post">-->
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>客户姓名:</label>
+                <label class="layui-form-label">
+                    <span  id="name"></span></label>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>年龄:</label>
+                <label class="layui-form-label">
+                    <span  id="age"></span></label>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>联系电话:</label>
+                <label class="layui-form-label">
+                    <span  id="phone"></span></label>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>身份证:</label>
+                <label class="layui-form-label">
+                    <span  id="shenfenzheng"></span></label>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>密码:</label>
+                <label class="layui-form-label">
+                    <span  id="password"></span></label>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <!--<label class="layui-form-label">-->
+                    <!--<span class="x-red">*</span>账号</label>-->
+                <div class="layui-input-inline">
+                    <input type="hidden" id="account" name="account" required="" placeholder="即将隐藏的账户名" lay-verify="required" autocomplete="off" class="layui-input" th:value="${session.user.account}"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        data0={"account":$("#account").val()}
+        // 根据账户名获取相关信息
+        $.ajax({
+            type:"post",
+            url:"/xiugaimyinfo/checkmyinfo",//对应controller路径
+            async:false,
+            contentType:"application/json",
+            dataType:"json",
+            data:JSON.stringify(data0),
+            success:function (data) {
+                $("#name").text(data.usersList[0].name);
+                $("#phone").text(data.usersList[0].phone);
+                $("#age").text(data.usersList[0].age);
+                $("#shenfenzheng").text(data.usersList[0].shenfenzheng);
+                $("#password").text(data.usersList[0].password);
+            },error:function (e) {
+                console.log(e);
+            }
+        })
+    });
+</script>
+</body>
+</html>

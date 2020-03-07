@@ -47,5 +47,6 @@ public class UsersServiceImpl implements UsersService {
         return usersMapper.forgetpwd(users);
     }
 
+    public Boolean xiugaiinfo(Users users){return usersMapper.xiugaiinfo(users);}
 
 }

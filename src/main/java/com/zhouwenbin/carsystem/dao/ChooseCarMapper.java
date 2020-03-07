@@ -9,4 +9,5 @@ import java.util.List;
 public interface ChooseCarMapper {
     List<Cars> selectbytype(Cars cars);//根据所选类型进行查表
     List<Cars> selectall();//查询全部车辆
+    List<Cars> carinfo(Integer carId);//根据ID查车辆信息
 }

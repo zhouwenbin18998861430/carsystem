@@ -19,4 +19,5 @@ public class ChooseCarServiceImpl implements ChooseCarService {
         return chooseCarMapper.selectbytype(cars);
     }
     public List<Cars> selectall(){return  chooseCarMapper.selectall();}
+    public List<Cars> carinfo(Integer carId){return chooseCarMapper.carinfo(carId);}
 }

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--连接网站资源-->
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/layui/css/layui.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/admin.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
+    <script th:src="@{/layui/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/layui/js/baseUrl.js}"></script>
+    <script th:src="@{/layuiGM/layui.js}"></script>
+    <title>车辆信息</title>
+    <style>
+        .layui-form-label{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="head" style="width: 100%;height: 52px">
+        <!--导航条-->
+        <nav class="navbar navbar-inverse" style="margin-bottom: 0px;border-radius: 0px;">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index">回到首页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="zhanhang1" style="height: 50px"></div>
+    <div id="userinfo">
+        <form class="layui-form" id="form1" action="" lay-filter="car" enctype="multipart/form-data" method="post">
+            <!--<form class="layui-form" action="" lay-filter="car" enctype="multipart/form-data" method="post">-->
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>客户姓名</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="name" name="name" required="" placeholder="请输入客户姓名" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>年龄</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="age" name="age" required="" placeholder="请输入年龄" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>联系电话</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="phone" name="phone" required="" placeholder="请输入新的联系电话" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>身份证</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="shenfenzheng" name="shenfenzheng" required="" placeholder="请输入身份证号码" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>密码</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="password" name="password" required="" placeholder="请输入新的密码" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>确认密码</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="password1" name="password1" required="" placeholder="请再次输入新的密码" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <!--<label class="layui-form-label">-->
+                    <!--<span class="x-red">*</span>账号</label>-->
+                <div class="layui-input-inline">
+                    <input type="hidden" id="account" name="account" required="" placeholder="即将隐藏的账户名" lay-verify="required" autocomplete="off" class="layui-input" th:value="${session.user.account}"></div>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label"></label>
+                <button class="layui-btn" id="bt1" lay-filter="edit" lay-submit="" type="button">修改</button>
+                <button type="reset" class="layui-btn"  lay-filter="edit" lay-submit="">重置</button></div>
+        </form>
+    </div>
+</div>
+<script>
+
+    layui.use(['form','jquery', 'layer'],function() {
+        $ = layui.jquery;
+        var form = layui.form,
+            layer = layui.layer;
+            var $ = layui.jquery;
+        form.on('submit(edit)',function(data) {
+            // 取值
+            var name =data.field.name;
+            var phone = data.field.phone;
+            var age = data.field.age;
+            var shenfenzheng = data.field.shenfenzheng;
+            var password =data.field.password;
+            var account=data.field.account;
+            data1={
+                "name":name,
+                "password":password,
+                "age":age,
+                "shenfenzheng":shenfenzheng,
+                "account":account,
+                "phone":phone
+            };
+            if (data.field.password==data.field.password1){
+                $.ajax({
+                    type:"post",
+                    url:"/xiugaimyinfo/updateinfo",//对应controller路径
+                    async:false,
+                    contentType:"application/json",
+                    dataType:"json",
+                    data:JSON.stringify(data1),
+                    success:function (data) {
+                        layer.alert(data.msg, {
+                                icon: 6
+                            },
+                            function() {
+                                window.location.href = "/login";
+                            });
+                    },error:function (e) {
+                        console.log(e);
+                    }
+                })
+            }else {
+                layer.alert("两次输入的密码不一致,请重新输入", {
+                        icon: 5
+                    },
+                    function () {
+                        // layer.close(index);
+                        window.location.href = "/myinfo";
+                    });
+            }
+        })
+
+    });
+
+</script>
+</body>
+</html>

@@ -27,4 +27,7 @@
     <select id="selectall" resultType="com.zhouwenbin.carsystem.entity.Cars">
             select * from car ;
     </select>
+    <select id="carinfo" resultType="com.zhouwenbin.carsystem.entity.Cars">
+            select * from car where carid=#{carId}
+    </select>
 </mapper>

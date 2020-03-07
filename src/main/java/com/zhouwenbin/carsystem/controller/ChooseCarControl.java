@@ -54,5 +54,13 @@ public class ChooseCarControl {
             return map;
         }
     }
-
+    @RequestMapping("carinfo")
+    @ResponseBody
+    public Map carinfo(@RequestBody Cars cars){
+        Integer carid=cars.getCarid();
+        List<Cars> carsList=chooseCarService.carinfo(carid);
+        Map<String,Object> map=new HashMap<>();
+        map.put("carsList",carsList);
+        return map;
+    }
 }

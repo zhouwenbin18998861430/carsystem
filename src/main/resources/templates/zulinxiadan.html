@@ -61,7 +61,10 @@
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <button class="layui-btn" type="button">租赁下单</button>
+        <button class="layui-btn" type="button" onclick="zulinxiadan()">租赁下单</button>
+    </div>
+    <div>
+        <input type="hidden" id="carid"/>
     </div>
 </div>
 </div>
@@ -86,6 +89,7 @@
                 $("#yaprice").text(data.carsList[0].yaprice);
                 $("#pos").text(data.carsList[0].pos);
                 $("#size").text(data.carsList[0].size);
+                $("#carid").val(data.carsList[0].carid);
             },error:function (e) {
                 console.log(e);
             }
@@ -112,9 +116,27 @@
         return obj;
     }
 
+
+
     function zulinxiadan() {
+        var pinpai=$("#pinpai").text();
+        var type=$("#type").text();
+        var price=$("#price").text();
+        var yaprice=$("#yaprice").text();
+        var pos=$("#pos").text();
+        var size=$("#size").text();
+        var carid=$("#carid").val();
+        datac={
+            "pinpai":pinpai,
+            "category":type,
+            "price":price,
+            "yaprice":yaprice,
+            "pos":pos,
+            "size":size,
+            "carid":carid
+        };
         $.ajax({
-            url: "/choosecar/carinfo"
+            url: "/choosecar/xiadan"
             ,data:JSON.stringify(datac)
             ,dataType:"json"
             ,type:"post"
@@ -123,7 +145,17 @@
             , contentType: "application/json;charsetset=UTF-8"//必须
             ,success:function (data) {
                 //处理返回的查询车辆信息
-
+                console.log(data.msg);
+                if (data.page == "login") {
+                    window.alert(data.msg);
+                    window.location.href="/"+data.page;
+                }else if(data.page=="charge"){
+                    window.alert(data.msg);
+                    window.location.href="/"+data.page;
+                }else {
+                    window.alert(data.msg);
+                    window.location.href="/"+data.page;//返回个人订单页面
+                }
             },error:function (e) {
                 console.log(e);
             }

@@ -30,7 +30,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="index">回到首页</a></li>
                         <li><a href="editmyinfo">修改我的信息</a></li>
-                        <li><a href="index">查看我的订单</a></li>
+                        <li><a href="perdingdan">查看我的订单</a></li>
                     </ul>
                 </div>
             </div>
@@ -71,6 +71,12 @@
                     <span  id="password"></span></label>
             </div>
             <div class="layui-form-item" style="margin-left: 500px">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>余额:</label>
+                <label class="layui-form-label">
+                    <span  id="money"></span></label>
+            </div>
+            <div class="layui-form-item" style="margin-left: 500px">
                 <!--<label class="layui-form-label">-->
                     <!--<span class="x-red">*</span>账号</label>-->
                 <div class="layui-input-inline">
@@ -96,6 +102,7 @@
                 $("#age").text(data.usersList[0].age);
                 $("#shenfenzheng").text(data.usersList[0].shenfenzheng);
                 $("#password").text(data.usersList[0].password);
+                $("#money").text(data.usersList[0].money);
             },error:function (e) {
                 console.log(e);
             }

@@ -4,6 +4,7 @@ package com.zhouwenbin.carsystem.controller;
 import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/login")
+@EnableAutoConfiguration
 public class LoginControl extends HttpServlet {
     //    写控制方法
     @Autowired
@@ -140,6 +142,16 @@ public class LoginControl extends HttpServlet {
             System.out.println("失败了");
             map.put("msg","请核对所需信息项后重试");
         }
+        return map;
+    }
+    @RequestMapping("/clean")
+    @ResponseBody
+    public Map clean(HttpServletRequest request, HttpServletResponse response){
+        response.setContentType("text/html;charset=utf-8");//解决乱码
+        HttpSession session=request.getSession();//创建session对象
+        Map<String,Object> map=new HashMap<>();
+        session.invalidate();
+        map.put("msg","成功退出当前用户");
         return map;
     }
 }

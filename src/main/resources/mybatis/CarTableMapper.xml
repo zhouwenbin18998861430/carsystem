@@ -34,5 +34,7 @@
     <update id="update" parameterType="com.zhouwenbin.carsystem.entity.Cars">
             update car set carnum=#{carNum},state=#{state},size=#{size},pinpai=#{pinpai},fixed=#{fixed},price=#{price},yaprice=#{yaprice},category=#{category} where carid=#{carid}
     </update>
-
+    <select id="selectdingdan" resultType="com.zhouwenbin.carsystem.entity.Dingdan">
+            select * from dingdan
+    </select>
 </mapper>

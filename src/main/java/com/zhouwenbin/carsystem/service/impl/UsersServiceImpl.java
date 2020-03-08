@@ -3,6 +3,7 @@ package com.zhouwenbin.carsystem.service.impl;
 import com.zhouwenbin.carsystem.dao.UsersMapper;
 import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.service.UsersService;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@EnableAutoConfiguration
 public class UsersServiceImpl implements UsersService {
 //    注入
     @Resource
@@ -48,5 +50,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     public Boolean xiugaiinfo(Users users){return usersMapper.xiugaiinfo(users);}
+
+    public Boolean charge(Users users){return usersMapper.charge(users);}
 
 }

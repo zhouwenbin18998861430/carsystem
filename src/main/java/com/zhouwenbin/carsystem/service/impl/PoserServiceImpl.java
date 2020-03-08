@@ -5,6 +5,7 @@ import com.zhouwenbin.carsystem.entity.Pos;
 import com.zhouwenbin.carsystem.entity.Poser;
 import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.service.PoserService;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@EnableAutoConfiguration
 public class PoserServiceImpl implements PoserService {
     @Resource
     private PoserMapper poserMapper;

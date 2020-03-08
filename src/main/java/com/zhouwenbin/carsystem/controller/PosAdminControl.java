@@ -4,6 +4,7 @@ import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.service.PosAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/posAdmin")
+@EnableAutoConfiguration
 public class PosAdminControl {
     @Autowired
     private PosAdminService posAdminService;

@@ -3,6 +3,7 @@ package com.zhouwenbin.carsystem.service.impl;
 import com.zhouwenbin.carsystem.dao.CarTypeMapper;
 import com.zhouwenbin.carsystem.entity.CarType;
 import com.zhouwenbin.carsystem.service.CarTypeService;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@EnableAutoConfiguration
 public class CarTypeServiceImpl implements CarTypeService {
     @Resource
     private CarTypeMapper carTypeMapper;

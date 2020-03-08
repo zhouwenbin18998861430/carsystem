@@ -3,6 +3,7 @@ package com.zhouwenbin.carsystem.service.impl;
 import com.zhouwenbin.carsystem.dao.CarsMapper;
 import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.service.CarsService;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +11,7 @@ import javax.annotation.Resource;
 
 @Service
 @Transactional
+@EnableAutoConfiguration
 public class CarsServiceImpl implements CarsService {
     @Resource
     private CarsMapper carsMapper;

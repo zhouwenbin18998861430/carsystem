@@ -1,11 +1,15 @@
 package com.zhouwenbin.carsystem.controller;
 
 import com.zhouwenbin.carsystem.entity.Cars;
+import com.zhouwenbin.carsystem.entity.Dingdan;
 import com.zhouwenbin.carsystem.service.CarTableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +17,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/table")
+@EnableAutoConfiguration
 public class CarTypeTableControl {
     @Autowired
     private CarTableService carTableService;
@@ -65,5 +70,18 @@ public class CarTypeTableControl {
         model.addAttribute("carId",carId);
         model.addAttribute("carlists",carlists);
         return "carEdit";
+    }
+    //获取客户订单信息
+    @RequestMapping("/dingdaninfo")
+    @ResponseBody
+    public Map userdingdanSelect(){
+        Map<String,Object> map=new HashMap();
+        // List<Users> userslist=otherManageService.selectusersinfo();
+        List<Dingdan> dingdanList=carTableService.selectdingdan();
+        map.put("data",dingdanList);
+        map.put("status", 0);
+        map.put("message", "");
+        map.put("total", "");
+        return map;
     }
 }

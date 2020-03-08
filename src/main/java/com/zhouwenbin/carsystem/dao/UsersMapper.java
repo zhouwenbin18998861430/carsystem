@@ -22,4 +22,6 @@ public interface UsersMapper {
     Boolean forgetpwd(Users users);
     //修改用户信息
     Boolean xiugaiinfo(Users users);
+    //用户金额充值
+    Boolean charge(Users users);
 }

@@ -1,5 +1,6 @@
 package com.zhouwenbin.carsystem.controller;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/upload")
+@EnableAutoConfiguration
 public class UploadControl {
     @PostMapping("/uploadimages")
     @ResponseBody

@@ -36,4 +36,7 @@
     <update id="xiugaiinfo" parameterType="com.zhouwenbin.carsystem.entity.Users">
         update users set name=#{name},phone=#{phone}, age=#{age} ,name=#{name},shenfenzheng=#{shenfenzheng},password=#{password} where account=#{account}
     </update>
+    <update id="charge" parameterType="com.zhouwenbin.carsystem.entity.Users">
+        update users set money=#{money} where account=#{account}
+    </update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.zhouwenbin.carsystem.controller;
 
 import com.zhouwenbin.carsystem.entity.Users;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
+@EnableAutoConfiguration
 public class PageControl extends HttpServlet {
     @RequestMapping("/{page}")
     public String page(@PathVariable String page) {

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--连接网站资源-->
+    <script th:src="@{/webjars/jquery/3.1.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+    <script th:src="@{/front/js/jquery-3.4.0.js}"></script>
+    <script th:src="@{/front/js/bootstrap.min.js}"></script>
+    <script th:src="@{/front/layui/layui.js}"></script>
+    <script type="text/javascript" th:src="@{front/js/xadmin.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/font.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/css/xadmin.css}">
+    <!--<script src="js/jquery-3.4.0.js"></script>-->
+    <!--<script src="./layui/layui.js"></script>-->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/layui/layui/css/layui.css}"/>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/layui/css/admin.css}"/>-->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/bootstrap.min.css}"/>
+    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="./layui/css/layui.css">-->
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <title>订单信息</title>
+    <style>
+        #content{
+            width: 100%;
+            height: 400px;
+        }
+        #center{
+            margin: auto;
+            text-align: center;
+            margin-left: 40%;
+        }
+        .layui-form-label{
+            width: 100px;
+        }
+        .row-car {
+            margin-top: 50px;
+        }
+
+        .car-content{
+            height: 100px;
+        }
+
+        .car-content li{
+            float: left;
+            height: 100px;
+        }
+
+        .car-content li p{
+            padding-left: 50px;
+            padding-right: 50px;
+            height: 33%;
+        }
+
+        .row-car:nth-of-type(odd){
+            background-color: #1111;
+        }
+
+    </style>
+</head>
+<body>
+<div id="content" style="text-align: center">
+    <div id="head" style="width: 100%;height: 52px">
+        <!--导航条-->
+        <nav class="navbar navbar-inverse" style="margin-bottom: 0px;border-radius: 0px;">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index">回到首页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div id="foot" style="width: 100%;height: 300px">
+        <div class="row-car" id="dingdan" style="margin-left: 250px">
+            <input type="hidden" th:value="${session.user.account}" id="account">
+        </div>
+    </div>
+</div>
+<script>
+    // var value=getvalue().account;//取url中的值
+    layui.use(['element','form'], function() {
+        var element = layui.element;
+        var form = layui.form;
+        window.getdingdan = function() {
+            var account=$("#account").val();
+            dataa={"account":account};
+            $.ajax({
+                url: "/xiugaimyinfo/dingdanxinxi"
+                ,data:JSON.stringify(dataa)
+                ,dataType:"json"
+                ,type:"post"
+                ,method:"post"
+                , contentType: "application/json;charsetset=UTF-8"//必须
+                ,success:function (datas) {
+                    for (i = 0; i < datas.dingdanList.length; i++) {
+                        $("#dingdan").append(
+                            "<ul class=\"car-content\" style=\"margin-top: 50px;\">" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">"+
+                            "<p>订单号</p>"+
+                            "<p style=\"color: #999;\">"+datas.dingdanList[i].ddid+"</p>"+
+                            "</li>"+
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>车型</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.dingdanList[i].category+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>价格</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.dingdanList[i].price+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>押金</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.dingdanList[i].yaprice+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<p>取车点</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.dingdanList[i].pos+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;\">\n" +
+                            "<p>可乘人数</p>\n" +
+                            "<p style=\"color: #999;\">"+datas.dingdanList[i].size+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;\">\n" +
+                            "<p>订单状态</p>\n" +
+                            "<p id='state' style=\"color: #999;\">"+datas.dingdanList[i].state+"</p>\n" +
+                            "</li>\n" +
+                            "<li style=\"text-align: center;float: right;padding-right: 120px;padding-top: 0px\">\n" +
+                            "<button  class=\"layui-btn layui-btn-normal\" id='"+datas.dingdanList[i].ddid+"' onclick='qx(this)'>取消订单</button>\n" +
+                            "</li>\n" +
+                            "</ul>"
+                        );
+                    }
+                },error:function (e) {
+                    console.log(e);
+                }
+            })
+        }
+        getdingdan();
+        form.render();
+    });
+    function qx(element) {
+        var ddid=element.id;
+        data7={
+            "ddid":ddid
+        }
+        //根据订单号查使用state
+        $.ajax({
+            url: "/choosecar/checkstate"
+            ,data:JSON.stringify(data7)
+            ,dataType:"json"
+            ,type:"post"
+            ,method:"post"
+            , contentType: "application/json;charsetset=UTF-8"//必须
+            ,success:function (data) {
+                if (data.dingdanList[0].state == "待使用"){
+                    var ddid=data.dingdanList[0].ddid;
+                    var account=data.dingdanList[0].account;
+                    var price=data.dingdanList[0].price;
+                    var yaprice=data.dingdanList[0].yaprice;
+                    var carid=data.dingdanList[0].carid;
+                    var state=data.dingdanList[0].state;
+                    data4 = {
+                        "ddid":ddid,
+                        "account":account,
+                        "price":price,
+                        "yaprice":yaprice,
+                        "carid":carid,
+                        "state":state
+                    };
+                    $.ajax({
+                        type: "post",
+                        data: JSON.stringify(data4),
+                        url: '/choosecar/qx',
+                        method: 'post',
+                        dataType: "json",
+                        contentType: "application/json;charsetset=UTF-8",//必须
+                        success:function (data) {
+                            window.alert(data.msg);
+                        },error:function (e) {
+                            console.log(e);
+                        }
+                    })
+                } else{
+                    window.alert("该订单无法取消");
+                }
+            },error:function (e) {
+                console.log(e);
+            }
+        });
+
+    }
+
+
+</script>
+
+</body>
+</html>

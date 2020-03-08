@@ -22,12 +22,45 @@
     </resultMap>
     <!--id是方法名-->
     <select id="selectbytype" resultType="com.zhouwenbin.carsystem.entity.Cars">
-            select * from car where category=#{category}
+            select * from car where category=#{category} and state="正常"
     </select>
     <select id="selectall" resultType="com.zhouwenbin.carsystem.entity.Cars">
-            select * from car ;
+            select * from car where state="正常"
     </select>
     <select id="carinfo" resultType="com.zhouwenbin.carsystem.entity.Cars">
             select * from car where carid=#{carId}
+    </select>
+    <select id="yecx" resultType="Integer">
+            select money from users where account=#{account}
+    </select>
+    <update id="updateyue" parameterType="com.zhouwenbin.carsystem.entity.Users">
+            update users set money=#{money} where account=#{account}
+    </update>
+    <update id="updatecarstate" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+            update car set state="借出" where carid=#{carid}
+    </update>
+    <update id="updatecarstate1" parameterType="com.zhouwenbin.carsystem.entity.Cars">
+            update car set state="正常" where carid=#{carid}
+    </update>
+    <select id="lookusersinfo" resultType="String">
+        select name from users where account=#{account}
+    </select>
+    <insert id="insertdingdan">
+        insert into dingdan(carid,account,name,category,price,yaprice,pos,size,pinpai,state) values (#{carid},#{account},#{name},#{category},#{price},#{yaprice},#{pos},#{size},#{pinpai},"待使用")
+    </insert>
+    <select id="selectdingdan" resultType="com.zhouwenbin.carsystem.entity.Dingdan">
+        select * from dingdan where account=#{account}
+    </select>
+    <update id="updatedingdan" parameterType="com.zhouwenbin.carsystem.entity.Dingdan">
+            update dingdan set state="已完成" where ddid=#{ddid}
+    </update>
+    <delete id="removedingdan" parameterType="com.zhouwenbin.carsystem.entity.Dingdan">
+        delete  from dingdan where ddid=#{ddid}
+    </delete>
+    <update id="returnmoney" parameterType="com.zhouwenbin.carsystem.entity.Users">
+            update users set money=#{money} where account=#{account}
+    </update>
+    <select id="selectdingdanbyid" resultType="com.zhouwenbin.carsystem.entity.Dingdan">
+            select * from dingdan where ddid=#{ddid}
     </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.zhouwenbin.carsystem.controller;
 import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.service.CarsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/carregister")
 @ResponseBody
+@EnableAutoConfiguration
 public class CarRegisterControl {
     @Autowired
     private CarsService carsService;

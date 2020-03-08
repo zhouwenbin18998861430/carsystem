@@ -144,6 +144,8 @@
                      <i class="fa fa-user"></i>
                      <span th:text="${user.account}"></span>
                      </a>
+                     <span>
+                        <button class="layui-btn" onclick="exit()">退出登陆</button>
                      </span>
                      </div>
 
@@ -216,13 +218,12 @@
                         <ul id="gauto_navigation">
                            <!--<li><a href="index.html">首页</a></li>-->
                            <li>
-                              <a th:href="@{/userCar}">车型</a>
+                              <a th:href="@{/userCar}">选择车型</a>
                               <!--<ul>-->
                                  <!--<li><a href="car-listing.html">car listing</a></li>-->
                                  <!--<li><a href="car-booking.html">car booking</a></li>-->
                               <!--</ul>-->
                            </li>
-                           <li><a href="about.html">关于我们</a></li>
                         </ul>
                      </nav>
                   </div>
@@ -282,7 +283,7 @@
                   </div>
                </div>
                <div class="col-md-8">
-                  这边放宣传租车图片
+                  <img src="/image/ls.JPG" style="width: 760px;height: 368px">
                </div>
             </div>
          </div>
@@ -309,6 +310,29 @@
       </footer>
       <!-- Footer Area End -->
    <!--script-->
+   <script>
+      function exit() {
+         var tip=confirm("您确定要退出吗")
+         if (tip==true){
+            sessionStorage.clear();
+            $.ajax({
+               url: "/login/clean"
+               ,dataType:"json"
+               ,type:"post"
+               ,method:"post"
+               , contentType: "application/json;charsetset=UTF-8"//必须
+               ,success:function (data) {
+                  window.alert(data.msg);
+                  window.location.reload();
+               },error:function (e) {
+                  console.log(e);
+               }
+            });
+         }else {
+            alert("取消了操作");
+         }
+      }
+   </script>
    </body>
 </html>
 

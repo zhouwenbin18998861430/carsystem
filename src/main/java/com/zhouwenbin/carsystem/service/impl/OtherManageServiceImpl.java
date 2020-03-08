@@ -6,6 +6,7 @@ import com.zhouwenbin.carsystem.entity.Cars;
 import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.entity.categoryTosum;
 import com.zhouwenbin.carsystem.service.OtherManageService;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@EnableAutoConfiguration
 public class OtherManageServiceImpl implements OtherManageService {
     @Resource
     private OtherManageMapper otherManageMapper;

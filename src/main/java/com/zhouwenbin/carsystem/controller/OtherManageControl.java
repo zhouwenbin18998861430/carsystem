@@ -6,6 +6,7 @@ import com.zhouwenbin.carsystem.entity.Users;
 import com.zhouwenbin.carsystem.entity.categoryTosum;
 import com.zhouwenbin.carsystem.service.OtherManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/other")
+@EnableAutoConfiguration
 public class OtherManageControl {
     @Autowired
     private OtherManageService otherManageService;

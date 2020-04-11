@@ -90,12 +90,13 @@
                 layer.alert(data.msg, {
                         icon: 6
                     },
-                    function () {
-                        // layer.close(index);
-                        // window.location.href = "/login/Carinfodj";
-                        parent.location.reload();
+                    function() {
+                        window.parent.location.reload();
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        //关闭当前frame
+                        parent.layer.close(index);
                     });
-                // window.alert(data.msg);
             },
             error:function (e) {
                 console.log(e);

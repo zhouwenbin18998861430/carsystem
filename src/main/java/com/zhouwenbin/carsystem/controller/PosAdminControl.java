@@ -78,7 +78,6 @@ public class PosAdminControl {
         String name=posAdminService.checkname(account);
         String pos=posAdminService.checkpos(name);
         List<Cars> carsList=posAdminService.selectposcar2(pos);
-        // System.out.println("carList:"+carsList);
         map.put("data", carsList);
         map.put("status", 0);
         map.put("message", "");

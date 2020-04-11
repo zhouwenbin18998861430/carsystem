@@ -58,7 +58,7 @@ public class LoginControl extends HttpServlet {
         // System.out.println("查询的密码：" + password1);
         Integer grade = usersService.selectGrade(account);
         // System.out.println("权限等级为:"+grade);
-        if (password.length() == 0) {
+        if (account.length()==0||password.length() == 0) {
             model.addAttribute("msg", "请先输入用户名或密码");
             return "/login";//没有输入密码
         } else if (password.equals(password1)) {
@@ -93,7 +93,7 @@ public class LoginControl extends HttpServlet {
             }
         } else
             model.addAttribute("msg", "用户名或密码错误 ");
-        return "redirect:/login";//密码错了
+            return "login";//密码错了
 
     }
 
@@ -126,7 +126,7 @@ public class LoginControl extends HttpServlet {
         String account=users.getAccount();
         // System.out.println("account:"+account);
         Integer age=users.getAge();
-        Integer phone=users.getPhone();
+        String phone=users.getPhone();
         String name=users.getName();
         String password=users.getPassword();
         List<Users> userlist=usersService.haveaccount(account);

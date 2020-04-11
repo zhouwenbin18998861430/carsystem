@@ -4,7 +4,7 @@ package com.zhouwenbin.carsystem.entity;
 public class Users {
 
 
-    public Users(String account, String password, String name, Integer age, Integer phone,Integer grade,Integer money,Integer shenfenzheng) {
+    public Users(String account, String password, String name, Integer age, String phone,Integer grade,Integer money,Integer shenfenzheng) {
         super();
         this.account = account;
         this.password = password;
@@ -41,7 +41,7 @@ public class Users {
     }
 
     private Integer grade;
-    private Integer phone;
+    private String phone;
 
     public Integer getMoney() {
         return money;
@@ -85,11 +85,11 @@ public class Users {
         this.age = age;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

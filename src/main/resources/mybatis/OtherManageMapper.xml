@@ -32,7 +32,7 @@
         select * from car where carid=#{carid}
     </select>
     <select id="selectusersinfo" resultType="com.zhouwenbin.carsystem.entity.Users">
-        select * from users
+        select * from users where grade =3
     </select>
     <update id="errorCardj" parameterType="com.zhouwenbin.carsystem.entity.Cars">
         update car set errormsg=#{errormsg},state=#{state},fixed="待修理" where carid=#{carid}

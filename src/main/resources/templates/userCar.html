@@ -74,7 +74,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="index">首页</a></li>
-                <li><a href="#">购车指南</a></li>
+                <!--<li><a href="#">购车指南</a></li>-->
             </ul>
         </div>
     </div>
@@ -93,7 +93,7 @@
       </form>
 </div>
 <div id="foot" style="width: 100%;height: 300px">
-    <div class="row-car" id="show">
+    <div class="" style="width: 100%" id="show">
     </div>
 </div>
 </div>
@@ -109,34 +109,34 @@
                 , contentType: "application/json;charsetset=UTF-8"//必须
                 , success: function (datas) {
                     for (i = 0; i < datas.carlist.length; i++) {
-                        $("#show").append("<ul class=\"car-content\" style=\"margin-top: 50px;\">" +
-                            "<li style=\"border-right: 1px solid #ccc;padding-left: 10px;padding-left: 190px;\">" +
+                        $("#show").append("<div class='layui-col-md8 layui-row' style='width: 100%'><ul class=\"car-content\" style=\"margin-top: 50px;\">" +
+                            "<li style=\"border-right: 1px solid #ccc;padding-left: 10px;padding-left: 190px;width: 20%\">" +
                             "<img  src=\"../static/"+datas.carlist[i].photolocation+"\" width=\"100px\" height=\"100px\">" +
                             "</li>"+
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">"+
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">"+
                             "<p>品牌</p>"+
                             "<p style=\"color: #999;\">"+datas.carlist[i].pinpai+"</p>"+
                             "</li>"+
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">\n" +
                             "<p>车型</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].category+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">\n" +
                             "<p>价格</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].price+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">\n" +
                             "<p>押金</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].yaprice+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;\">\n" +
+                            "<li style=\"text-align: center;width: 10%\">\n" +
                             "<p>可乘人数</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].size+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;float: right;padding-right: 250px;padding-top: 20px\">\n" +
+                            "<li style=\"text-align: center;float: right;padding-right: 250px;padding-top: 20px;width: 5%\">\n" +
                             "<button  class=\"layui-btn layui-btn-normal\" id='"+datas.carlist[i].carid+"' onclick='zulin(this)'>立即租赁</button>\n" +
                             "</li>\n" +
-                            "</ul>"
+                            "</ul></div>"
                         );
                     }
                     form.render();//注意渲染页面表单，否则不显示数据
@@ -177,34 +177,34 @@
                 , contentType: "application/json;charsetset=UTF-8"//必须
                 ,success:function (datas) {
                     for (i = 0; i < datas.carlist.length; i++) {
-                        $("#show").append("<ul class=\"car-content\" style=\"margin-top: 50px;\">" +
-                            "<li style=\"border-right: 1px solid #ccc;padding-left: 10px;padding-left: 190px;\">" +
+                        $("#show").append("<div class='layui-col-md8 layui-row' style='width: 100%'><ul class=\"car-content\" style=\"margin-top: 50px;\">" +
+                            "<li style=\"border-right: 1px solid #ccc;padding-left: 10px;padding-left: 190px;width: 20%\">" +
                             "<img  src=\"../static/"+datas.carlist[i].photolocation+"\" width=\"100px\" height=\"100px\">" +
                             "</li>"+
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">"+
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">"+
                             "<p>品牌</p>"+
                             "<p style=\"color: #999;\">"+datas.carlist[i].pinpai+"</p>"+
                             "</li>"+
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">\n" +
                             "<p>车型</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].category+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">\n" +
                             "<p>价格</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].price+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 10%\">\n" +
                             "<p>押金</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].yaprice+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;\">\n" +
+                            "<li style=\"text-align: center;width: 10%\">\n" +
                             "<p>可乘人数</p>\n" +
                             "<p style=\"color: #999;\">"+datas.carlist[i].size+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;float: right;padding-right: 250px;padding-top: 20px\">\n" +
+                            "<li style=\"text-align: center;float: right;padding-right: 250px;padding-top: 20px;width: 5%\">\n" +
                             "<button  class=\"layui-btn layui-btn-normal\" id='"+datas.carlist[i].carid+"' onclick='zulin(this)'>立即租赁</button>\n" +
                             "</li>\n" +
-                            "</ul>"
+                            "</ul></div>"
                         );
                     }
                     form.render();//注意渲染页面表单，否则不显示数据

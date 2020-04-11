@@ -112,6 +112,7 @@
                 var price=data.price;
                 var yaprice=data.yaprice;
                 var carid=data.carid;
+                var state=data.state;
                 if (obj.event == 'edit1') {
                     $("#carid").val(cid);
                     data={
@@ -155,7 +156,8 @@
                             "account":account,
                             "price":price,
                             "yaprice":yaprice,
-                            "carid":carid
+                            "carid":carid,
+                            "state":state
                         };
                         $.ajax({
                             type: "post",
@@ -166,6 +168,7 @@
                             contentType: "application/json;charsetset=UTF-8"//必须
                             , success: function (data) {
                                 // layer.msg("删除成功！",{icon : 0});
+                                console.log("成功");
                                 layer.alert(data.msg, {
                                         icon: 6
                                     },

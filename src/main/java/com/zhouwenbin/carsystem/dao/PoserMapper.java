@@ -17,4 +17,5 @@ public interface PoserMapper {
     Boolean saveinfo(Poser poser);//编辑租赁点管理员信息
     List<Poser> poserinfo2();//查询未分配的管理员
     Boolean match(Poser poser);//分配管理员
+    Boolean updatecar(Poser poser);//更新车辆归属
 }

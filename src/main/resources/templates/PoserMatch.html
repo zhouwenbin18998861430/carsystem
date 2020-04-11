@@ -25,7 +25,6 @@
         </style>
     </head>
     <body>
-    <body>
     <!--<div class="x-nav">-->
     <!--<a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"-->
     <!--onclick="location.reload()" title="刷新">-->
@@ -43,12 +42,18 @@
                                         lay-filter="carType">
                                     <option value="">请选择租赁点位置</option>
                                 </select>
+
                             </div>
                             <!--<div class="layui-input-inline">-->
                                 <!--<button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1"-->
                                         <!--onclick="addPos()">新增租赁点-->
                                 <!--</button>-->
                             <!--</div>-->
+                            <div class="layui-input-inline">
+                                <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1"
+                                        onclick="addPoser()">新添租赁点管理员
+                                </button>
+                            </div>
                             <input type="hidden" id="carid">
                         </div>
                     </form>
@@ -120,7 +125,6 @@
                             {fixed: 'poserid', type: 'checkbox', width: 70}
                             // ,{field: 'carid', title: 'ID', width:80, sort: true, fixed: 'left'}
                             , {field: 'posername', title: '租赁点管理员', width: 150}
-                            , {field: 'pos', title: '租赁点名称', width: 150, sort: true}
                             , {field: 'phone', title: '联系方式', width: 150}
                             , {field: 'shenfenzheng', title: '身份证', width: 150}
                             , {field: 'tool', title: '操作', width: 300, align: 'center', toolbar: '#barDemo'}
@@ -207,6 +211,9 @@
 
         function addPos() {
             window.location.href = "/login/AddType";
+        }
+        function addPoser() {
+            window.location.href = "/login/AddPoser";
         }
     </script>
     </body>

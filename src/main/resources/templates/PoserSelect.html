@@ -36,18 +36,14 @@
                 <div class="layui-card">
                     <form class="layui-form" action="">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">管理员查询</label>
+                            <label class="layui-form-label" style="width: 100px;">管理员查询</label>
                             <div class="layui-input-inline">
                                 <select name="carType" id="carType" lay-verify="required" lay-search=""
                                         lay-filter="carType">
                                     <option value="">请选择租赁点位置</option>
                                 </select>
                             </div>
-                            <div class="layui-input-inline">
-                                <button class="layui-btn  layui-btn-normal" lay-submit="" lay-filter="demo1"
-                                        onclick="addPoser()">新添租赁点管理员
-                                </button>
-                            </div>
+
                             <input type="hidden" id="carid">
                         </div>
                     </form>
@@ -182,9 +178,7 @@
             form.render(); //更新全部
         });
 
-        function addPoser() {
-            window.location.href = "/login/AddPoser";
-        }
+
     </script>
     </body>
 </html>

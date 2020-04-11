@@ -15,4 +15,5 @@ public interface PoserService {
     Boolean saveinfo(Poser poser);
     List<Poser> poserinfo2();
     Boolean match(Poser poser);//分配管理员
+    Boolean updatecar(Poser poser);//更新车辆归属
 }

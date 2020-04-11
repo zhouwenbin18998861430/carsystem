@@ -99,39 +99,39 @@
                 ,success:function (datas) {
                     for (i = 0; i < datas.dingdanList.length; i++) {
                         $("#dingdan").append(
-                            "<ul class=\"car-content\" style=\"margin-top: 50px;\">" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">"+
+                            "<div class='layui-col-md8 layui-row' style='width: 100%'><ul class=\"car-content\" style=\"margin-top: 50px;\">" +
+                            "<li style=\"text-align: left;border-right: 1px solid #ccc;width: 12%\">"+
                             "<p>订单号</p>"+
                             "<p style=\"color: #999;\">"+datas.dingdanList[i].ddid+"</p>"+
                             "</li>"+
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 12%\">\n" +
                             "<p>车型</p>\n" +
                             "<p style=\"color: #999;\">"+datas.dingdanList[i].category+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 12%\">\n" +
                             "<p>价格</p>\n" +
                             "<p style=\"color: #999;\">"+datas.dingdanList[i].price+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 13%\">\n" +
                             "<p>押金</p>\n" +
                             "<p style=\"color: #999;\">"+datas.dingdanList[i].yaprice+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;border-right: 1px solid #ccc;\">\n" +
+                            "<li style=\"text-align: center;border-right: 1px solid #ccc;width: 15%\">\n" +
                             "<p>取车点</p>\n" +
                             "<p style=\"color: #999;\">"+datas.dingdanList[i].pos+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;\">\n" +
+                            "<li style=\"text-align: center;width: 15%\">\n" +
                             "<p>可乘人数</p>\n" +
                             "<p style=\"color: #999;\">"+datas.dingdanList[i].size+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;\">\n" +
+                            "<li style=\"text-align: center;width: 13%\">\n" +
                             "<p>订单状态</p>\n" +
                             "<p id='state' style=\"color: #999;\">"+datas.dingdanList[i].state+"</p>\n" +
                             "</li>\n" +
-                            "<li style=\"text-align: center;float: right;padding-right: 120px;padding-top: 0px\">\n" +
+                            "<li style=\"text-align: center;float: right;padding-right: 120px;padding-top: 0px;width: 10%\">\n" +
                             "<button  class=\"layui-btn layui-btn-normal\" id='"+datas.dingdanList[i].ddid+"' onclick='qx(this)'>取消订单</button>\n" +
                             "</li>\n" +
-                            "</ul>"
+                            "</ul></div>"
                         );
                     }
                 },error:function (e) {
@@ -180,6 +180,7 @@
                         contentType: "application/json;charsetset=UTF-8",//必须
                         success:function (data) {
                             window.alert(data.msg);
+                            window.location.reload();
                         },error:function (e) {
                             console.log(e);
                         }
